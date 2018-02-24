@@ -1,0 +1,8 @@
+CFLAGS = -O
+CC = g++
+SRC = main.cpp Num.cpp
+OBJ = $(SRC:.cpp = .o)
+all: $(OBJ)
+	$(CC) $(CFLAGS) -o Run $(OBJ)
+clean:
+	rm -f core *.o
