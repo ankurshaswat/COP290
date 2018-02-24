@@ -1,9 +1,17 @@
+// Program.h
 #include <iostream>
-#include "Num.h"
+// #include "module1/Fig3D.h"
+// #include "module1/Vertice.h"
+// #include "module1/Edge.h"
+
 using namespace std;
+
+/**
+they
+**/
+
 int main()
 {
- Num n(35);
- cout << n.getNum() << endl;
- return 0;
-} 
+
+        return 0;
+}

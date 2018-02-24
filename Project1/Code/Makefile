@@ -38,4 +38,3 @@ release: all
 clean:
 	-@rm -rf $(OBJ_DIR)/*
 	-@rm -rf $(APP_DIR)/*
-                       
