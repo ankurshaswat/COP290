@@ -8,9 +8,12 @@ class Edge
 {
 
 private:
-Vertice vertice[10];
+Vertice vertice[2];
 
 public:
+Vertice* endPoints();
+bool isPlanar(Edge a, Edge b);
+
 
 };
 
