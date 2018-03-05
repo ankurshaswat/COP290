@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['main',['main',['../program_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4',1,'program.cpp']]]
+  ['getedgelist',['getEdgeList',['../classEdgeLoop.html#a88b9e65dd2a986e41acb2e1bc0734a73',1,'EdgeLoop']]],
+  ['getedges',['getEdges',['../classFace.html#a5973ddd3395e60aeadc76f24d1bcc860',1,'Face']]]
 ];
