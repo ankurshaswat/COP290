@@ -1,6 +1,6 @@
 QT += quick
+QT += uitools
 CONFIG += c++11
-
 # The following define makes your compiler emit warnings if you use
 # any feature of Qt which as been marked deprecated (the exact warnings
 # depend on your compiler). Please consult the documentation of the
@@ -12,10 +12,9 @@ DEFINES += QT_DEPRECATED_WARNINGS
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
-SOURCES += main.cpp \
-    main.cpp \
-    helperFunctions/src/program.cpp \
-    main.cpp
+SOURCES += main.cpp
+#    helperFunctions/src/program.cpp \
+#    main2.cpp
 
 RESOURCES += qml.qrc
 
@@ -37,3 +36,6 @@ HEADERS += \
     helperFunctions/include/module1/reconstMethods.h \
     helperFunctions/include/module1/renderMethods.h \
     helperFunctions/include/module1/structs.h
+
+FORMS += \
+    mainwindow.ui

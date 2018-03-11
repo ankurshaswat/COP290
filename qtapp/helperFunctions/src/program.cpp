@@ -16,7 +16,7 @@ This is the main file of the program. This will be used to launch the interface 
 
 #include <iostream>
 using namespace std;
-int main()
+int main2()
 {
 
         return 0;
