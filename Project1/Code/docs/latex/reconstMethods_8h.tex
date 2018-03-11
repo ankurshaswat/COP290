@@ -1,0 +1,52 @@
+\hypertarget{reconstMethods_8h}{}\section{/home/ankurshaswat/\+My\+Files/\+Repos/\+C\+O\+P290/\+Project1/\+Code/include/module1/reconst\+Methods.h File Reference}
+\label{reconstMethods_8h}\index{/home/ankurshaswat/\+My\+Files/\+Repos/\+C\+O\+P290/\+Project1/\+Code/include/module1/reconst\+Methods.\+h@{/home/ankurshaswat/\+My\+Files/\+Repos/\+C\+O\+P290/\+Project1/\+Code/include/module1/reconst\+Methods.\+h}}
+{\ttfamily \#include \char`\"{}basic\+Components.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}complex\+Components.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}figures.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}structs.\+h\char`\"{}}\newline
+Include dependency graph for reconst\+Methods.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{reconstMethods_8h__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+Edge $\ast$$\ast$ \hyperlink{reconstMethods_8h_a8d1fcb4aafed675fbf234f7975b5f33e}{partition} (Edge $\ast$a)
+\item 
+\hyperlink{classEdgeLoop}{Edge\+Loop} $\ast$ \hyperlink{reconstMethods_8h_a88d763f60f07456ccf0d690336c7351f}{get\+Edge\+Loops} (Edge $\ast$a)
+\item 
+\hyperlink{classpartialOrder}{partial\+Order} \hyperlink{reconstMethods_8h_a879adfd464c9621f81e4648475cb9da6}{construct\+Poset} (\hyperlink{classEdgeLoop}{Edge\+Loop} $\ast$a)
+\item 
+\hyperlink{classEdgeLoop}{Edge\+Loop} $\ast$ \hyperlink{reconstMethods_8h_ade557b3ab8f2f6e89317d611a8d9a3ea}{get\+Valid\+Edge\+Loops} (\hyperlink{classEdgeLoop}{Edge\+Loop} $\ast$a, \hyperlink{classpartialOrder}{partial\+Order} b)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{reconstMethods_8h_a879adfd464c9621f81e4648475cb9da6}\label{reconstMethods_8h_a879adfd464c9621f81e4648475cb9da6}} 
+\index{reconst\+Methods.\+h@{reconst\+Methods.\+h}!construct\+Poset@{construct\+Poset}}
+\index{construct\+Poset@{construct\+Poset}!reconst\+Methods.\+h@{reconst\+Methods.\+h}}
+\subsubsection{\texorpdfstring{construct\+Poset()}{constructPoset()}}
+{\footnotesize\ttfamily \hyperlink{classpartialOrder}{partial\+Order} construct\+Poset (\begin{DoxyParamCaption}\item[{\hyperlink{classEdgeLoop}{Edge\+Loop} $\ast$}]{a }\end{DoxyParamCaption})}
+
+takes input a set of edge\+Loops and returns a partial order defined on is\+Contained relation \mbox{\Hypertarget{reconstMethods_8h_a88d763f60f07456ccf0d690336c7351f}\label{reconstMethods_8h_a88d763f60f07456ccf0d690336c7351f}} 
+\index{reconst\+Methods.\+h@{reconst\+Methods.\+h}!get\+Edge\+Loops@{get\+Edge\+Loops}}
+\index{get\+Edge\+Loops@{get\+Edge\+Loops}!reconst\+Methods.\+h@{reconst\+Methods.\+h}}
+\subsubsection{\texorpdfstring{get\+Edge\+Loops()}{getEdgeLoops()}}
+{\footnotesize\ttfamily \hyperlink{classEdgeLoop}{Edge\+Loop}$\ast$ get\+Edge\+Loops (\begin{DoxyParamCaption}\item[{Edge $\ast$}]{a }\end{DoxyParamCaption})}
+
+takes input a set of coplanar edges and returns a list of edge\+Loops formed using these edges \mbox{\Hypertarget{reconstMethods_8h_ade557b3ab8f2f6e89317d611a8d9a3ea}\label{reconstMethods_8h_ade557b3ab8f2f6e89317d611a8d9a3ea}} 
+\index{reconst\+Methods.\+h@{reconst\+Methods.\+h}!get\+Valid\+Edge\+Loops@{get\+Valid\+Edge\+Loops}}
+\index{get\+Valid\+Edge\+Loops@{get\+Valid\+Edge\+Loops}!reconst\+Methods.\+h@{reconst\+Methods.\+h}}
+\subsubsection{\texorpdfstring{get\+Valid\+Edge\+Loops()}{getValidEdgeLoops()}}
+{\footnotesize\ttfamily \hyperlink{classEdgeLoop}{Edge\+Loop}$\ast$ get\+Valid\+Edge\+Loops (\begin{DoxyParamCaption}\item[{\hyperlink{classEdgeLoop}{Edge\+Loop} $\ast$}]{a,  }\item[{\hyperlink{classpartialOrder}{partial\+Order}}]{b }\end{DoxyParamCaption})}
+
+takes input a poset (set + partial order on the set) and returns a list of edge\+Loops that qualify to be labelled as faces \mbox{\Hypertarget{reconstMethods_8h_a8d1fcb4aafed675fbf234f7975b5f33e}\label{reconstMethods_8h_a8d1fcb4aafed675fbf234f7975b5f33e}} 
+\index{reconst\+Methods.\+h@{reconst\+Methods.\+h}!partition@{partition}}
+\index{partition@{partition}!reconst\+Methods.\+h@{reconst\+Methods.\+h}}
+\subsubsection{\texorpdfstring{partition()}{partition()}}
+{\footnotesize\ttfamily Edge$\ast$$\ast$ partition (\begin{DoxyParamCaption}\item[{Edge $\ast$}]{a }\end{DoxyParamCaption})}
+
+Defines methods required for 3D reconstruction process partitions a given list of edges into coplanar sets 

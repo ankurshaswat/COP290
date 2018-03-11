@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['render',['Render',['../classFig3D.html#a7240f4cd944cfe9595cfb3d48fe422cd',1,'Fig3D']]]
+  ['render',['render',['../renderMethods_8h.html#ab6043f874ec8d70f6af6449bbf1ab02a',1,'renderMethods.h']]]
 ];

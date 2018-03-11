@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['iscontained',['isContained',['../classEdgeLoop.html#acae6f647805e3f043325f047208556c8',1,'EdgeLoop']]],
-  ['isplanar',['isPlanar',['../classEdge.html#aa4f4fd6948d7f5170a0dea529b8b04d3',1,'Edge']]]
+  ['getedgelist',['getEdgeList',['../classWireFrame.html#a05cebbd5f3da2cfaac0aab16afb708a9',1,'WireFrame']]],
+  ['getedgeloops',['getEdgeLoops',['../reconstMethods_8h.html#a88d763f60f07456ccf0d690336c7351f',1,'reconstMethods.h']]],
+  ['getvalidedgeloops',['getValidEdgeLoops',['../reconstMethods_8h.html#ade557b3ab8f2f6e89317d611a8d9a3ea',1,'reconstMethods.h']]]
 ];

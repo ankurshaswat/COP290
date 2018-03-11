@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['endpoints',['endPoints',['../classEdge.html#ad9735bd8ac4b59fcfcd76f2548b568b9',1,'Edge']]]
+  ['display',['display',['../renderMethods_8h.html#a5dc1d69878bbb2d8a31a87bb957f787a',1,'renderMethods.h']]]
 ];
