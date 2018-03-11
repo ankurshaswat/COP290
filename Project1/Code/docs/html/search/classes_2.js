@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['vertice',['Vertice',['../classVertice.html',1,'']]]
+  ['partialorder',['partialOrder',['../classpartialOrder.html',1,'']]]
 ];

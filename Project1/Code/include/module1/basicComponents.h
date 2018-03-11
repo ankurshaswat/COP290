@@ -1,6 +1,14 @@
 /** Face.h */
 #ifndef BASICCOMPONENTS_H
 #define BASICCOMPONENTS_H
+class Vertice
+{
+
+private:
+float x,y,z;
+
+
+}
 
 class Face
 {

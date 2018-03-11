@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['getedgelist',['getEdgeList',['../classEdgeLoop.html#a88b9e65dd2a986e41acb2e1bc0734a73',1,'EdgeLoop']]],
-  ['getedges',['getEdges',['../classFace.html#a5973ddd3395e60aeadc76f24d1bcc860',1,'Face']]]
+  ['getedgelist',['getEdgeList',['../classWireFrame.html#a05cebbd5f3da2cfaac0aab16afb708a9',1,'WireFrame']]],
+  ['getedgeloops',['getEdgeLoops',['../reconstMethods_8h.html#a88d763f60f07456ccf0d690336c7351f',1,'reconstMethods.h']]],
+  ['getvalidedgeloops',['getValidEdgeLoops',['../reconstMethods_8h.html#ade557b3ab8f2f6e89317d611a8d9a3ea',1,'reconstMethods.h']]]
 ];

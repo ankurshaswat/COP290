@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['planarpartitions',['planarPartitions',['../classFace.html#a3676c176d0ad0b518a74409372aa94da',1,'Face']]]
+  ['partition',['partition',['../reconstMethods_8h.html#a8d1fcb4aafed675fbf234f7975b5f33e',1,'reconstMethods.h']]]
 ];
