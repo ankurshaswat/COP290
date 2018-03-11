@@ -1,4 +1,4 @@
-//#include <QGuiApplication>
+#include <QGuiApplication>
 //#include <QQmlApplicationEngine>
 #include<QApplication>
 #include <QtUiTools>
@@ -18,6 +18,7 @@ QWidget* loadUiFile()
 
 int main(int argc, char *argv[])
 {
+    QGuiApplication::setAttribute(Qt::AA_ShareOpenGLContexts);
 //    QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 //    const QString labelName= "Label1";
 //    QGuiApplication app(argc, argv);
@@ -32,8 +33,8 @@ int main(int argc, char *argv[])
     QPainter painter(&pixmap);
     QPen Red((QColor(255,0,0)),1);
     painter.setPen(Red);
-    painter.drawLine(50,50,100,100);
-    mainWindow->findChild<QLabel *>("Label1")->setPixmap(pixmap);
+    painter.drawLine(0,0,100,100);
+    mainWindow->findChild<QLabel *>("label1")->setPixmap(pixmap);
     mainWindow->show();
     return app.exec();
 }

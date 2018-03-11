@@ -16,7 +16,7 @@ SOURCES += main.cpp
 #    helperFunctions/src/program.cpp \
 #    main2.cpp
 
-RESOURCES += qml.qrc
+RESOURCES +=
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
 QML_IMPORT_PATH =
