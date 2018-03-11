@@ -4,7 +4,7 @@
 class Vertice
 {
 
-private:
+public:
 float x,y,z;
 
 

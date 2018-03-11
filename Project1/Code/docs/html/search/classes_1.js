@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['face',['Face',['../classFace.html',1,'']]]
+  ['partialorder',['partialOrder',['../classpartialOrder.html',1,'']]]
 ];

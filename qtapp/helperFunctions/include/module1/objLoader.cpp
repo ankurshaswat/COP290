@@ -1,37 +1,19 @@
-#include <vector>
-#include <stdio.h>
-#include <string>
-#include <cstring>
-#include <basicComponents.h>
-#include <glm/glm.hpp>
-
-#include "objloader.hpp"
-
-// Very, VERY simple OBJ loader.
-// Here is a short list of features a real function would provide :
-// - Binary files. Reading a model should be just a few memcpy's away, not parsing a file at runtime. In short : OBJ is not very great.
-// - Animations & bones (includes bones weights)
-// - Multiple UVs
-// - All attributes should be optional, not "forced"
-// - More stable. Change a line in the OBJ file and it crashes.
-// - More secure. Change another line and you can inject code.
-// - Loading from memory, stream, etc
-
 bool loadOBJ(
 	const char * path,
 	std::vector<Vertice> & out_vertices,
 	// std::vector<Vertice2D> & out_uvs,
-	std::vector<Vertice> & out_normals
+	// std::vector<Vertice> & out_normals
+	std::vector<std::vector<unsigned int>> faces_vertices
 ){
 	printf("Loading OBJ file %s...\n", path);
 
-	std::vector<unsigned int> vertexIndices, uvIndices, normalIndices;
 	std::vector<Vertice> temp_vertices;
 	// std::vector<glm::vec2> temp_uvs;
 	std::vector<Vertice> temp_normals;
 
 
 	FILE * file = fopen(path, "r");
+
 	if( file == NULL ){
 		printf("Impossible to open the file ! Are you in the right path ?\n");
 		getchar();
@@ -53,30 +35,38 @@ bool loadOBJ(
       Vertice vertex;
 			fscanf(file, "%f %f %f\n", &vertex.x, &vertex.y, &vertex.z );
 			temp_vertices.push_back(vertex);
+
 		}else if ( strcmp( lineHeader, "vt" ) == 0 ){
+
       continue;
 			// glm::vec2 uv;
 			// fscanf(file, "%f %f\n", &uv.x, &uv.y );
 			// uv.y = -uv.y; // Invert V coordinate since we will only use DDS texture, which are inverted. Remove if you want to use TGA or BMP loaders.
 			// temp_uvs.push_back(uv);
 		}else if ( strcmp( lineHeader, "vn" ) == 0 ){
+
 			// glm::vec3 normal;
       Vertice normal;
 			fscanf(file, "%f %f %f\n", &normal.x, &normal.y, &normal.z );
 			temp_normals.push_back(normal);
 		}else if ( strcmp( lineHeader, "f" ) == 0 ){
+
 			// std::string vertex1, vertex2, vertex3;
 			unsigned int vertexIndex,  normalIndex;
+			std::vector<unsigned int> vertexIndices, normalIndices;
 
       while(1){
         int matches = fscanf(file, "%d//%d", &vertexIndex,  &normalIndex );
-        char c = fgetc(fp);
+				vertexIndices.push_back(vertexIndex);
+        char c = fgetc(file);
         if(c=='\n'){
           break;
         }
-        vertexIndices.push_back(vertexIndex);
-        normalIndices.push_back(normalIndex);
+        // normalIndices.push_back(normalIndex);
       }
+
+
+			faces_vertices.push_back(vertexIndices);
 			// if (matches != 9){
 			// 	printf("File can't be read by our simple parser :-( Try exporting with other options\n");
 			// 	fclose(file);
@@ -98,24 +88,35 @@ bool loadOBJ(
 	}
 
 	// For each vertex of each triangle
+
+	for(unsigned int j=0;j<faces_vertices.size();j++){
+
+		std::vector<unsigned int> vertexIndices;
+		vertexIndices=faces_vertices[j];
+		printf("%d,\n",j);
 	for( unsigned int i=0; i<vertexIndices.size(); i++ ){
 
 		// Get the indices of its attributes
 		unsigned int vertexIndex = vertexIndices[i];
-		unsigned int uvIndex = uvIndices[i];
-		unsigned int normalIndex = normalIndices[i];
+		// unsigned int uvIndex = uvIndices[i];
+		// unsigned int normalIndex = normalIndices[i];
 
 		// Get the attributes thanks to the index
 		Vertice vertex = temp_vertices[ vertexIndex-1 ];
 		// glm::vec2 uv = temp_uvs[ uvIndex-1 ];
-		Vertice normal = temp_normals[ normalIndex-1 ];
+		// Vertice normal = temp_normals[ normalIndex-1 ];
 
 		// Put the attributes in buffers
+		printf("%f,%f,%f,\n",vertex.x,vertex.y,vertex.z);
 		out_vertices.push_back(vertex);
 		// out_uvs     .push_back(uv);
-		out_normals .push_back(normal);
+		// out_normals .push_back(normal);
 
 	}
+
+}
+
 	fclose(file);
+
 	return true;
 }
