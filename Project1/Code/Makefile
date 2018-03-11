@@ -23,7 +23,9 @@ $(APP_DIR)/$(TARGET): $(OBJECTS)
 	@mkdir -p $(@D)
 	$(CXX) $(CXXFLAGS) $(INCLUDE) $(LDFLAGS) -o $(APP_DIR)/$(TARGET) $(OBJECTS)
 
-.PHONY: all build clean debug release
+all: doc
+
+.PHONY: all build clean debug release doc
 
 build:
 	@mkdir -p $(APP_DIR)
@@ -38,3 +40,6 @@ release: all
 clean:
 	-@rm -rf $(OBJ_DIR)/*
 	-@rm -rf $(APP_DIR)/*
+
+doc:
+	@cd docs/ && doxygen Doxyfile

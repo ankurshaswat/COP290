@@ -1,9 +1,6 @@
-// Face.h
-#ifndef FACE_H
-#define FACE_H
-
-#include "Edge.h"
-#include "Vertice.h"
+/** Face.h */
+#ifndef BASICCOMPONENTS_H
+#define BASICCOMPONENTS_H
 
 class Face
 {

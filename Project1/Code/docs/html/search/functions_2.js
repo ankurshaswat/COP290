@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['render',['Render',['../classFig3D.html#a7240f4cd944cfe9595cfb3d48fe422cd',1,'Fig3D']]]
+  ['getedgelist',['getEdgeList',['../classEdgeLoop.html#a88b9e65dd2a986e41acb2e1bc0734a73',1,'EdgeLoop']]],
+  ['getedges',['getEdges',['../classFace.html#a5973ddd3395e60aeadc76f24d1bcc860',1,'Face']]]
 ];
