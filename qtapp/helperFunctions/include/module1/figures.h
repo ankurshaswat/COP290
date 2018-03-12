@@ -9,7 +9,7 @@ class Fig2D
 {
 
 private:
-Edge edge[100];
+vector<Edge> edges;
 
 public:
 bool isEdgePresent(Edge a){
@@ -21,9 +21,9 @@ class Fig3D
 
 private:
 double XOffset,YOffset,ZOffset;
-Face face[10];
-Edge edge[10];
-Vertice vertice[10];
+vector<Face> faces;
+vector<Edge> edges;
+Vector<Vertice> vertices;
 
 public:
 Fig2D* getProjections(){

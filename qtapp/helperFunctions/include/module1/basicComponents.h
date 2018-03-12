@@ -1,23 +1,48 @@
 /** Face.h */
 #ifndef BASICCOMPONENTS_H
 #define BASICCOMPONENTS_H
-class Vertice
+#include<vector>
+using namespace std;
+struct Vertice
 {
 
-public:
-float x,y,z;
+// public:
+double first,second,third;
+bool is3d;
+
+bool operator<(Vertice other) const
+    {
+
+    	if(!is3d) return make_pair(first,make_pair(second,third)) > make_pair(other.first,make_pair(other.second,other.third));
+    	else return make_pair(first,second) > make_pair(other.first,other.second);
+    }
 
 
-}
 
-class Face
+};
+
+struct Edge{
+
+// public:
+pair<Vertice,Vertice> vertices;
+
+bool operator<(Edge other) const
+    {
+        return vertices > other.vertices;
+    }
+
+
+
+};
+
+struct Face
 {
 
-private:
-Edge edge[10];
-Vertice vertice[10];
 
-public:
+// public:
+vector<Vertice> vertices;
+vector<Edge> edges;
+
 
 };
 
