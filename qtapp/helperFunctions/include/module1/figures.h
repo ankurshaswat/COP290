@@ -3,36 +3,28 @@
 #define FIG3D_H
 
 #include "basicComponents.h"
+#include<set>
 
 
-class Fig2D
-{
-
-private:
-vector<Edge> edges;
-
-public:
-bool isEdgePresent(Edge a){
-    /** helper function needed for wireframe construction*/
-};
 
 class Fig3D
 {
 
 private:
-double XOffset,YOffset,ZOffset;
-vector<Face> faces;
-vector<Edge> edges;
-Vector<Vertice> vertices;
 
 public:
-Fig2D* getProjections(){
-    /** get XY, YZ and XZ projections (3 2D figures) of the 3D object*/
-};
-void AddOffset(double x,double y,double z);
-void AddRoll(double r);
-void AddYaw(double y);
-void AddPitch(double p);
+
+Vector<Face> faces;
+
+void getProjections(int plane, set<Edge> & edgeSet); /** get XY, YZ , XZ and isometric projections  of the 3D object*/
+
+Fig3D getTransformation(vector<double> matrix); /** get transformed 3D object */
+
+//void AddOffset(double x,double y,double z);
+//void AddRoll(double r);
+//void AddYaw(double y);
+//void AddPitch(double p);
+
 
 };
 

@@ -41,7 +41,7 @@ struct Face
 
 // public:
 vector<Vertice> vertices;
-vector<Edge> edges;
+vector<unsigned int> vertexIndices;
 
 
 };
