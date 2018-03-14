@@ -163,3 +163,6 @@ std::set<Edge>& get_edges2D(
 	}
 	return edgeSet;
 };
+int main(){
+	return 0;
+}

@@ -12,7 +12,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
-SOURCES += main.cpp
+SOURCES += main.cpp \
+    helperFunctions/src/objLoader.cpp
 #    helperFunctions/src/program.cpp \
 #    main2.cpp
 
@@ -35,7 +36,8 @@ HEADERS += \
     helperFunctions/include/module1/figures.h \
     helperFunctions/include/module1/reconstMethods.h \
     helperFunctions/include/module1/renderMethods.h \
-    helperFunctions/include/module1/structs.h
+    helperFunctions/include/module1/structs.h \
+    helperFunctions/include/module1/objLoader.h
 
 FORMS += \
     mainwindow.ui
