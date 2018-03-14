@@ -3,8 +3,8 @@
 #include<QApplication>
 #include <QtUiTools>
 
-#include "helperFunctions/include/module1/basicComponents.h"
-#include "helperFunctions/include/module1/objLoader.h"
+#include "basicComponents.h"
+#include "objLoader.h"
 
 #include <iostream>
 #include <vector>
