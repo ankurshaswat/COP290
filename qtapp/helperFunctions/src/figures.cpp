@@ -3,10 +3,46 @@
 #define PI 3.14159265
 class Fig3D {
 
-void getProjections(int plane, set<Edge> & edgeSet){
-        /** get XY, YZ , XZ and isometric projections  of the 3D object*/
+void getProjections(int plane, set<Edge> & edgeSet2D) {
+  /** get XY, YZ , XZ and isometric projections  of the 3D object*/
+    set<Edge> edgeSet3D;
+    get_edges3D(this.vertices, this.faces,edgeSet3D); 
+    for(auto it:edgeSet3D){
+                Vertice u=it.vertices.first, v=it.vertices.second, u_proj, v_proj;
+                u_proj.is3d=false;
+                v_proj.is3d=false;
+                double ux=u.first, uy=u.second, uz=u.third, vx=v.first, vy=v.second, vz=v.third;
+                Edge e;
+                if(plane==0){ //XY Plane
+                  u_proj.first=ux;
+                  u_proj.second=uy;
+                  v_proj.first=vx;
+                  v_proj.second=vy;
+            }
+            else if(plane==1){ //YZ Plane
+              u_proj.first=uy;
+                  u_proj.second=uz;
+                  v_proj.first=vy;
+                  v_proj.second=vz;
+            }
+            else if(plane==2){ //XZ Plane
+              u_proj.first=ux;
+                  u_proj.second=uz;
+                  v_proj.first=vx;
+                  v_proj.second=vz;
+            }
+            else if(plane==3){ //isometric view
+              u_proj.first= (std::sqrt(3) * ux -  std::sqrt(3) * uz)/ std::sqrt(6);
+              u_proj.second=  (ux + 2*uy + uz)/ std::sqrt(6); 
+            }
+                e.vertices.first=u_proj;
+            e.vertices.second=v_proj;
+                edgeSet2D.insert(u,v);
 
-};
+            }
+
+
+}
 
 Fig3D getTransformation(double Xrot,double Yrot,double Zrot,double Xoff,double Yoff,double Zoff){
         /** get transformed 3D object */

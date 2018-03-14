@@ -2,18 +2,19 @@
 #ifndef RENDERMETHODS_H
 #define RENDERMETHODS_H
 
+#include <QtUiTools>
+
+
 #include "figures.h"
 
 
-void render(Fig3D a){
-    /** render 3D object on screen*/;
-}
+void render(Fig3D a);
 
 
-void display(Fig2D a){
-/** display 2D view on screen*/
-};
-
+void render2D(Fig3D object3D,
+		QPainter painter,
+		int plane // 0- XY, 1-YZ, 2-XZ , 3-isometric
+		);
 
 
 #endif

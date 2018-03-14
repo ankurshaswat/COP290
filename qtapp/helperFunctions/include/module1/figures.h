@@ -18,12 +18,7 @@ vector<vector<unsigned int> > faces;
 
 void getProjections(int plane, set<Edge> & edgeSet); /** get XY, YZ , XZ and isometric projections  of the 3D object*/
 
-Fig3D getTransformation(vector<double> matrix); /** get transformed 3D object */
-
-//void AddOffset(double x,double y,double z);
-//void AddRoll(double r);
-//void AddYaw(double y);
-//void AddPitch(double p);
+Fig3D getTransformation(double Xrot,double Yrot,double Zrot,double Xoff,double Yoff,double Zoff); /** get transformed 3D object */
 
 
 };

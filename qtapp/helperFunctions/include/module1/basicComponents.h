@@ -35,15 +35,5 @@ bool operator<(Edge other) const
 
 };
 
-struct Face
-{
-
-
-// public:
-vector<Vertice> vertices;
-vector<unsigned int> vertexIndices;
-
-
-};
 
 #endif
