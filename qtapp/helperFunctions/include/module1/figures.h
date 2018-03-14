@@ -13,8 +13,8 @@ class Fig3D
 private:
 
 public:
-
-Vector<Face> faces;
+vector<Vertice> vertices;
+vector<unsigned int> vertexIndices;
 
 void getProjections(int plane, set<Edge> & edgeSet); /** get XY, YZ , XZ and isometric projections  of the 3D object*/
 
