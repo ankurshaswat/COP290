@@ -84,19 +84,19 @@ bool loadOBJ(
 		std::vector<unsigned int> vertexIndices;
 		vertexIndices=faces_vertices[j];
 		printf("%d,\n",j);
-	for( unsigned int i=0; i<vertexIndices.size(); i++ ){
+	for( auto it:temp_vertices ){
 
-		// Get the indices of its attributes
-		unsigned int vertexIndex = vertexIndices[i];
+		// // Get the indices of its attributes
+		// unsigned int vertexIndex = vertexIndices[i];
 	
-		// Get the attributes thanks to the index
-		Vertice vertex = temp_vertices[ vertexIndex-1 ];
-		vertex.is3d=true;	//to indicate it is a 3d vertex
+		// // Get the attributes thanks to the index
+		// Vertice vertex = temp_vertices[ vertexIndex-1 ];
+		// vertex.is3d=true;	//to indicate it is a 3d vertex
 		
 
-		// Put the attributes in buffers
-		printf("%f,%f,%f,\n",vertex.first,vertex.second,vertex.third);
-		out_vertices.push_back(vertex);
+		// // Put the attributes in buffers
+		// printf("%f,%f,%f,\n",vertex.first,vertex.second,vertex.third);
+		out_vertices.push_back(it);
 		
 	}
 
@@ -118,20 +118,18 @@ bool loadOBJ(
 		cout<<faceList.size()<<endl;
 		for(auto vertexIndex=faceList.begin(); vertexIndex!=faceList.end();vertexIndex++) {
 			unsigned int i=(*vertexIndex), j;
-			cout<<"HERE"<<" ";
-			cout<<*vertexIndex<<endl;
 			if( std::next(vertexIndex,1) != faceList.end() ) j= (*(std::next(vertexIndex,1)));
 			else j=(* (faceList.begin()) );
-			cout<<"i,j="<<i<<","<<j<<endl;
 			Vertice curr=vertices3D[i-1], next=vertices3D[j-1];
 			Edge e,e_inv;
 			e.vertices={next,curr};
 			e_inv.vertices={curr,next};
-			if(edgeSet.find(e)==edgeSet.end()) edgeSet.insert(e_inv);
-			cout<<"e -"<<edgeSet.size()<<endl;		
+			if(edgeSet.find(e)==edgeSet.end() && edgeSet.find(e_inv)==edgeSet.end()) {
+				edgeSet.insert(e_inv);
+				cout<<i<<" "<<j<<endl<<endl;
+			}
 		}
 		
 	}
-	cout<<"DONE"<<endl;
 	return true;
 };

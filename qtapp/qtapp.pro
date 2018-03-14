@@ -39,5 +39,7 @@ HEADERS += \
     helperFunctions/include/module1/structs.h \
     helperFunctions/include/module1/objLoader.h
 
+INCLUDEPATH += helperFunctions/include/module1
+
 FORMS += \
     mainwindow.ui
