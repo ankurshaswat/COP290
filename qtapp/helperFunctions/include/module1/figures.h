@@ -3,7 +3,7 @@
 #define FIG3D_H
 
 #include "basicComponents.h"
-#include<set>
+#include <set>
 
 
 
@@ -14,7 +14,7 @@ private:
 
 public:
 vector<Vertice> vertices;
-vector<unsigned int> vertexIndices;
+vector<vector<unsigned int> > faces;
 
 void getProjections(int plane, set<Edge> & edgeSet); /** get XY, YZ , XZ and isometric projections  of the 3D object*/
 
