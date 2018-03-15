@@ -13,6 +13,9 @@ int main(int argc, char *argv[])
     printf("Starting to read file\n");
     bool res=loadOBJ("./test.obj",out_vertices,faces_vertices);
     printf("Object Loaded Now rendering views");
+
+    w.setVertices(out_vertices,faces_vertices);
+
     w.renderAllViews(out_vertices,faces_vertices);
 
     w.show();

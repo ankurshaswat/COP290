@@ -71,8 +71,8 @@ Fig3D Fig3D::getTransformation(double Xrot,double Yrot,double Zrot,double Xoff,d
         }
 
 
-        double matA[1][4],result[1][4];
-        matA[0][4]=1;
+        double matA[4][1],result[4][1];
+        matA[3][0]=1;
         newFig.faces = this->faces;
 
         for(int m=0; m<vertices.size(); m++) {
@@ -81,19 +81,19 @@ Fig3D Fig3D::getTransformation(double Xrot,double Yrot,double Zrot,double Xoff,d
               matA[0][1]=vertices[m].second;
               matA[0][2]=vertices[m].third;
 
-                for(int i = 0; i < 1; ++i)
-                        for(int j = 0; j < 4; ++j)
+                for(int i = 0; i < 4; ++i)
+                        for(int j = 0; j < 1; ++j)
 
                                 {  result[i][j]=0;
                                 for(int k = 0; k < 4; ++k)
                                 {
-                                        result[i][j] += matA[i][k] * transformationMat[k][j];
+                                        result[i][j] += transformationMat[i][k] * matA[k][j];
                                 }
                         }
               Vertice v;
               v.first=result[0][0];
-              v.second=result[0][1];
-              v.third=result[0][2];
+              v.second=result[1][0];
+              v.third=result[2][0];
               newFig.vertices.push_back(v);
 
 //              printf ("v first is %f",result[0][0]);

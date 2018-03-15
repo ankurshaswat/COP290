@@ -17,6 +17,11 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->x_rotation, &QSlider::valueChanged, this, &MainWindow::setXRotation);
     connect(ui->y_rotation, &QSlider::valueChanged, this, &MainWindow::setYRotation);
     connect(ui->z_rotation, &QSlider::valueChanged, this, &MainWindow::setZRotation);
+
+    connect(this, &MainWindow::xRotationChanged, ui->x_rotation, &QSlider::setValue);
+    connect(this, &MainWindow::yRotationChanged, ui->y_rotation, &QSlider::setValue);
+    connect(this, &MainWindow::zRotationChanged, ui->z_rotation, &QSlider::setValue);
+
     connect(ui->xoffseter_inc,  &QPushButton::clicked, this, &MainWindow::incX);
    connect(ui->xoffseter_dec,  &QPushButton::clicked, this, &MainWindow::decX);
    connect(ui->yoffseter_inc,  &QPushButton::clicked, this, &MainWindow::incY);
@@ -34,11 +39,14 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::render2D(std::vector<Vertice> & out_vertices,
-        std::vector<std::vector<unsigned int>> & faces_vertices,	//Might change this to a Fig3D object later on,
-        QPainter &  painter,
-        int plane // 0- XY, 1-YZ, 2-XZ
-        ){
+void MainWindow::setVertices(std::vector<Vertice> & out_vertices,std::vector<std::vector<unsigned int>> & faces_vertices){
+    fig.faces=faces_vertices;
+    fig.vertices=out_vertices;
+}
+
+void MainWindow::render2D(std::vector<Vertice> & out_vertices,std::vector<std::vector<unsigned int>> & faces_vertices,	//Might change this to a Fig3D object later on,
+        QPainter &  painter,int plane // 0- XY, 1-YZ, 2-XZ
+                          ){
         /** Takes input 3D object information (vertices,faces), QPainter object, othographic plane (XY /YZ/ XZ)
         and draws the corresponding 2D view on the QPainter object */
             printf("Rendering 2D");
@@ -114,8 +122,7 @@ printf("setting xzDisplay");
 
 void MainWindow::renderAllViews(std::vector<Vertice> out_vertices,std::vector<std::vector<unsigned int>> faces_vertices){
     printf("Rendering All views");
-    fig.faces=faces_vertices;
-    fig.vertices=out_vertices;
+
     render2DinLabel(out_vertices,faces_vertices,0);
     render2DinLabel(out_vertices,faces_vertices,1);
     render2DinLabel(out_vertices,faces_vertices,2);
@@ -138,6 +145,8 @@ void MainWindow::setXRotation(int angle)
     if (angle != x_rot) {
 
         x_rot = angle;
+        emit xRotationChanged(angle);
+
         update();
     }
 }
@@ -147,6 +156,8 @@ void MainWindow::setYRotation(int angle)
      qNormalizeAngle(angle);
     if (angle != y_rot) {
         y_rot = angle;
+        emit yRotationChanged(angle);
+
         update();
     }
 }
@@ -156,38 +167,40 @@ void MainWindow::setZRotation(int angle)
      qNormalizeAngle(angle);
     if (angle != z_rot) {
         z_rot = angle;
+        emit zRotationChanged(angle);
+
         update();
     }
 }
 
 void MainWindow::incX()
 {
-        x_off+=10000;
+        x_off+=0.1;
         update();
 }
 void MainWindow::incY()
 {
-        y_off++;
+        y_off+=0.1;
         update();
 }
 void MainWindow::incZ()
 {
-        z_off++;
+        z_off+=0.1;
         update();
 }
 void MainWindow::decX()
 {
-        x_off--;
+        x_off-=0.1;
         update();
 }
 void MainWindow::decY()
 {
-        y_off--;
+        y_off-=0.1;
         update();
 }
 void MainWindow::decZ()
 {
-        z_off--;
+        z_off-=0.1;
         update();
 }
 
@@ -196,7 +209,28 @@ void MainWindow::update(){
     Fig3D x;
     printf("offset %f\n",x_off);
    x=fig.getTransformation(x_rot,y_rot,z_rot,x_off,y_off,z_off);
-//        x=fig.getTransformation(0,0,0,0,0,0);
+//        x=fig.getTransformation(0,0,0,10000,10000,10000);
     renderAllViews(x.vertices,x.faces);
 //       renderAllViews(fig.vertices,fig.faces);
+}
+
+
+void MainWindow::mousePressEvent(QMouseEvent *event)
+{
+    m_lastPos = event->pos();
+}
+
+void MainWindow::mouseMoveEvent(QMouseEvent *event)
+{
+    int dx = event->x() - m_lastPos.x();
+    int dy = event->y() - m_lastPos.y();
+
+    if (event->buttons() & Qt::LeftButton) {
+        setXRotation(x_rot +  dy);
+        setYRotation(y_rot +  dx);
+    } else if (event->buttons() & Qt::RightButton) {
+        setXRotation(x_rot +  dy);
+        setZRotation(z_rot +  dx);
+    }
+    m_lastPos = event->pos();
 }
