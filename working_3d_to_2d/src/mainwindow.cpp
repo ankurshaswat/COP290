@@ -81,7 +81,8 @@ void MainWindow::render2DinLabel(std::vector<Vertice> out_vertices,std::vector<s
 // 0- XY, 1-YZ, 2-XZ
 //    string label;
 
-
+    this->fig.vertices=out_vertices;
+    this->fig.faces=faces_vertices;
 
     QPixmap pixmap(200,200);
     pixmap.fill(Qt::white);
