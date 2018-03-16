@@ -19,8 +19,8 @@ public:
 
     void setVertices(std::vector<Vertice> &out_vertices,std::vector<std::vector<unsigned int>> &faces_vertices);
 //    void render2D(std::vector<Vertice> & out_vertices,std::vector<std::vector<unsigned int>> & faces_vertices, QPainter &  painter,int plane );
-    void render2DinLabel(std::vector<Vertice> out_vertices,std::vector<std::vector<unsigned int>> faces_vertices,unsigned int plane);
-    void renderAllViews(std::vector<Vertice> out_vertices,std::vector<std::vector<unsigned int>> faces_vertices);
+    void render2DinLabel(Fig3D & fig_to_render,unsigned int plane);
+    void renderAllViews(Fig3D & fig_to_render);
     void incX();
     void incY();
     void incZ();

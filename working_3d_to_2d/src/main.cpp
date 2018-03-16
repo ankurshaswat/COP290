@@ -8,15 +8,14 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     MainWindow w;
 
-    std::vector<Vertice> out_vertices;
-    std::vector<std::vector<unsigned int>> faces_vertices;
+//    std::vector<Vertice> out_vertices;
+//    std::vector<std::vector<unsigned int>> faces_vertices;
     printf("Starting to read file\n");
-    bool res=loadOBJ("./test.obj",out_vertices,faces_vertices);
+    Fig3D loaded_obj=loadOBJ("./test.obj");
     printf("Object Loaded Now rendering views");
 
-    w.setVertices(out_vertices,faces_vertices);
-
-    w.renderAllViews(out_vertices,faces_vertices);
+    w.setVertices(loaded_obj.vertices,loaded_obj.faces);
+    w.renderAllViews(loaded_obj);
 
     w.show();
 

@@ -6,6 +6,7 @@
 //}
 
 #include "objLoader.h"
+#include "figures.h"
 //#include "basicComponents.h"
 #include<set>
 #include<vector>
@@ -13,11 +14,12 @@
 #include<cstring>
 #include<iostream>
 
-bool loadOBJ(
-    const char * path,
-    std::vector<Vertice> & out_vertices,
-    std::vector<std::vector<unsigned int>> & faces_vertices
-){
+Fig3D  loadOBJ(
+    const char * path
+    ){
+    std::vector<Vertice> out_vertices;
+    std::vector<std::vector<unsigned int>>  faces_vertices;
+    Fig3D loaded_obj;
     printf("Loading OBJ file %s...\n", path);
 
     std::vector<Vertice> temp_vertices;
@@ -29,7 +31,7 @@ bool loadOBJ(
     if( file == NULL ){
         printf("Impossible to open the file ! Are you in the right path ?\n");
         getchar();
-        return false;
+        return loaded_obj;
     }
 
     while( 1 ){
@@ -111,7 +113,9 @@ bool loadOBJ(
 
     fclose(file);
     cout<<"loadOBJ done!!"<<endl;
-    return true;
+    loaded_obj.vertices=out_vertices;
+    loaded_obj.faces=faces_vertices;
+    return loaded_obj;
 }
 
  bool get_edges3D(

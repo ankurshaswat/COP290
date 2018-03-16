@@ -77,12 +77,10 @@ void MainWindow::setVertices(std::vector<Vertice> & out_vertices,std::vector<std
 
 //}
 
-void MainWindow::render2DinLabel(std::vector<Vertice> out_vertices,std::vector<std::vector<unsigned int>> faces_vertices,unsigned int plane){
+void MainWindow::render2DinLabel(Fig3D & fig_to_render,unsigned int plane){
 // 0- XY, 1-YZ, 2-XZ
 //    string label;
 
-    this->fig.vertices=out_vertices;
-    this->fig.faces=faces_vertices;
 
     QPixmap pixmap(200,200);
     pixmap.fill(Qt::white);
@@ -90,7 +88,7 @@ void MainWindow::render2DinLabel(std::vector<Vertice> out_vertices,std::vector<s
     QPen Red((QColor(255,0,0)),1);
     painter.setPen(Red);
 //    render2D(out_vertices, faces_vertices, painter, plane);
-    render2D(fig, painter,plane);
+    render2D(fig_to_render, painter,plane);
     switch (plane) {
     case 0:
            printf("setting xyDisplay");
@@ -120,14 +118,13 @@ printf("setting xzDisplay");
 
 
 
-void MainWindow::renderAllViews(std::vector<Vertice> out_vertices,std::vector<std::vector<unsigned int>> faces_vertices){
+void MainWindow::renderAllViews(Fig3D & fig_to_render){
     printf("Rendering All views");
 
-    render2DinLabel(out_vertices,faces_vertices,0);
-    render2DinLabel(out_vertices,faces_vertices,1);
-    render2DinLabel(out_vertices,faces_vertices,2);
-     render2DinLabel(out_vertices,faces_vertices,3);
-//    renderIso
+    render2DinLabel(fig_to_render,0);
+    render2DinLabel(fig_to_render,1);
+    render2DinLabel(fig_to_render,2);
+     render2DinLabel(fig_to_render,3);
 }
 
 void qNormalizeAngle(int &angle)
@@ -210,7 +207,7 @@ void MainWindow::update(){
     printf("offset %f\n",x_off);
    x=fig.getTransformation(x_rot,y_rot,z_rot,x_off,y_off,z_off);
 //        x=fig.getTransformation(0,0,0,10000,10000,10000);
-    renderAllViews(x.vertices,x.faces);
+    renderAllViews(x);
 //       renderAllViews(fig.vertices,fig.faces);
 }
 
