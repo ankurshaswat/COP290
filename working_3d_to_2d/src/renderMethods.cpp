@@ -36,4 +36,25 @@ void render2D(Fig3D & object3D,
 }
 
 
+void renderAxes(Fig3D & object3D,
+        QPainter & painter,
+        int plane // 0- XY, 1-YZ, 2-XZ , 3-isometric
+        ){
+
+    QPen Green((QColor(0,255,0)),1);
+    painter.setPen(Green);
+    std::set<Edge> edgeSet2D;
+    object3D.getAxes(plane,edgeSet2D);
+    int count=0;
+    for(auto it:edgeSet2D){
+        Vertice u=it.vertices.first;
+        Vertice v=it.vertices.second;
+        painter.drawLine((u.first + 2)*20, (u.second +2)*20, (v.first + 2)*20, (v.second +2)*20); //will have to change this to fit any size of pixmap
+        // cout<<u.first<<" "<<u.second<<" "<<u.third<<endl;
+        // cout<<v.first<<" "<<v.second<<" "<<v.third<<endl<<endl;
+
+        }
+
+}
+
 

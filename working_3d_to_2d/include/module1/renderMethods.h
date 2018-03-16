@@ -15,6 +15,10 @@ void render2D(Fig3D & object3D,
         QPainter & painter,
 		int plane // 0- XY, 1-YZ, 2-XZ , 3-isometric
 		);
+void renderAxes(Fig3D & object3D,
+        QPainter & painter,
+        int plane // 0- XY, 1-YZ, 2-XZ , 3-isometric
+        );
 
 
 #endif
