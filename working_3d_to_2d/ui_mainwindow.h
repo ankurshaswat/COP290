@@ -41,6 +41,14 @@ public:
     QLabel *yzDisplay;
     QLabel *isometricView;
     QLabel *xzDisplay;
+    QLabel *label;
+    QLabel *label_2;
+    QLabel *label_3;
+    QLabel *label_4;
+    QLabel *label_5;
+    QLabel *label_6;
+    QLabel *label_7;
+    QLabel *label_8;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -53,7 +61,7 @@ public:
         centralwidget->setObjectName(QStringLiteral("centralwidget"));
         xyDisplay = new QLabel(centralwidget);
         xyDisplay->setObjectName(QStringLiteral("xyDisplay"));
-        xyDisplay->setGeometry(QRect(330, 250, 331, 251));
+        xyDisplay->setGeometry(QRect(460, 250, 331, 251));
         x_rotation = new QSlider(centralwidget);
         x_rotation->setObjectName(QStringLiteral("x_rotation"));
         x_rotation->setGeometry(QRect(260, 510, 471, 31));
@@ -89,10 +97,34 @@ public:
         yzDisplay->setGeometry(QRect(10, 10, 291, 251));
         isometricView = new QLabel(centralwidget);
         isometricView->setObjectName(QStringLiteral("isometricView"));
-        isometricView->setGeometry(QRect(380, 20, 281, 231));
+        isometricView->setGeometry(QRect(510, 20, 281, 231));
         xzDisplay = new QLabel(centralwidget);
         xzDisplay->setObjectName(QStringLiteral("xzDisplay"));
-        xzDisplay->setGeometry(QRect(10, 250, 301, 241));
+        xzDisplay->setGeometry(QRect(20, 260, 301, 241));
+        label = new QLabel(centralwidget);
+        label->setObjectName(QStringLiteral("label"));
+        label->setGeometry(QRect(90, 210, 67, 17));
+        label_2 = new QLabel(centralwidget);
+        label_2->setObjectName(QStringLiteral("label_2"));
+        label_2->setGeometry(QRect(70, 480, 67, 17));
+        label_3 = new QLabel(centralwidget);
+        label_3->setObjectName(QStringLiteral("label_3"));
+        label_3->setGeometry(QRect(560, 210, 67, 17));
+        label_4 = new QLabel(centralwidget);
+        label_4->setObjectName(QStringLiteral("label_4"));
+        label_4->setGeometry(QRect(580, 460, 67, 17));
+        label_5 = new QLabel(centralwidget);
+        label_5->setObjectName(QStringLiteral("label_5"));
+        label_5->setGeometry(QRect(170, 520, 67, 17));
+        label_6 = new QLabel(centralwidget);
+        label_6->setObjectName(QStringLiteral("label_6"));
+        label_6->setGeometry(QRect(170, 560, 67, 17));
+        label_7 = new QLabel(centralwidget);
+        label_7->setObjectName(QStringLiteral("label_7"));
+        label_7->setGeometry(QRect(170, 590, 67, 17));
+        label_8 = new QLabel(centralwidget);
+        label_8->setObjectName(QStringLiteral("label_8"));
+        label_8->setGeometry(QRect(960, 550, 67, 17));
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QStringLiteral("menubar"));
@@ -120,6 +152,14 @@ public:
         yzDisplay->setText(QApplication::translate("MainWindow", "TextLabel", nullptr));
         isometricView->setText(QApplication::translate("MainWindow", "TextLabel", nullptr));
         xzDisplay->setText(QApplication::translate("MainWindow", "TextLabel", nullptr));
+        label->setText(QApplication::translate("MainWindow", "yz", nullptr));
+        label_2->setText(QApplication::translate("MainWindow", "xz", nullptr));
+        label_3->setText(QApplication::translate("MainWindow", "isometric", nullptr));
+        label_4->setText(QApplication::translate("MainWindow", "xy", nullptr));
+        label_5->setText(QApplication::translate("MainWindow", "xRotation", nullptr));
+        label_6->setText(QApplication::translate("MainWindow", "yRotation", nullptr));
+        label_7->setText(QApplication::translate("MainWindow", "zRotation", nullptr));
+        label_8->setText(QApplication::translate("MainWindow", "Offsets", nullptr));
     } // retranslateUi
 
 };

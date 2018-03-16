@@ -85,10 +85,14 @@ void MainWindow::render2DinLabel(Fig3D & fig_to_render,unsigned int plane){
     QPixmap pixmap(200,200);
     pixmap.fill(Qt::white);
     QPainter painter(&pixmap);
-    QPen Red((QColor(255,0,0)),1);
-    painter.setPen(Red);
+//    QPen Red((QColor(255,0,0)),1);
+//    painter.setPen(Red);
 //    render2D(out_vertices, faces_vertices, painter, plane);
+      renderAxes(fig_to_render, painter,plane);
+      QPen Red((QColor(255,0,0)),1);
+      painter.setPen(Red);
     render2D(fig_to_render, painter,plane);
+
     switch (plane) {
     case 0:
            printf("setting xyDisplay");

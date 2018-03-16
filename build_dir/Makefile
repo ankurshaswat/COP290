@@ -35,7 +35,7 @@ MOVE          = mv -f
 TAR           = tar -cf
 COMPRESS      = gzip -9f
 DISTNAME      = COP2901.0.0
-DISTDIR = /home/ankurshaswat/MyFiles/Repos/COP290/build-qtapp-Desktop_Qt_5_10_1_GCC_64bit-Debug/.tmp/COP2901.0.0
+DISTDIR = /home/ankurshaswat/MyFiles/Repos/COP290/build_dir/.tmp/COP2901.0.0
 LINK          = g++
 LFLAGS        = -Wl,-rpath,/home/ankurshaswat/Qt5.10.1/5.10.1/gcc_64/lib -Wl,-rpath-link,/home/ankurshaswat/Qt5.10.1/5.10.1/gcc_64/lib
 LIBS          = $(SUBLIBS) -L/home/ankurshaswat/Qt5.10.1/5.10.1/gcc_64/lib -lQt5UiTools -lQt5Widgets -lQt5Gui -lQt5Core -lGL -lpthread 
@@ -205,7 +205,6 @@ DIST          = ../../../../Qt5.10.1/5.10.1/gcc_64/mkspecs/features/spec_pre.prf
 		../../../../Qt5.10.1/5.10.1/gcc_64/mkspecs/features/qt_config.prf \
 		../../../../Qt5.10.1/5.10.1/gcc_64/mkspecs/linux-g++/qmake.conf \
 		../../../../Qt5.10.1/5.10.1/gcc_64/mkspecs/features/spec_post.prf \
-		../working_3d_to_2d/.qmake.stash \
 		../../../../Qt5.10.1/5.10.1/gcc_64/mkspecs/features/exclusive_builds.prf \
 		../../../../Qt5.10.1/5.10.1/gcc_64/mkspecs/features/toolchain.prf \
 		../../../../Qt5.10.1/5.10.1/gcc_64/mkspecs/features/default_pre.prf \
@@ -387,7 +386,6 @@ Makefile: ../working_3d_to_2d/COP290.pro ../../../../Qt5.10.1/5.10.1/gcc_64/mksp
 		../../../../Qt5.10.1/5.10.1/gcc_64/mkspecs/features/qt_config.prf \
 		../../../../Qt5.10.1/5.10.1/gcc_64/mkspecs/linux-g++/qmake.conf \
 		../../../../Qt5.10.1/5.10.1/gcc_64/mkspecs/features/spec_post.prf \
-		.qmake.stash \
 		../../../../Qt5.10.1/5.10.1/gcc_64/mkspecs/features/exclusive_builds.prf \
 		../../../../Qt5.10.1/5.10.1/gcc_64/mkspecs/features/toolchain.prf \
 		../../../../Qt5.10.1/5.10.1/gcc_64/mkspecs/features/default_pre.prf \
@@ -553,7 +551,6 @@ Makefile: ../working_3d_to_2d/COP290.pro ../../../../Qt5.10.1/5.10.1/gcc_64/mksp
 ../../../../Qt5.10.1/5.10.1/gcc_64/mkspecs/features/qt_config.prf:
 ../../../../Qt5.10.1/5.10.1/gcc_64/mkspecs/linux-g++/qmake.conf:
 ../../../../Qt5.10.1/5.10.1/gcc_64/mkspecs/features/spec_post.prf:
-.qmake.stash:
 ../../../../Qt5.10.1/5.10.1/gcc_64/mkspecs/features/exclusive_builds.prf:
 ../../../../Qt5.10.1/5.10.1/gcc_64/mkspecs/features/toolchain.prf:
 ../../../../Qt5.10.1/5.10.1/gcc_64/mkspecs/features/default_pre.prf:

@@ -28,14 +28,17 @@ SOURCES += \
         src/mainwindow.cpp \
     src/objLoader.cpp \
     src/figures.cpp \
-    src/renderMethods.cpp
+    src/renderMethods.cpp \
+    optionwindow.cpp
 
 HEADERS += \
         include/module1/mainwindow.h \
     include/module1/objLoader.h \
     include/module1/basicComponents.h \
     include/module1/figures.h \
-    include/module1/renderMethods.h
+    include/module1/renderMethods.h \
+    optionwindow.h
 
 FORMS += \
-        mainwindow.ui
+        mainwindow.ui \
+    optionwindow.ui
