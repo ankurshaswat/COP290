@@ -3,23 +3,21 @@
 #define COMPLEXCOMPONENTS_H
 
 #include "basicComponents.h"
+#include <vector>
 
-class EdgeLoop: public Face 
+class EdgeLoop
 {
-/** a planar closed loop of edges (connected end-to-end), basically a face extended with other methods*/
+/** a planar closed loop of edges (connected end-to-end)*/
 public:
-bool isContained(EdgeLoop a){
-        /** to check whether an edgeLoop is completely contained in another */
-    };
+vector<Vertice> vertices;
+bool isContained(EdgeLoop a);  /** to check whether an edgeLoop is completely contained in another */
 };
 class WireFrame
 {
 
-private:
-Edge edgeList[100];
-
 public:
-Edge* getEdgeList();
+vector<Edge> edges;
+vector<Edge> & getEdgeList();
  
 };
 
