@@ -2,7 +2,7 @@
 #include "objLoader.h"
 #include "figures.h"
 
-// #include <QtUiTools>
+ #include <QtUiTools>
 #include <iostream>
 #include <vector>
 #include <set>
@@ -150,7 +150,6 @@ Edge projected(Edge a, int plane){ /** 2D projection of edge (might include as a
         e.vertices.second=v_proj;
         return e;
 }
-<<<<<<< HEAD
 
 void render2DHidden(Fig3D & object3D,QPainter & painter,int plane // 0- XY, 1-YZ, 2-XZ , 3-isometric
 		){
@@ -186,14 +185,7 @@ void render2DHidden(Fig3D & object3D,QPainter & painter,int plane // 0- XY, 1-YZ
 
             }
         }
-=======
-void render2DHidden(Fig3D & object3D,
-                    QPainter & painter,
-                    int plane // 0- XY, 1-YZ, 2-XZ , 3-isometric
-                    ){
-        set<Edge> edgeSet3D;
-        get_edges3D(object3D.vertices, object3D.faces,edgeSet3D);
->>>>>>> 785c34037aee56801384d2681e340afd0cd6c96b
+
 
 
 
@@ -202,10 +194,10 @@ void render2DHidden(Fig3D & object3D,
 
 
 
-int main(){
+//int main(){
 
 
 
 
-        return 0;
-}
+//        return 0;
+//}

@@ -36,7 +36,7 @@ bool operator<(Edge other) const
 
 struct plane{
     double a,b,c,d;
-}
+};
 
 
 #endif
