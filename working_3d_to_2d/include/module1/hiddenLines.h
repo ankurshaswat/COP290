@@ -18,11 +18,10 @@ bool opposite_side(vector<Vertice> & faceVertices, Vertice a, Vertice b); /** re
 Vertice back_proj(Vertice v, Edge e, int plane);  /** returns vertex on 3D edge e whose projection is v */
 
 Edge projected(Edge a, int plane); /** 2D projection of edge **/
-void render2DHidden(Fig3D & object3D,
-                    QPainter & painter,
-                    int plane // 0- XY, 1-YZ, 2-XZ , 3-isometric
-                    );
-bool is_inside(Vertice v, set<Edge> edgeSet);
 
+void render2DHidden(Fig3D & object3D,QPainter & painter,int plane // 0- XY, 1-YZ, 2-XZ , 3-isometric
+                    );
+
+bool is_inside(Vertice v, set<Edge> edgeSet);
 
 #endif

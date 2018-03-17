@@ -1,6 +1,7 @@
 #include "basicComponents.h"
 #include "objLoader.h"
 #include "figures.h"
+#include "hiddenLines.h"
 
  #include <QtUiTools>
 #include <iostream>
@@ -9,9 +10,11 @@
 #include <cmath>
 
 #define INF 1000000
+
+/** returns (1,point of intersection) if intersecting, (0,_) if overlapping and (-1,_) if parallel
+   Both edges are 2D edges */
 pair<int,Vertice> get_intersection(Edge a, Edge b){
-        /** returns (1,point of intersection) if intersecting, (0,_) if overlapping and (-1,_) if parallel
-           Both edges are 2D edges */
+
 
         int x1,y1,x2,y2,x3,y3,x4,y4;
         int c2,c1,m2,m1;
@@ -216,9 +219,6 @@ Edge projected(Edge a, int plane){ /** 2D projection of edge (might include as a
         return e;
 }
 
-bool is_inside(Vertice v, set<Edge> edgeSet){
-
-};
 Vertice get_vertex_inf(int plane){
         Vertice ret;
         ret.is3d=true;
@@ -244,6 +244,7 @@ Vertice get_vertex_inf(int plane){
         }
         return ret;
 };
+
 void render2DHidden(Fig3D & object3D,QPainter & painter,int plane // 0- XY, 1-YZ, 2-XZ , 3-isometric
                     ){
         set<Edge> edgeSet3D;
@@ -288,12 +289,28 @@ void render2DHidden(Fig3D & object3D,QPainter & painter,int plane // 0- XY, 1-YZ
         }
 }
 
+bool is_inside(Vertice v, set<Edge> edgeSet){
 
+        Vertice secondVertice;
+        secondVertice.first=v.first;
+        secondVertice.second=v.second+100000;
 
-//int main(){
+        Edge artificalEdge;
+        artificalEdge.vertices.first=v;
+        artificalEdge.vertices.second=secondVertice;
 
+        int count=0;
 
+        for(auto it:edgeSet) {
+                pair<int,Vertice> res=get_intersection(artificalEdge,it);
+                if(res.first==1) {
+                        count++;
+                }
+        }
 
+        if(count%2==0) {
+                return false;
+        }
 
-//        return 0;
-//}
+        return true;
+}
