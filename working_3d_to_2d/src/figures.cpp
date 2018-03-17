@@ -187,7 +187,7 @@ Fig3D Fig3D::getTransformation(double Xrot,double Yrot,double Zrot,double Xoff,d
         matA[3][0]=1;
         newFig.faces = this->faces;
 
-        for(int m=0; m<vertices.size(); m++) {
+        for(unsigned int m=0; m<vertices.size(); m++) {
 
               matA[0][0]=vertices[m].first;
               matA[0][1]=vertices[m].second;

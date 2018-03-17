@@ -2,7 +2,7 @@
 #include "objLoader.h"
 #include "figures.h"
 
-// #include <QtUiTools>
+ #include <QtUiTools>
 #include <iostream>
 #include <vector>
 #include <set>
@@ -284,6 +284,10 @@ void render2DHidden(Fig3D & object3D,QPainter & painter,int plane // 0- XY, 1-YZ
 
             }
         }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 4781ad70e1a6bad2cf439b088b4c57671e346685
 
 
 
@@ -292,10 +296,10 @@ void render2DHidden(Fig3D & object3D,QPainter & painter,int plane // 0- XY, 1-YZ
 
 
 
-int main(){
+//int main(){
 
 
 
 
-        return 0;
-}
+//        return 0;
+//}

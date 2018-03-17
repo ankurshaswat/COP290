@@ -29,7 +29,9 @@ SOURCES += \
     src/objLoader.cpp \
     src/figures.cpp \
     src/renderMethods.cpp \
-    optionwindow.cpp
+    optionwindow.cpp \
+    src/hiddenLines.cpp \
+    src/reconstMethods.cpp
 
 HEADERS += \
         include/module1/mainwindow.h \
@@ -37,8 +39,15 @@ HEADERS += \
     include/module1/basicComponents.h \
     include/module1/figures.h \
     include/module1/renderMethods.h \
-    optionwindow.h
+    optionwindow.h \
+    include/module1/hiddenLines.h \
+    include/module1/complexComponents.h \
+    include/module1/structs.h \
+    include/module1/reconstMethods.h \
 
 FORMS += \
         mainwindow.ui \
     optionwindow.ui
+
+DISTFILES += \
+    src/reconstMethods
