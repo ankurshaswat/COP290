@@ -110,6 +110,7 @@ printf("setting xzDisplay");
 
        case 3:
         ui->isometricView->setPixmap(pixmap);
+        break;
     default:
         printf("Ended up in default");
         break;
