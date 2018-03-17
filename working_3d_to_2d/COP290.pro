@@ -31,6 +31,7 @@ SOURCES += \
     src/renderMethods.cpp \
     optionwindow.cpp \
     src/hiddenLines.cpp \
+    src/reconstMethods.cpp
 
 HEADERS += \
         include/module1/mainwindow.h \
@@ -47,3 +48,6 @@ HEADERS += \
 FORMS += \
         mainwindow.ui \
     optionwindow.ui
+
+DISTFILES += \
+    src/reconstMethods

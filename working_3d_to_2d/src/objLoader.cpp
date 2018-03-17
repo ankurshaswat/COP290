@@ -68,7 +68,7 @@ Fig3D  loadOBJ(
             std::vector<unsigned int> vertexIndices, normalIndices;
 
       while(1){
-        int matches = fscanf(file, "%d//%d", &vertexIndex,  &normalIndex );
+//        int matches = fscanf(file, "%d//%d", &vertexIndex,  &normalIndex );
                 vertexIndices.push_back(vertexIndex);
         char c = fgetc(file);
         if(c=='\n'){

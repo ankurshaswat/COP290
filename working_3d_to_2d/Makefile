@@ -56,7 +56,8 @@ SOURCES       = src/main.cpp \
 		src/figures.cpp \
 		src/renderMethods.cpp \
 		optionwindow.cpp \
-		src/hiddenLines.cpp moc_mainwindow.cpp \
+		src/hiddenLines.cpp \
+		src/reconstMethods.cpp moc_mainwindow.cpp \
 		moc_optionwindow.cpp
 OBJECTS       = main.o \
 		mainwindow.o \
@@ -65,9 +66,11 @@ OBJECTS       = main.o \
 		renderMethods.o \
 		optionwindow.o \
 		hiddenLines.o \
+		reconstMethods.o \
 		moc_mainwindow.o \
 		moc_optionwindow.o
-DIST          = ../../../../Qt5.10.1/5.10.1/gcc_64/mkspecs/features/spec_pre.prf \
+DIST          = src/reconstMethods \
+		../../../../Qt5.10.1/5.10.1/gcc_64/mkspecs/features/spec_pre.prf \
 		../../../../Qt5.10.1/5.10.1/gcc_64/mkspecs/common/unix.conf \
 		../../../../Qt5.10.1/5.10.1/gcc_64/mkspecs/common/linux.conf \
 		../../../../Qt5.10.1/5.10.1/gcc_64/mkspecs/common/sanitize.conf \
@@ -242,7 +245,8 @@ DIST          = ../../../../Qt5.10.1/5.10.1/gcc_64/mkspecs/features/spec_pre.prf
 		src/figures.cpp \
 		src/renderMethods.cpp \
 		optionwindow.cpp \
-		src/hiddenLines.cpp
+		src/hiddenLines.cpp \
+		src/reconstMethods.cpp
 QMAKE_TARGET  = COP290
 DESTDIR       = 
 TARGET        = COP290
@@ -601,7 +605,7 @@ distdir: FORCE
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents ../../../../Qt5.10.1/5.10.1/gcc_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents include/module1/mainwindow.h include/module1/objLoader.h include/module1/basicComponents.h include/module1/figures.h include/module1/renderMethods.h optionwindow.h include/module1/hiddenLines.h include/module1/complexComponents.h include/module1/structs.h include/module1/reconstMethods.h $(DISTDIR)/
-	$(COPY_FILE) --parents src/main.cpp src/mainwindow.cpp src/objLoader.cpp src/figures.cpp src/renderMethods.cpp optionwindow.cpp src/hiddenLines.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents src/main.cpp src/mainwindow.cpp src/objLoader.cpp src/figures.cpp src/renderMethods.cpp optionwindow.cpp src/hiddenLines.cpp src/reconstMethods.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents mainwindow.ui optionwindow.ui $(DISTDIR)/
 
 
@@ -2575,6 +2579,12 @@ hiddenLines.o: src/hiddenLines.cpp include/module1/basicComponents.h \
 		../../../../Qt5.10.1/5.10.1/gcc_64/include/QtUiTools/quiloader.h \
 		../../../../Qt5.10.1/5.10.1/gcc_64/include/QtUiTools/qtuitoolsversion.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o hiddenLines.o src/hiddenLines.cpp
+
+reconstMethods.o: src/reconstMethods.cpp include/module1/basicComponents.h \
+		include/module1/complexComponents.h \
+		include/module1/figures.h \
+		include/module1/structs.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o reconstMethods.o src/reconstMethods.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp
