@@ -18,7 +18,7 @@ class WireFrame
 public:
 vector<Edge> edges;
 vector<Edge> & getEdgeList();
- 
+
 };
 
 

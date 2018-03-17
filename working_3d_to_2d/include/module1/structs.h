@@ -3,9 +3,9 @@
 #define STRUCTS_H
 
 
-class partialOrder 
+class partialOrder
 {
-    /** A partially ordered relation (needed in face reconstruction)*/
+/** A partially ordered relation (needed in face reconstruction)*/
 };
 
 #endif

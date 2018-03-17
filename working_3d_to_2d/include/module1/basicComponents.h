@@ -14,22 +14,22 @@ struct Vertice
         bool operator<(Vertice other) const
         {
 
-        if(is3d) return make_pair(first,make_pair(second,third)) > make_pair(other.first,make_pair(other.second,other.third));
-        else return make_pair(first,second) > make_pair(other.first,other.second);
-    }
- Vertice operator-(const Vertice& rhs){ 
-            Vertice diff;
-            diff.first=first - rhs.first;
-            diff.second=second -= rhs.second;
-            if(is3d && rhs.is3d) {
-                diff.third=third-=rhs.third;
-                diff.is3d=true;
-            }
-            else{
-                diff.is3d=false;
-            }
-            return diff;
-    }
+                if(is3d) return make_pair(first,make_pair(second,third)) > make_pair(other.first,make_pair(other.second,other.third));
+                else return make_pair(first,second) > make_pair(other.first,other.second);
+        }
+        Vertice operator-(const Vertice& rhs){
+                Vertice diff;
+                diff.first=first - rhs.first;
+                diff.second=second -= rhs.second;
+                if(is3d && rhs.is3d) {
+                        diff.third=third-=rhs.third;
+                        diff.is3d=true;
+                }
+                else{
+                        diff.is3d=false;
+                }
+                return diff;
+        }
 
 
 };

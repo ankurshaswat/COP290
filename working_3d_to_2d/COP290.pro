@@ -49,5 +49,3 @@ FORMS += \
         mainwindow.ui \
     optionwindow.ui
 
-DISTFILES += \
-    src/reconstMethods

@@ -10,18 +10,18 @@ class optionWindow;
 
 class optionWindow : public QMainWindow
 {
-    Q_OBJECT
+Q_OBJECT
 
 public:
-    explicit optionWindow(QWidget *parent = 0);
-    ~optionWindow();
-    MainWindow w;
+explicit optionWindow(QWidget *parent = 0);
+~optionWindow();
+MainWindow w;
 
 private slots:
-    void on_threeD2_2D_clicked();
+void on_threeD2_2D_clicked();
 
 private:
-    Ui::optionWindow *ui;
+Ui::optionWindow *ui;
 };
 
 #endif // OPTIONWINDOW_H

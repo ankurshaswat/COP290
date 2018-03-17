@@ -7,12 +7,12 @@
 
 int main(int argc, char *argv[])
 {
-    QApplication a(argc, argv);
+        QApplication a(argc, argv);
 
-    MainWindow three2two;
+        MainWindow three2two;
 
-    optionWindow w;
-    w.show();
+        optionWindow w;
+        w.show();
 
-    return a.exec();
+        return a.exec();
 }

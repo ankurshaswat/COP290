@@ -108,108 +108,108 @@ pair<int,Vertice> get_intersection(Edge a, Edge b){
 
 
 bool opposite_side(vector<Vertice> & faceVertices, Vertice e, Vertice f){
-     /** returns true if a and b are on opposite side of plane formed by faceVertices
-      , false otherwise **/ 
-    Vertice u=faceVertices[0],v=faceVertices[1],w=faceVertices[2];
-    Vertice uv= v-u, uw=w-u;
-    float a= uv.second*uw.third - uv.third*uw.second;
-    float b= -uv.first*uw.third + uv.third*uw.first;
-    float c= uv.first*uw.second - uv.second*uw.first;
-    float d= -(a*u.first + b*u.second + c*u.third);
-    if( (a*e.first + b*e.second + c*e.third + d) * (a*e.first + b*e.second + c*e.third + d) <0) return true;
-    else return false;
+        /** returns true if a and b are on opposite side of plane formed by faceVertices
+           , false otherwise **/
+        Vertice u=faceVertices[0],v=faceVertices[1],w=faceVertices[2];
+        Vertice uv= v-u, uw=w-u;
+        float a= uv.second*uw.third - uv.third*uw.second;
+        float b= -uv.first*uw.third + uv.third*uw.first;
+        float c= uv.first*uw.second - uv.second*uw.first;
+        float d= -(a*u.first + b*u.second + c*u.third);
+        if( (a*e.first + b*e.second + c*e.third + d) * (a*e.first + b*e.second + c*e.third + d) <0) return true;
+        else return false;
 
 
 }
 
-Vertice back_proj(Vertice v , Edge e, int plane){
-    Vertice a=e.vertices.first, b= e.vertices.second, ans;
-    float x1=a.first,x2=b.first, y1=a.second, y2=b.second, z1=a.third, z2=b.third;
-    float x,y,z;
-    if(plane==0){ //revert XY projection
-        ans.first=v.first;
-        ans.second=v.second;
-        x=v.first;
-        y=v.second;
-        if(y1!=y2){
-            ans.third=(z1*(y2-y) + z2*(y-y1))/(y2-y1); 
+Vertice back_proj(Vertice v, Edge e, int plane){
+        Vertice a=e.vertices.first, b= e.vertices.second, ans;
+        float x1=a.first,x2=b.first, y1=a.second, y2=b.second, z1=a.third, z2=b.third;
+        float x,y,z;
+        if(plane==0) { //revert XY projection
+                ans.first=v.first;
+                ans.second=v.second;
+                x=v.first;
+                y=v.second;
+                if(y1!=y2) {
+                        ans.third=(z1*(y2-y) + z2*(y-y1))/(y2-y1);
+                }
+                else if(x1!=x2) {
+                        ans.third=(z1*(x2-x) + z2*(x-x1))/(x2-x1);
+                }
+                else{
+                        ans.third=a.third; //this case means a and b are coinciding in the projection, so does not matter if it is hidden or not
+                }
         }
-        else if(x1!=x2){
-            ans.third=(z1*(x2-x) + z2*(x-x1))/(x2-x1);
-        }
-        else{
-            ans.third=a.third; //this case means a and b are coinciding in the projection, so does not matter if it is hidden or not
-        }
-    }
-    else if(plane==1){ //revert YZ projection
-        ans.second=v.first;
-        ans.third=v.second;
-        y=v.first;
-        z=v.second;
-        if(y1!=y2){
-            ans.first=(x1*(y2-y) + x2*(y-y1))/(y2-y1); 
-        }
-        else if(z1!=z2){
-            ans.first=(x1*(z2-z) + x2*(z-z1))/(z2-z1);
-        }
-        else{
-            ans.first=a.first; //this case means a and b are coinciding in the projection, so does not matter if it is hidden or not
-        }
+        else if(plane==1) { //revert YZ projection
+                ans.second=v.first;
+                ans.third=v.second;
+                y=v.first;
+                z=v.second;
+                if(y1!=y2) {
+                        ans.first=(x1*(y2-y) + x2*(y-y1))/(y2-y1);
+                }
+                else if(z1!=z2) {
+                        ans.first=(x1*(z2-z) + x2*(z-z1))/(z2-z1);
+                }
+                else{
+                        ans.first=a.first; //this case means a and b are coinciding in the projection, so does not matter if it is hidden or not
+                }
 
-    }
-    else if(plane==2){ //revert XZ projection
-        ans.first=v.first;
-        ans.third=v.second;
-        x=v.first;
-        z=v.second;
-        if(x1!=x2){
-            ans.second=(y1*(x2-x) + y2*(x-x1))/(x2-x1); 
         }
-        else if(z1!=z2){
-            ans.second=(y1*(z2-z) + y2*(z-z1))/(z2-z1);
+        else if(plane==2) { //revert XZ projection
+                ans.first=v.first;
+                ans.third=v.second;
+                x=v.first;
+                z=v.second;
+                if(x1!=x2) {
+                        ans.second=(y1*(x2-x) + y2*(x-x1))/(x2-x1);
+                }
+                else if(z1!=z2) {
+                        ans.second=(y1*(z2-z) + y2*(z-z1))/(z2-z1);
+                }
+                else{
+                        ans.second=a.second; //this case means a and b are coinciding in the projection, so does not matter if it is hidden or not
+                }
         }
-        else{
-            ans.second=a.second; //this case means a and b are coinciding in the projection, so does not matter if it is hidden or not
+        else if(plane==3) { //revert isometric projection
+                ans=a; //TODO
         }
-    }
-    else if(plane==3){ //revert isometric projection
-            ans=a; //TODO
-    }
-    return ans;
+        return ans;
 }
 
 Edge projected(Edge a, int plane){ /** 2D projection of edge (might include as an Edge member function) **/
-    Vertice u=a.vertices.first, v=a.vertices.second, u_proj, v_proj;
+        Vertice u=a.vertices.first, v=a.vertices.second, u_proj, v_proj;
         u_proj.is3d=false;
         v_proj.is3d=false;
         double ux=u.first, uy=u.second, uz=u.third, vx=v.first, vy=v.second, vz=v.third;
         Edge e;
-        if(plane==0){ //XY Plane
-            u_proj.first=ux;
-            u_proj.second=uy;
-            v_proj.first=vx;
-            v_proj.second=vy;
+        if(plane==0) { //XY Plane
+                u_proj.first=ux;
+                u_proj.second=uy;
+                v_proj.first=vx;
+                v_proj.second=vy;
         }
-        else if(plane==1){ //YZ Plane
-        u_proj.first=uy;
-            u_proj.second=uz;
-            v_proj.first=vy;
-            v_proj.second=vz;
+        else if(plane==1) { //YZ Plane
+                u_proj.first=uy;
+                u_proj.second=uz;
+                v_proj.first=vy;
+                v_proj.second=vz;
         }
-        else if(plane==2){ //XZ Plane
-        u_proj.first=ux;
-            u_proj.second=uz;
-            v_proj.first=vx;
-            v_proj.second=vz;
+        else if(plane==2) { //XZ Plane
+                u_proj.first=ux;
+                u_proj.second=uz;
+                v_proj.first=vx;
+                v_proj.second=vz;
         }
-        else if(plane==3){ //isometric view
-        u_proj.first= (std::sqrt(3) * ux -  std::sqrt(3) * uz)/ std::sqrt(6);
-        u_proj.second=  (ux + 2*uy + uz)/ std::sqrt(6);
-        v_proj.first= (std::sqrt(3) * vx -  std::sqrt(3) * vz)/ std::sqrt(6);
-        v_proj.second=  (vx + 2*vy + vz)/ std::sqrt(6);
-        //for reversing the projection
-        // u_proj.third=(ux-uy+uz)/std::sqrt(3);
-        // v_proj.third=(vx-vy+vz)/std::sqrt(3);
+        else if(plane==3) { //isometric view
+                u_proj.first= (std::sqrt(3) * ux -  std::sqrt(3) * uz)/ std::sqrt(6);
+                u_proj.second=  (ux + 2*uy + uz)/ std::sqrt(6);
+                v_proj.first= (std::sqrt(3) * vx -  std::sqrt(3) * vz)/ std::sqrt(6);
+                v_proj.second=  (vx + 2*vy + vz)/ std::sqrt(6);
+                //for reversing the projection
+                // u_proj.third=(ux-uy+uz)/std::sqrt(3);
+                // v_proj.third=(vx-vy+vz)/std::sqrt(3);
         }
         e.vertices.first=u_proj;
         e.vertices.second=v_proj;
@@ -220,78 +220,72 @@ bool is_inside(Vertice v, set<Edge> edgeSet){
 
 };
 Vertice get_vertex_inf(int plane){
-    Vertice ret;
-    ret.is3d=true;
-    if(plane==0){ //point from which XY view is taken
-        ret.first=1;
-        ret.second=1;
-        ret.third=INF;
-    }
-    else if(plane==1){//point from which YZ view is taken
-        ret.first=-INF;
-        ret.second=1;
-        ret.third=1;
-    }
-    else if(plane==2){//point from which XZ view is taken
-        ret.first=1;
-        ret.second=-INF;
-        ret.third=1;
-    }
-    else if(plane==3){
-        ret.first=-INF;
-        ret.second=-INF;
-        ret.third=-INF;
-    }
-    return ret;
+        Vertice ret;
+        ret.is3d=true;
+        if(plane==0) { //point from which XY view is taken
+                ret.first=1;
+                ret.second=1;
+                ret.third=INF;
+        }
+        else if(plane==1) {//point from which YZ view is taken
+                ret.first=-INF;
+                ret.second=1;
+                ret.third=1;
+        }
+        else if(plane==2) {//point from which XZ view is taken
+                ret.first=1;
+                ret.second=-INF;
+                ret.third=1;
+        }
+        else if(plane==3) {
+                ret.first=-INF;
+                ret.second=-INF;
+                ret.third=-INF;
+        }
+        return ret;
 };
 void render2DHidden(Fig3D & object3D,QPainter & painter,int plane // 0- XY, 1-YZ, 2-XZ , 3-isometric
-		){
+                    ){
         set<Edge> edgeSet3D;
         get_edges3D(object3D.vertices, object3D.faces,edgeSet3D);
-        for (auto e: edgeSet3D){
-            for(auto face: object3D.faces){
-                Edge e_proj= projected(e,plane);
-                set<Edge> faceEdgeSet3D;
-                vector< vector<unsigned int> > tmpfaces;
-                tmpfaces.push_back(face);
-                get_edges3D(object3D.vertices,tmpfaces,faceEdgeSet3D);
-                vector<Vertice> overlapEndPoints;
-                for(auto faceEdge: faceEdgeSet3D){
-                    pair<int,Vertice> ret= get_intersection(e_proj, projected(faceEdge,plane));    
-                    if(ret.first==1) overlapEndPoints.push_back(ret.second);
-                    else if(ret.first==0) { //overlapping
-                        overlapEndPoints.clear();
-                        break;
-                    }
-                }
-                vector<Vertice> faceVertices;
-                faceVertices.push_back(object3D.vertices[face[0]]);
-                faceVertices.push_back(object3D.vertices[face[1]]);
-                faceVertices.push_back(object3D.vertices[face[2]]);
-                Vertice proj_inf= get_vertex_inf(plane;)
-                if(overlapEndPoints.size()==2){
-                    Vertice u=overlapEndPoints[0],v=overlapEndPoints[1];
-                    if (opposite_side(faceVertices,u,plane)
-                    //check if back_proj(u,e) and (v.first,v.second,inf) are on opposite sides of plane or not
-                    //if they are, u-v edge is obstructed from view
-                    //if u<v set add <u,START> and <v,END> to hiddenEdgeset (vice versa for v<u)
-                }
-                else if(overlapEndPoints.size()==1){
-                    //find the end point that lies in the interior of the face
-                    //repeat the previous procedure
-                }
+        for (auto e: edgeSet3D) {
+                for(auto face: object3D.faces) {
+                        Edge e_proj= projected(e,plane);
+                        set<Edge> faceEdgeSet3D;
+                        vector< vector<unsigned int> > tmpfaces;
+                        tmpfaces.push_back(face);
+                        get_edges3D(object3D.vertices,tmpfaces,faceEdgeSet3D);
+                        vector<Vertice> overlapEndPoints;
+                        for(auto faceEdge: faceEdgeSet3D) {
+                                pair<int,Vertice> ret= get_intersection(e_proj, projected(faceEdge,plane));
+                                if(ret.first==1) overlapEndPoints.push_back(ret.second);
+                                else if(ret.first==0) { //overlapping
+                                        overlapEndPoints.clear();
+                                        break;
+                                }
+                        }
+                        vector<Vertice> faceVertices;
+                        faceVertices.push_back(object3D.vertices[face[0]]);
+                        faceVertices.push_back(object3D.vertices[face[1]]);
+                        faceVertices.push_back(object3D.vertices[face[2]]);
+                        Vertice proj_inf= get_vertex_inf(plane);
+                        if(overlapEndPoints.size()==2) {
+                                Vertice u=overlapEndPoints[0],v=overlapEndPoints[1];
+//                    if (opposite_side(faceVertices,u,plane)){
+
+//                }
+                                //check if back_proj(u,e) and (v.first,v.second,inf) are on opposite sides of plane or not
+                                //if they are, u-v edge is obstructed from view
+                                //if u<v set add <u,START> and <v,END> to hiddenEdgeset (vice versa for v<u)
+                        }
+                        else if(overlapEndPoints.size()==1) {
+                                //find the end point that lies in the interior of the face
+                                //repeat the previous procedure
+                        }
 
 
-            }
+                }
         }
-<<<<<<< HEAD
-=======
-
->>>>>>> 4781ad70e1a6bad2cf439b088b4c57671e346685
-
-
-
-
 }
 
 

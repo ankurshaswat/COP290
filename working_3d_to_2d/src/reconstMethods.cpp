@@ -4,9 +4,9 @@
 #include "figures.h"
 #include "structs.h"
 #include <map>
+#include "reconstMethods.h"
 
-
-vector<vector<Edge> > readFile(const char * path){
+std::vector<std::vector<Edge> > readFile(const char * path){
         // the returned vector has corresponding data for 3 views (vector of length 3)
 
         std::vector<std::vector<Edge> >  edgeSet;

@@ -7,21 +7,20 @@
 #include "figures.h"
 #include "structs.h"
 
-vector<vector<Edge>> readFile(const char * path){
-}
+std::vector<std::vector<Edge> > readFile(const char *);
 
-Edge** partition(Edge* a){
+Edge** partition(Edge* a);
 /** partitions a given list of edges into coplanar sets*/
-}
-EdgeLoop* getEdgeLoops(Edge* a){
+
+EdgeLoop* getEdgeLoops(Edge* a);
 /** takes input a set of coplanar edges and returns a list of edgeLoops formed using these edges*/
-}
-partialOrder constructPoset(EdgeLoop* a){
+
+partialOrder constructPoset(EdgeLoop* a);
 /** takes input a set of edgeLoops and returns a partial order defined on isContained relation*/
-}
-EdgeLoop* getValidEdgeLoops(EdgeLoop* a, partialOrder b){
- /** takes input a poset (set + partial order on the set) and returns a list of edgeLoops that qualify to be labelled as faces*/
-}
+
+EdgeLoop* getValidEdgeLoops(EdgeLoop* a, partialOrder b);
+/** takes input a poset (set + partial order on the set) and returns a list of edgeLoops that qualify to be labelled as faces*/
+
 
 
 

@@ -69,8 +69,7 @@ OBJECTS       = main.o \
 		reconstMethods.o \
 		moc_mainwindow.o \
 		moc_optionwindow.o
-DIST          = src/reconstMethods \
-		../../../../Qt5.10.1/5.10.1/gcc_64/mkspecs/features/spec_pre.prf \
+DIST          = ../../../../Qt5.10.1/5.10.1/gcc_64/mkspecs/features/spec_pre.prf \
 		../../../../Qt5.10.1/5.10.1/gcc_64/mkspecs/common/unix.conf \
 		../../../../Qt5.10.1/5.10.1/gcc_64/mkspecs/common/linux.conf \
 		../../../../Qt5.10.1/5.10.1/gcc_64/mkspecs/common/sanitize.conf \
@@ -2116,7 +2115,10 @@ optionwindow.o: optionwindow.cpp optionwindow.h \
 		../../../../Qt5.10.1/5.10.1/gcc_64/include/QtWidgets/qdialog.h \
 		../../../../Qt5.10.1/5.10.1/gcc_64/include/QtWidgets/QMessageBox \
 		../../../../Qt5.10.1/5.10.1/gcc_64/include/QtWidgets/qmessagebox.h \
-		include/module1/objLoader.h
+		include/module1/objLoader.h \
+		include/module1/reconstMethods.h \
+		include/module1/complexComponents.h \
+		include/module1/structs.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o optionwindow.o optionwindow.cpp
 
 hiddenLines.o: src/hiddenLines.cpp include/module1/basicComponents.h \
@@ -2583,7 +2585,8 @@ hiddenLines.o: src/hiddenLines.cpp include/module1/basicComponents.h \
 reconstMethods.o: src/reconstMethods.cpp include/module1/basicComponents.h \
 		include/module1/complexComponents.h \
 		include/module1/figures.h \
-		include/module1/structs.h
+		include/module1/structs.h \
+		include/module1/reconstMethods.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o reconstMethods.o src/reconstMethods.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
