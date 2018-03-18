@@ -132,15 +132,6 @@ bool get_edges3D(
                         unsigned int i=(*vertexIndex), j;
                         if( std::next(vertexIndex,1) != faceList.end() ) j= (*(std::next(vertexIndex,1)));
                         else j=(*(faceList.begin()) );
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-                        cout<<i<<" "<<j<<endl;
-=======
-                        printf("before");
->>>>>>> Stashed changes
-=======
-                        printf("before");
->>>>>>> Stashed changes
                         Vertice curr=vertices3D[i-1], next=vertices3D[j-1];
                         printf("after");
                         Edge e,e_inv;
