@@ -133,7 +133,11 @@ bool get_edges3D(
                         if( std::next(vertexIndex,1) != faceList.end() ) j= (*(std::next(vertexIndex,1)));
                         else j=(*(faceList.begin()) );
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                         cout<<i<<" "<<j<<endl;
+=======
+                        printf("before");
+>>>>>>> Stashed changes
 =======
                         printf("before");
 >>>>>>> Stashed changes
