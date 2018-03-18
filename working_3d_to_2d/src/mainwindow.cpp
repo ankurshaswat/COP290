@@ -124,7 +124,7 @@ void MainWindow::render2DinLabel(Fig3D & fig_to_render,unsigned int plane){
 
 
 void MainWindow::renderAllViews(Fig3D & fig_to_render){
-        printf("Rendering All views");
+        printf("Rendering All views\n");
 
         render2DinLabel(fig_to_render,0);
         render2DinLabel(fig_to_render,1);

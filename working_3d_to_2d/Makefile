@@ -2115,15 +2115,13 @@ optionwindow.o: optionwindow.cpp optionwindow.h \
 		../../../../Qt5.10.1/5.10.1/gcc_64/include/QtWidgets/qdialog.h \
 		../../../../Qt5.10.1/5.10.1/gcc_64/include/QtWidgets/QMessageBox \
 		../../../../Qt5.10.1/5.10.1/gcc_64/include/QtWidgets/qmessagebox.h \
-		include/module1/objLoader.h \
-		include/module1/reconstMethods.h \
-		include/module1/complexComponents.h \
-		include/module1/structs.h
+		include/module1/objLoader.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o optionwindow.o optionwindow.cpp
 
 hiddenLines.o: src/hiddenLines.cpp include/module1/basicComponents.h \
 		include/module1/objLoader.h \
 		include/module1/figures.h \
+		include/module1/hiddenLines.h \
 		../../../../Qt5.10.1/5.10.1/gcc_64/include/QtUiTools/QtUiTools \
 		../../../../Qt5.10.1/5.10.1/gcc_64/include/QtUiTools/QtUiToolsDepends \
 		../../../../Qt5.10.1/5.10.1/gcc_64/include/QtCore/QtCore \

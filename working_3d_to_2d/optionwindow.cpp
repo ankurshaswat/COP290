@@ -4,7 +4,6 @@
 #include <QMessageBox>
 #include "mainwindow.h"
 #include "objLoader.h"
-#include "reconstMethods.h"
 
 optionWindow::optionWindow(QWidget *parent ) :
         QMainWindow(parent),
@@ -38,7 +37,7 @@ void optionWindow::on_threeD2_2D_clicked()
         //    std::vector<std::vector<unsigned int>> faces_vertices;
         printf("Starting to read file\n");
         Fig3D loaded_obj=loadOBJ(path);
-        printf("Object Loaded Now rendering views");
+        printf("Object Loaded Now rendering views\n");
 
         w.setVertices(loaded_obj.vertices,loaded_obj.faces);
         w.renderAllViews(loaded_obj);

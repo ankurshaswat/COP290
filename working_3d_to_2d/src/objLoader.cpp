@@ -65,17 +65,17 @@ Fig3D  loadOBJ(
 
                         // std::string vertex1, vertex2, vertex3;
                         unsigned int vertexIndex;
-//    unsigned int normalIndex;
+    unsigned int normalIndex;
                         std::vector<unsigned int> vertexIndices, normalIndices;
 
                         while(1) {
-//        int matches = fscanf(file, "%d//%d", &vertexIndex,  &normalIndex );
+         fscanf(file, "%d//%d", &vertexIndex,  &normalIndex );
                                 vertexIndices.push_back(vertexIndex);
                                 char c = fgetc(file);
                                 if(c=='\n') {
                                         break;
                                 }
-                                // normalIndices.push_back(normalIndex);
+                                 normalIndices.push_back(normalIndex);
                         }
 
 
@@ -132,8 +132,13 @@ bool get_edges3D(
                         unsigned int i=(*vertexIndex), j;
                         if( std::next(vertexIndex,1) != faceList.end() ) j= (*(std::next(vertexIndex,1)));
                         else j=(*(faceList.begin()) );
+<<<<<<< Updated upstream
                         cout<<i<<" "<<j<<endl;
+=======
+                        printf("before");
+>>>>>>> Stashed changes
                         Vertice curr=vertices3D[i-1], next=vertices3D[j-1];
+                        printf("after");
                         Edge e,e_inv;
                         e.vertices={next,curr};
                         e_inv.vertices={curr,next};
