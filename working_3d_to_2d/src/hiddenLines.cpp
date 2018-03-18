@@ -240,7 +240,7 @@ Vertice get_vertex_inf(int plane){
         else if(plane==3) {
                 ret.first=-INF;
                 ret.second=-INF;
-                ret.third=-INF;
+                ret.third=INF;
         }
         return ret;
 };
@@ -265,24 +265,71 @@ void render2DHidden(Fig3D & object3D,QPainter & painter,int plane // 0- XY, 1-YZ
                                         break;
                                 }
                         }
+                        set<Edge> faceEdgeSet2D;
+                        for(auto it: faceEdgeSet3D){
+                                faceEdgeSet2D.insert(projected(it,plane));
+                            }
+
                         vector<Vertice> faceVertices;
                         faceVertices.push_back(object3D.vertices[face[0]]);
                         faceVertices.push_back(object3D.vertices[face[1]]);
                         faceVertices.push_back(object3D.vertices[face[2]]);
                         Vertice proj_inf= get_vertex_inf(plane);
+                        set< pair<Vertice,int> > hiddenEdgeset;
                         if(overlapEndPoints.size()==2) {
                                 Vertice u=overlapEndPoints[0],v=overlapEndPoints[1];
-//                    if (opposite_side(faceVertices,u,plane)){
-
-//                }
+                                u.is3d=false;
+                                v.is3d=false;
+                                Vertice u_corr=back_proj(u,e,plane), v_corr=back_proj(v,e,plane);
+                   if (opposite_side(faceVertices,u_corr,get_vertex_inf(plane))  ||  opposite_side(faceVertices,v_corr,get_vertex_inf(plane)) ){
+                        if(u<v){
+                            hiddenEdgeset.insert({u,0});
+                            hiddenEdgeset.insert({v,1});
+                        }
+                        else{
+                            hiddenEdgeset.insert({u,1});
+                            hiddenEdgeset.insert({v,0});
+                        }
+                           
                                 //check if back_proj(u,e) and (v.first,v.second,inf) are on opposite sides of plane or not
                                 //if they are, u-v edge is obstructed from view
                                 //if u<v set add <u,START> and <v,END> to hiddenEdgeset (vice versa for v<u)
                         }
                         else if(overlapEndPoints.size()==1) {
+                            Vertice u=overlapEndPoints[0],v;
+                            Vertice u_corr=back_proj(u,e,plane);
+                            u.is3d=false;
+                            v.is3d=false;
+                            if(is_inside(e_proj.vertices.first,faceEdgeSet2D)){
+                                  v=e_proj.vertices.first;  
                                 //find the end point that lies in the interior of the face
                                 //repeat the previous procedure
+                            }
+                            else  if(is_inside(e_proj.vertices.second,faceEdgeSet2D)){
+                                v=e_proj.vertices.second;
+                            }
+                            else{
+                                break;
+                            }
+                            Vertice v_corr=back_proj(v,e,plane);
+                            if(u<v){
+                            hiddenEdgeset.insert({u,0});
+                            hiddenEdgeset.insert({v,1});
+                            }
+                            else{
+                            hiddenEdgeset.insert({u,1});
+                            hiddenEdgeset.insert({v,0});
+                            }
                         }
+                        for(auto it:faceEdgeSet2D) {
+                           Vertice u=it.vertices.first;
+                            Vertice v=it.vertices.second;
+                            painter.drawLine((u.first + 2)*20, (u.second +2)*20, (v.first + 2)*20, (v.second +2)*20); //will have to change this to fit any size of pixmap
+                            // cout<<u.first<<" "<<u.second<<" "<<u.third<<endl;
+                            // cout<<v.first<<" "<<v.second<<" "<<v.third<<endl<<endl;
+                        }
+        }                        
+
 
 
                 }

@@ -8,7 +8,7 @@ struct Vertice
 
 // public:
         float first,second,third;
-        bool is3d;
+        bool is3d=true;
         char label;
 
         bool operator<(Vertice other) const
