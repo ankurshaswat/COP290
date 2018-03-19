@@ -7,7 +7,7 @@ struct Vertice
 {
 
 // public:
-        float first,second,third;
+        float first,second,third=0;
         bool is3d=true;
         char label;
 
@@ -16,6 +16,10 @@ struct Vertice
 
                 if(is3d) return make_pair(first,make_pair(second,third)) > make_pair(other.first,make_pair(other.second,other.third));
                 else return make_pair(first,second) > make_pair(other.first,other.second);
+        }
+
+        bool operator ==(Vertice b) {
+	return (first == b.first) && (second == b.second) && ( (third==b.third && b.is3d && is3d) || (!is3d) );
         }
         Vertice operator-(const Vertice& rhs){
                 Vertice diff;
@@ -30,6 +34,7 @@ struct Vertice
                 }
                 return diff;
         }
+        
 
 
 };
@@ -43,7 +48,10 @@ struct Edge {
         {
                 return vertices > other.vertices;
         }
-
+        bool operator ==(Edge b) {
+	return (vertices.first==b.vertices.first && vertices.second==b.vertices.second ) || 
+        ( vertices.first==b.vertices.second && vertices.second==b.vertices.first );
+        }
 
 
 };

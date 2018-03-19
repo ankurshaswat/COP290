@@ -127,19 +127,19 @@ bool get_edges3D(
 {
 
         for(auto faceList: faces_vertices) {
-                cout<<endl<<faceList.size()<<endl;
+                // cout<<endl<<faceList.size()<<endl;
                 for(auto vertexIndex=faceList.begin(); vertexIndex!=faceList.end(); vertexIndex++) {
                         unsigned int i=(*vertexIndex), j;
                         if( std::next(vertexIndex,1) != faceList.end() ) j= (*(std::next(vertexIndex,1)));
                         else j=(*(faceList.begin()) );
                         Vertice curr=vertices3D[i-1], next=vertices3D[j-1];
-                        printf("after");
+                        // printf("after");
                         Edge e,e_inv;
                         e.vertices={next,curr};
                         e_inv.vertices={curr,next};
                         if(edgeSet.find(e)==edgeSet.end() && edgeSet.find(e_inv)==edgeSet.end()) {
                                 edgeSet.insert(e_inv);
-                                cout<<i<<" "<<j<<endl<<endl;
+                                // cout<<i<<" "<<j<<endl<<endl;
                         }
                 }
 

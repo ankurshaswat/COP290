@@ -173,13 +173,13 @@ Fig3D Fig3D::getTransformation(double Xrot,double Yrot,double Zrot,double Xoff,d
                                         {sinYrot,-1*sinXrot*cosYrot,cosXrot*cosYrot,Zoff},
                                         {0,0,0,1}};
 
-        printf("TEST");
+        // printf("TEST");
         for(int i = 0; i < 4; ++i) {
 
                 for(int j = 0; j < 4; ++j) {
-                        printf ("%f ",transformationMat[i][j]);
+                        // printf ("%f ",transformationMat[i][j]);
                 }
-                printf("\n");
+                // printf("\n");
         }
 
 

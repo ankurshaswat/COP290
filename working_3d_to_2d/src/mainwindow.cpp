@@ -7,6 +7,7 @@
 #include "objLoader.h"
 #include "figures.h"
 #include "renderMethods.h"
+#include "hiddenLines.h"
 
 MainWindow::MainWindow(QWidget *parent) :
         QMainWindow(parent),
@@ -91,20 +92,20 @@ void MainWindow::render2DinLabel(Fig3D & fig_to_render,unsigned int plane){
         renderAxes(fig_to_render, painter,plane);
         QPen Red((QColor(255,0,0)),1);
         painter.setPen(Red);
-        render2D(fig_to_render, painter,plane);
+        render2DHidden(fig_to_render, painter,plane);
 
         switch (plane) {
         case 0:
-                printf("setting xyDisplay");
+                // printf("setting xyDisplay");
 
                 ui->xyDisplay->setPixmap(pixmap);
                 break;
         case 1:
-                printf("setting yzDisplay");
+                // printf("setting yzDisplay");
                 ui->yzDisplay->setPixmap(pixmap);
                 break;
         case 2:
-                printf("setting xzDisplay");
+                // printf("setting xzDisplay");
                 ui->xzDisplay->setPixmap(pixmap);
                 break;
 
@@ -112,7 +113,7 @@ void MainWindow::render2DinLabel(Fig3D & fig_to_render,unsigned int plane){
                 ui->isometricView->setPixmap(pixmap);
                 break;
         default:
-                printf("Ended up in default");
+                // printf("Ended up in default");
                 break;
         }
 
@@ -124,7 +125,7 @@ void MainWindow::render2DinLabel(Fig3D & fig_to_render,unsigned int plane){
 
 
 void MainWindow::renderAllViews(Fig3D & fig_to_render){
-        printf("Rendering All views\n");
+        // printf("Rendering All views\n");
 
         render2DinLabel(fig_to_render,0);
         render2DinLabel(fig_to_render,1);
@@ -135,7 +136,7 @@ void MainWindow::renderAllViews(Fig3D & fig_to_render){
 void qNormalizeAngle(int &angle)
 {
 
-        printf("angle=%d\n",angle);
+        // printf("angle=%d\n",angle);
         while (angle < 0)
                 angle += 360;
         while (angle > 360 )
@@ -209,7 +210,7 @@ void MainWindow::decZ()
 
 void MainWindow::update(){
         Fig3D x;
-        printf("offset %f\n",x_off);
+        // printf("offset %f\n",x_off);
         x=fig.getTransformation(x_rot,y_rot,z_rot,x_off,y_off,z_off);
 //        x=fig.getTransformation(0,0,0,10000,10000,10000);
         renderAllViews(x);
