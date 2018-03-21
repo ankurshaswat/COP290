@@ -5,6 +5,7 @@
 #include "structs.h"
 #include <map>
 #include "reconstMethods.h"
+#include <iostream>
 
 std::vector<std::vector<Edge> > readFile(const char * path){
         // the returned vector has corresponding data for 3 views (vector of length 3)
@@ -28,14 +29,14 @@ std::vector<std::vector<Edge> > readFile(const char * path){
 
 
                 int nVertices,nEdges;
-                fscanf(file, "%n %n\n",&nVertices,&nEdges);
-
+                fscanf(file, "%d %d\n",&nVertices,&nEdges);
+                cout<<nVertices<<nEdges;
                 // std::vector<vertex> firstViewVList;
                 std::map<char, Vertice> firstViewVMap;
 
                 for(int i = 0; i<nVertices; i++) {
                         Vertice vertex;
-                        fscanf(file, "%f %f %s\n", &vertex.first, &vertex.second, &vertex.label );
+                        fscanf(file, "%f %f %c\n", &vertex.first, &vertex.second, &vertex.label );
                         firstViewVMap[vertex.label]=vertex;
                         // firstViewVList.push_back(vertex);
                 }
@@ -45,23 +46,24 @@ std::vector<std::vector<Edge> > readFile(const char * path){
                 for(int i = 0; i<nEdges; i++) {
                         Edge e;
                         char v1,v2;
-                        fscanf(file,"%s %s\n",&v1,&v2);
+                        fscanf(file,"%c %c\n",&v1,&v2);
                         e.vertices.first=firstViewVMap[v1];
                         e.vertices.second=firstViewVMap[v2];
                         edgeList.push_back(e);
                 }
 
                 allEdges.push_back(edgeList);
+                cout<<"edgeList size"<<edgeList.size()<<endl;
         }
 
 
         fclose(file);
         printf("Loading TXT file completed");
-        return edgeSet;
+        return allEdges;
 }
 
 
-vector<Edge> constUniq3dEdges(vector<vector<Edge> > edgeSet){
+WireFrame constUniq3dEdges(vector<vector<Edge> > edgeSet){
 
         std::vector<Edge> final3dSet;
 
@@ -151,7 +153,8 @@ vector<Edge> constUniq3dEdges(vector<vector<Edge> > edgeSet){
                 }
 
         }
-
-        return final3dSet;
+        WireFrame wf;
+        wf.edges=final3dSet;
+        return wf;
 
 }

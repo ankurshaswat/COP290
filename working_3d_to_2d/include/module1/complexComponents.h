@@ -17,7 +17,9 @@ class WireFrame
 
 public:
 vector<Edge> edges;
-vector<Edge> & getEdgeList();
+WireFrame getTransformation(double Xrot,double Yrot,double Zrot,double Xoff,double Yoff,double Zoff); /** get transformed 3D object */
+
+//vector<Edge> & getEdgeList();
 
 };
 

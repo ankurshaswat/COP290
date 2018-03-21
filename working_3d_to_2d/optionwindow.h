@@ -20,6 +20,9 @@ MainWindow w;
 private slots:
 void on_threeD2_2D_clicked();
 
+
+void on_twoD2_3D_clicked();
+
 private:
 Ui::optionWindow *ui;
 };

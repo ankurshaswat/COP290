@@ -1,0 +1,64 @@
+8 12
+0 0 a
+0 0 b
+0 1 c
+0 1 g
+1 0 d
+1 0 e
+1 1 f
+1 1 h
+a b
+a c
+a d
+e b
+e h
+e d
+f d
+f h
+f c
+g b
+g c
+g h
+8 12
+0 0 a
+0 0 d
+0 1 b
+0 1 e
+1 0 c
+1 0 f
+1 1 g
+1 1 h
+a b
+a c
+a d
+e b
+e h
+e d
+f d
+f h
+f c
+g b
+g c
+g h
+8 12
+0 0 a
+0 0 c
+0 1 b
+0 1 g
+1 0 d
+1 0 f
+1 1 h
+1 1 e
+a b
+a c
+a d
+e b
+e h
+e d
+f d
+f h
+f c
+g b
+g c
+g h
+

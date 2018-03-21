@@ -4,6 +4,7 @@
 #include <QMessageBox>
 #include "mainwindow.h"
 #include "objLoader.h"
+#include "reconstMethods.h"
 
 optionWindow::optionWindow(QWidget *parent ) :
         QMainWindow(parent),
@@ -29,7 +30,7 @@ void optionWindow::on_threeD2_2D_clicked()
 
         QByteArray ba = filePath.toLatin1();
         const char *path = ba.data();
-
+        w.mode=0;
 
 //        MainWindow w=new MainWindow();
 
@@ -39,10 +40,41 @@ void optionWindow::on_threeD2_2D_clicked()
         Fig3D loaded_obj=loadOBJ(path);
         printf("Object Loaded Now rendering views\n");
 
+        w.connectSliderandButtons();
         w.setVertices(loaded_obj.vertices,loaded_obj.faces);
         w.renderAllViews(loaded_obj);
 
         w.show();
+//        ~optionWindow();
+//QMessageBox::information(this,tr("File Name"),filePath );
+}
+
+void optionWindow::on_twoD2_3D_clicked()
+{
+    QString filePath=QFileDialog::getOpenFileName(
+            this,
+            tr("Open File"),
+            "~",
+            "TXT Files (*.txt)");
+
+
+    QByteArray ba = filePath.toLatin1();
+    const char *path = ba.data();
+
+    w.mode=1;
+//        MainWindow w=new MainWindow();
+
+    //    std::vector<Vertice> out_vertices;
+    //    std::vector<std::vector<unsigned int>> faces_vertices;
+    printf("Starting to read file\n");
+    WireFrame wf=constUniq3dEdges(readFile(path));
+    printf("Object Loaded Now rendering views\n");
+    w.setWireFrame(wf);
+    w.render2Dto3D(wf);
+//        w.setVertices(loaded_obj.vertices,loaded_obj.faces);
+//        w.renderAllViews(loaded_obj);
+
+    w.show();
 //        ~optionWindow();
 //QMessageBox::information(this,tr("File Name"),filePath );
 }

@@ -2,7 +2,7 @@
 #include "objLoader.h"
 #include "figures.h"
 #include "hiddenLines.h"
-
+#include <stdio.h>
  #include <QtUiTools>
 #include <iostream>
 #include <vector>
@@ -409,11 +409,15 @@ bool is_inside(Vertice v, set<Edge> edgeSet){
         int count=0;
 
         for(auto it:edgeSet) {
+                cout<<"Starting iteration";
                 pair<int,Vertice> res=get_intersection(artificalEdge,it);
+                 cout<<"Result of get_intersection is "<<res.first<<" "<<res.second.first<<" "<<res.second.second<<endl;
                 if(res.first==1) {
                         count++;
                 }
         }
+
+        cout<<"count is "<<count;
 
         if(count%2==0) {
                 return false;

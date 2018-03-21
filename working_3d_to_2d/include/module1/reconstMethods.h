@@ -7,6 +7,7 @@
 #include "figures.h"
 #include "structs.h"
 
+WireFrame constUniq3dEdges(vector<vector<Edge> > edgeSet);
 std::vector<std::vector<Edge> > readFile(const char *);
 
 Edge** partition(Edge* a);

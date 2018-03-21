@@ -6,6 +6,7 @@
 #include <QtUiTools>
 #include "objLoader.h"
 #include "figures.h"
+#include "complexComponents.h"
 #include "renderMethods.h"
 #include "hiddenLines.h"
 
@@ -16,26 +17,29 @@ MainWindow::MainWindow(QWidget *parent) :
 
 
         ui->setupUi(this);
-        connect(ui->x_rotation, &QSlider::valueChanged, this, &MainWindow::setXRotation);
-        connect(ui->y_rotation, &QSlider::valueChanged, this, &MainWindow::setYRotation);
-        connect(ui->z_rotation, &QSlider::valueChanged, this, &MainWindow::setZRotation);
-
-        connect(this, &MainWindow::xRotationChanged, ui->x_rotation, &QSlider::setValue);
-        connect(this, &MainWindow::yRotationChanged, ui->y_rotation, &QSlider::setValue);
-        connect(this, &MainWindow::zRotationChanged, ui->z_rotation, &QSlider::setValue);
-
-        connect(ui->xoffseter_inc,  &QPushButton::clicked, this, &MainWindow::incX);
-        connect(ui->xoffseter_dec,  &QPushButton::clicked, this, &MainWindow::decX);
-        connect(ui->yoffseter_inc,  &QPushButton::clicked, this, &MainWindow::incY);
-        connect(ui->yoffseter_dec,  &QPushButton::clicked, this, &MainWindow::decY);
-        connect(ui->zoffseter_inc,  &QPushButton::clicked, this, &MainWindow::incZ);
-        connect(ui->zoffseter_dec,  &QPushButton::clicked, this, &MainWindow::decZ);
-        ui->x_rotation->setRange(0, 360 );
-        ui->y_rotation->setRange(0, 360 );
-        ui->z_rotation->setRange(0, 360 );
-
+        connectSliderandButtons();
 }
 
+
+void MainWindow::connectSliderandButtons(){
+    connect(ui->x_rotation, &QSlider::valueChanged, this, &MainWindow::setXRotation);
+    connect(ui->y_rotation, &QSlider::valueChanged, this, &MainWindow::setYRotation);
+    connect(ui->z_rotation, &QSlider::valueChanged, this, &MainWindow::setZRotation);
+
+    connect(this, &MainWindow::xRotationChanged, ui->x_rotation, &QSlider::setValue);
+    connect(this, &MainWindow::yRotationChanged, ui->y_rotation, &QSlider::setValue);
+    connect(this, &MainWindow::zRotationChanged, ui->z_rotation, &QSlider::setValue);
+
+    connect(ui->xoffseter_inc,  &QPushButton::clicked, this, &MainWindow::incX);
+    connect(ui->xoffseter_dec,  &QPushButton::clicked, this, &MainWindow::decX);
+    connect(ui->yoffseter_inc,  &QPushButton::clicked, this, &MainWindow::incY);
+    connect(ui->yoffseter_dec,  &QPushButton::clicked, this, &MainWindow::decY);
+    connect(ui->zoffseter_inc,  &QPushButton::clicked, this, &MainWindow::incZ);
+    connect(ui->zoffseter_dec,  &QPushButton::clicked, this, &MainWindow::decZ);
+    ui->x_rotation->setRange(0, 360 );
+    ui->y_rotation->setRange(0, 360 );
+    ui->z_rotation->setRange(0, 360 );
+}
 MainWindow::~MainWindow()
 {
         delete ui;
@@ -46,6 +50,9 @@ void MainWindow::setVertices(std::vector<Vertice> & out_vertices,std::vector<std
         fig.vertices=out_vertices;
 }
 
+void MainWindow::setWireFrame(WireFrame wf){
+    this->wf=wf;
+}
 //void MainWindow::render2D(std::vector<Vertice> & out_vertices,std::vector<std::vector<unsigned int>> & faces_vertices,	//Might change this to a Fig3D object later on,
 //        QPainter &  painter,int plane // 0- XY, 1-YZ, 2-XZ
 //                          ){
@@ -209,11 +216,18 @@ void MainWindow::decZ()
 
 
 void MainWindow::update(){
-        Fig3D x;
-        // printf("offset %f\n",x_off);
-        x=fig.getTransformation(x_rot,y_rot,z_rot,x_off,y_off,z_off);
+
 //        x=fig.getTransformation(0,0,0,10000,10000,10000);
-        renderAllViews(x);
+        if(mode==0){
+            Fig3D x;
+            // printf("offset %f\n",x_off);
+            x=fig.getTransformation(x_rot,y_rot,z_rot,x_off,y_off,z_off);
+            renderAllViews(x);
+        }else{
+            WireFrame wf2;
+            wf2=wf.getTransformation(x_rot,y_rot,z_rot,x_off,y_off,z_off);
+            render2Dto3D(wf2);
+        }
 //       renderAllViews(fig.vertices,fig.faces);
 }
 
@@ -236,4 +250,52 @@ void MainWindow::mouseMoveEvent(QMouseEvent *event)
                 setZRotation(z_rot +  dx);
         }
         m_lastPos = event->pos();
+}
+
+void MainWindow::renderFromEdges(vector<Edge> edges,int plane){
+
+    QPixmap pixmap(200,200);
+    pixmap.fill(Qt::white);
+    QPainter painter(&pixmap);
+    QPen Red((QColor(255,0,0)),1);
+    painter.setPen(Red);
+
+    for (unsigned int i=0;i<edges.size();i++){
+        Edge e=projected(edges[i],plane);
+        Vertice u=e.vertices.first;
+        Vertice v=e.vertices.second;
+        painter.drawLine((u.first + 2)*20, (u.second +2)*20, (v.first + 2)*20, (v.second +2)*20);
+    }
+switch (plane) {
+case 0:
+        // printf("setting xyDisplay");
+
+        ui->xyDisplay->setPixmap(pixmap);
+        break;
+case 1:
+        // printf("setting yzDisplay");
+        ui->yzDisplay->setPixmap(pixmap);
+        break;
+case 2:
+        // printf("setting xzDisplay");
+        ui->xzDisplay->setPixmap(pixmap);
+        break;
+
+case 3:
+        ui->isometricView->setPixmap(pixmap);
+        break;
+default:
+        // printf("Ended up in default");
+    break;
+}
+
+
+}
+
+void MainWindow::render2Dto3D(WireFrame wf){
+    vector<Edge> edges=wf.edges;
+    renderFromEdges(edges,0);
+    renderFromEdges(edges,1);
+    renderFromEdges(edges,2);
+    renderFromEdges(edges,3);
 }
