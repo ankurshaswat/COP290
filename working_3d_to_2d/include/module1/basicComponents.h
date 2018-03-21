@@ -2,6 +2,7 @@
 #define BASICCOMPONENTS_H
 #include <vector>
 #include <string>
+#include <iostream>
 using namespace std;
 struct Vertice
 {
@@ -14,8 +15,8 @@ struct Vertice
         bool operator<(Vertice other) const
         {
 
-                if(is3d) return make_pair(first,make_pair(second,third)) > make_pair(other.first,make_pair(other.second,other.third));
-                else return make_pair(first,second) > make_pair(other.first,other.second);
+                if(is3d) return make_pair(first*100,make_pair(second*100,third*100)) > make_pair(other.first*100,make_pair(other.second*100,other.third*100));
+                else return make_pair(first*100,second*100) > make_pair(other.first*100,other.second*100);
         }
 
         bool operator ==(Vertice b) {
@@ -38,6 +39,12 @@ struct Vertice
 
 
 };
+
+inline ostream& operator<<(std::ostream& os,const Vertice& v)
+{
+    if(v.is3d)  return os << v.first+50 << ", " << v.second+50 << ", " << v.third+50 << endl;
+    else return os << v.first+50 << ", " << v.second+50 <<endl;
+}
 
 struct Edge {
 

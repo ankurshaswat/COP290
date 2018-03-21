@@ -48,6 +48,10 @@ Fig3D  loadOBJ(
                         // glm::vec3 vertex;
                         Vertice vertex;
                         fscanf(file, "%f %f %f\n", &vertex.first, &vertex.second, &vertex.third );
+                        vertex.first=(vertex.first)*20;
+                        vertex.second=(vertex.second)*20;
+                        vertex.third=(vertex.third)*20;
+                        
                         cout<<endl<<"VERTICE"<<" ";
                         cout<<vertex.first<<" "<<vertex.second<<" "<<vertex.third<<endl;
                         temp_vertices.push_back(vertex);
