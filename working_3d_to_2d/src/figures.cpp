@@ -5,7 +5,7 @@
 #include <vector>
 #include "objLoader.h"
 #include "stdio.h"
-#define PI 3.14159265
+#include "helperfunctions.h"
 
 void Fig3D::getProjections(int plane, set<Edge> & edgeSet2D) {
         /** get XY, YZ , XZ and isometric projections  of the 3D object*/
@@ -164,50 +164,12 @@ Fig3D Fig3D::getTransformation(double Xrot,double Yrot,double Zrot,double Xoff,d
         /** get transformed 3D object */
         Fig3D newFig;
 
-        double sinXrot= sin(Xrot * PI/180 ),cosXrot= cos(Xrot * PI/180 );
-        double sinYrot= sin(Yrot * PI/180 ),cosYrot= cos(Yrot * PI/180 );
-        double sinZrot= sin(Zrot * PI/180 ),cosZrot= cos(Zrot * PI/180 );
-
-        double transformationMat[4][4]={{cosYrot * cosZrot, cosXrot * sinZrot +sinXrot*sinYrot*cosZrot,sinXrot*sinZrot-cosXrot*sinYrot*cosZrot,Xoff},
-                                        {-1*cosYrot*sinZrot,cosXrot*cosZrot-sinXrot*sinYrot*sinZrot,sinXrot*cosZrot+cosXrot*sinYrot*sinZrot,Yoff},
-                                        {sinYrot,-1*sinXrot*cosYrot,cosXrot*cosYrot,Zoff},
-                                        {0,0,0,1}};
-
-        // printf("TEST");
-        for(int i = 0; i < 4; ++i) {
-
-                for(int j = 0; j < 4; ++j) {
-                        // printf ("%f ",transformationMat[i][j]);
-                }
-                // printf("\n");
-        }
-
-
-        double matA[4][1],result[4][1];
-        matA[3][0]=1;
         newFig.faces = this->faces;
 
         for(unsigned int m=0; m<vertices.size(); m++) {
 
-                matA[0][0]=vertices[m].first;
-                matA[0][1]=vertices[m].second;
-                matA[0][2]=vertices[m].third;
+                newFig.vertices.push_back(transform(vertices[m],Xrot,Yrot,Zrot,Xoff,Yoff,Zoff));
 
-                for(int i = 0; i < 4; ++i)
-                        for(int j = 0; j < 1; ++j)
-
-                        {  result[i][j]=0;
-                           for(int k = 0; k < 4; ++k)
-                           {
-                                   result[i][j] += transformationMat[i][k] * matA[k][j];
-                           }}
-                Vertice v;
-                v.first=result[0][0];
-                v.second=result[1][0];
-                v.third=result[2][0];
-                newFig.vertices.push_back(v);
-
-//              printf ("v first is %f",result[0][0]);
         }
 
         return newFig;

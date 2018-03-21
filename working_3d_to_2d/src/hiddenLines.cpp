@@ -2,7 +2,7 @@
 #include "objLoader.h"
 #include "figures.h"
 #include "hiddenLines.h"
-
+#include <stdio.h>
  #include <QtUiTools>
 #include <iostream>
 #include <vector>
@@ -520,6 +520,7 @@ bool is_inside(Vertice v, set<Edge> edgeSet){
         // cout<<"IS_INSIDE --"<<endl;
         // cout<<artificalEdge.vertices.first<<artificalEdge.vertices.second;
         for(auto it:edgeSet) {
+                cout<<"Starting iteration";
                 pair<int,Vertice> res=get_intersection(artificalEdge,it);
                 // cout<<"INTERSECT"<<endl;
                 // cout<<it.vertices.first<<it.vertices.second;
@@ -532,6 +533,8 @@ bool is_inside(Vertice v, set<Edge> edgeSet){
         }
         if(correction) count++;
         // cout<<"COUNT- "<<count<<endl;
+
+        cout<<"count is "<<count;
 
         if(count%2==0) {
                 return false;
