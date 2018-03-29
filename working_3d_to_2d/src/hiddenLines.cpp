@@ -129,7 +129,7 @@ bool opposite_side(vector<Vertice> & faceVertices, Vertice e, Vertice f){
         float x= sqrt(a*a +b*b +c*c);
         float d1=(a*e.first + b*e.second + c*e.third + d);
         float d2=(a*f.first + b*f.second + c*f.third + d); 
-        if( abs(d1/x)<0.01 || abs(d2/x)<0.01) return false;//on plane
+        if( abs(d1/x)<0.01 || abs(d2/x)<0.01) return false;//on plane (allow for some error correction)
         if( d1 * d2 <0) return true;
         else return false;
 
@@ -259,13 +259,13 @@ Vertice get_vertex_inf(Vertice x,int plane){
         }
         else if(plane==1) {//point from which YZ view is taken
                 ret.first=-INF;
-                ret.second=1;
-                ret.third=1;
+                ret.second=x.first;
+                ret.third=x.second;
         }
         else if(plane==2) {//point from which XZ view is taken
-                ret.first=1;
+                ret.first=x.first;
                 ret.second=-INF;
-                ret.third=1;
+                ret.third=x.third;
         }
         else if(plane==3) {
                 ret.first=-INF;
@@ -435,6 +435,39 @@ void render2DHidden(Fig3D & object3D,QPainter & painter,int plane // 0- XY, 1-YZ
                                 hiddenEdgeSet.push_back({v,0});
                             }
                         }
+                        else if(overlapEndPoints.size()==0){
+                                if(plane==0 && !istesting) cout<<"0 points"<<endl;
+                                Vertice u=e_proj.vertices.first.deepCopy(),v= e_proj.vertices.second.deepCopy();
+                                Vertice midpoint;
+                                midpoint.first=(u.first+v.first)/2;
+                                midpoint.second=(u.second+v.second)/2;
+                                midpoint.is3d=false;
+                                if( is_inside(midpoint,faceEdgeSet2D) ){
+                                        if (opposite_side(faceVertices,e.vertices.first,get_vertex_inf(e.vertices.first,plane))  
+                                        &&  opposite_side(faceVertices,e.vertices.second,get_vertex_inf(e.vertices.second,plane)) ){
+                                                if(u<v){
+                                                // hiddenEdgeSet.insert({u,0});
+                                                // hiddenEdgeSet.insert({v,1});
+                                                hiddenEdgeSet.push_back({u,0});
+                                                hiddenEdgeSet.push_back({v,1});
+                                                }
+                                                else{
+                                                //     hiddenEdgeSet.insert({u,1});
+                                                //     hiddenEdgeSet.insert({v,0});
+                                                hiddenEdgeSet.push_back({u,1});
+                                                hiddenEdgeSet.push_back({v,0});
+                                                }       
+                                                if(plane==0 && !istesting) cout<<"Inside, OPPOSITE"<<endl;
+                                        }
+                                        else{
+                                                if(plane==0 && !istesting) cout<<"Inside, SAME"<<endl;
+                                        }
+
+                                }
+                                else{
+                                        if(plane==0 && !istesting) cout<<"Not inside"<<endl;
+                                }
+                        }
                         if(plane==0 && !istesting){
                                 Vertice e_proj1=e_proj.vertices.first, e_proj2=e_proj.vertices.second;
                                 cout<<"Edge proj-------------------------------------------------------"<<endl;
@@ -487,9 +520,9 @@ void render2DHidden(Fig3D & object3D,QPainter & painter,int plane // 0- XY, 1-YZ
                     for(auto it: hiddenEdgeSet){    
                         Vertice temp=it.first;
                         painter.setPen(linepen);
-                         if(plane==0 && !istesting){
-                                painter.drawPoint((temp.first+50), (temp.second+50) );
-                         }
+                        //  if(plane==0 && !istesting){
+                        //         painter.drawPoint((temp.first+50), (temp.second+50) );
+                        //  }
                         if(endCount>=startCount) { 
                                 if(plane==0 && !istesting){
                                     cout<<"SOLID ***********************************"<<endl;
@@ -550,7 +583,7 @@ bool is_inside(Vertice v, set<Edge> edgeSet){
                 // cout<<it.vertices.first<<it.vertices.second;
                 // cout<<res.first<<endl<<res.second;
                 Vertice a=it.vertices.first, b=it.vertices.second;
-                if(res.first==1) {
+                if(res.first==1 ) {
                         count++;
                 }
                 if(( (v.first==a.first && v.second<=a.second) || (v.first==b.first && v.second<=b.second)   ) && !correction) correction=true; //correction for the case of v lying on edge endpoint

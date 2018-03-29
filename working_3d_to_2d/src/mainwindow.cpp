@@ -137,7 +137,7 @@ void MainWindow::renderAllViews(Fig3D & fig_to_render){
         render2DinLabel(fig_to_render,0);
         render2DinLabel(fig_to_render,1);
         render2DinLabel(fig_to_render,2);
-        render2DinLabel(fig_to_render,3);
+        // render2DinLabel(fig_to_render,3);
 }
 
 void qNormalizeAngle(int &angle)
