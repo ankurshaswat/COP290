@@ -24,4 +24,6 @@ void render2DHidden(Fig3D & object3D,QPainter & painter,int plane // 0- XY, 1-YZ
 
 bool is_inside(Vertice v, set<Edge> edgeSet);
 
+bool verticePresent(vector<Vertice> & a, Vertice b);
+
 #endif

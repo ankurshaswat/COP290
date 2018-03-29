@@ -126,7 +126,11 @@ bool opposite_side(vector<Vertice> & faceVertices, Vertice e, Vertice f){
         float b= -uv.first*uw.third + uv.third*uw.first;
         float c= uv.first*uw.second - uv.second*uw.first;
         float d= -(a*u.first + b*u.second + c*u.third);
-        if( (a*e.first + b*e.second + c*e.third + d) * (a*f.first + b*f.second + c*f.third + d) <0) return true;
+        float x= sqrt(a*a +b*b +c*c);
+        float d1=(a*e.first + b*e.second + c*e.third + d);
+        float d2=(a*f.first + b*f.second + c*f.third + d); 
+        if( abs(d1/x)<0.01 || abs(d2/x)<0.01) return false;//on plane
+        if( d1 * d2 <0) return true;
         else return false;
 
 
@@ -140,8 +144,7 @@ Vertice back_proj(Vertice v, Edge e, int plane){
                 cout<<"BACK_PROJ e- "<<endl;
                 // cout<<(a.first)<<", "<<(a.second)<<", "<<(a.third)<<endl;
                 // cout<<(b.first)<<", "<<(b.second)<<", "<<(b.third)<<endl;
-                cout<<(a.first)<<", "<<(a.second)<<", "<<(a.third)<<endl;
-                cout<<(b.first)<<", "<<(b.second)<<", "<<(b.third)<<endl;
+                cout<<a<<b;
                 ans.first=v.first;
                 ans.second=v.second;
                 x=v.first;
@@ -156,7 +159,7 @@ Vertice back_proj(Vertice v, Edge e, int plane){
                         ans.third=a.third; //this case means a and b are coinciding in the projection, so does not matter if it is hidden or not
                 }
                 cout<<"BACK_PROJ v-"<<endl;
-                cout<<(ans.first)<<", "<<(ans.second)<<", "<<(ans.third)<<endl<<endl;
+                cout<<ans<<endl;
         }
         else if(plane==1) { //revert YZ projection
                 ans.second=v.first;
@@ -233,6 +236,17 @@ Edge projected(Edge a, int plane){ /** 2D projection of edge (might include as a
         return e;
 }
 
+bool verticePresent(vector<Vertice> & a, Vertice b){
+        for(auto it: a){
+                if( abs(it.first-b.first)<0.1 && abs(it.second-b.second)<0.1) {
+                        // cout<<"VERTICE PRESENT !!!!!!!!!!!!!"<<endl;
+                        return true;
+                }
+        }
+        // cout<<"-------"<<endl; 
+        return false;
+}
+
 Vertice get_vertex_inf(Vertice x,int plane){
         Vertice ret;
         ret.is3d=true;
@@ -260,6 +274,7 @@ Vertice get_vertex_inf(Vertice x,int plane){
         }
         return ret;
 };
+
 
 void render2DHidden(Fig3D & object3D,QPainter & painter,int plane // 0- XY, 1-YZ, 2-XZ , 3-isometric
                     ){
@@ -295,12 +310,14 @@ void render2DHidden(Fig3D & object3D,QPainter & painter,int plane // 0- XY, 1-YZ
                         if(is_overlapping) continue;
                         set<Vertice> removeDuplicates;
                         for(auto it: overlapEndPoints){
-                                removeDuplicates.insert(it);
+                                removeDuplicates.insert(it.deepCopy());
                         }
                         overlapEndPoints.clear();
                         for(auto it: removeDuplicates){
-                                if(plane==0 && !istesting) cout<<"FINAL OVERLAP #####"<<it.first<<", "<<it.second<<endl;
-                                overlapEndPoints.push_back(it);
+                                if(!verticePresent(overlapEndPoints, it)){ 
+                                        if(plane==0 && !istesting) cout<<"FINAL OVERLAP #####"<<it;
+                                        overlapEndPoints.push_back(it.deepCopy());
+                                }
                         }
 
                         set<Edge> faceEdgeSet2D;
@@ -309,9 +326,9 @@ void render2DHidden(Fig3D & object3D,QPainter & painter,int plane // 0- XY, 1-YZ
                             }
                         
                         vector<Vertice> faceVertices;
-                        faceVertices.push_back(object3D.vertices[face[0]]);
-                        faceVertices.push_back(object3D.vertices[face[1]]);
-                        faceVertices.push_back(object3D.vertices[face[2]]);
+                        faceVertices.push_back(object3D.vertices[face[0]-1]);
+                        faceVertices.push_back(object3D.vertices[face[1]-1]);
+                        faceVertices.push_back(object3D.vertices[face[2]-1]);
                        
                         // set< pair<Vertice,int> > hiddenEdgeSet;
                         if(overlapEndPoints.size()==2) {
@@ -334,11 +351,20 @@ void render2DHidden(Fig3D & object3D,QPainter & painter,int plane // 0- XY, 1-YZ
                                         hiddenEdgeSet.push_back({v,0});
 
                                     }
-                           
+                                if(plane==0 && !istesting) {
+                                          cout<<"2 points OPPOSITE SIDE!!"<<endl;
+                                          cout<<faceVertices[0]<<faceVertices[1]<<faceVertices[2]<<endl;
+                                }
                                 //check if back_proj(u,e) and (v.first,v.second,inf) are on opposite sides of plane or not
                                 //if they are, u-v edge is obstructed from view
                                 //if u<v set add <u,START> and <v,END> to hiddenEdgeSet (vice versa for v<u)
                                     }
+                                else{
+                                     if(plane==0 && !istesting){
+                                                cout<<"2 points SAME SIDE!!"<<endl;
+                                                cout<<faceVertices[0]<<faceVertices[1]<<faceVertices[2]<<endl;
+                                     }
+                                }
                         }
                         else if(overlapEndPoints.size()==1) {
                             if(plane==0 && !istesting) cout<<"1 point"<<endl;
@@ -369,17 +395,17 @@ void render2DHidden(Fig3D & object3D,QPainter & painter,int plane // 0- XY, 1-YZ
                                    }
                             }
                             else{
-                                    break;
+                                    continue;
                             }
                             Vertice v_corr=back_proj(v,e,plane);
                             if ( !opposite_side(faceVertices,v_corr,get_vertex_inf(v,plane)) ){
                                 if(plane==0 && !istesting){
                                          cout<<"SAME SIDE :(:(:(:(:(:(:("<<endl; 
-                                         cout<<"Point 2D- "<<(v.first+50)<<", "<<(v.second+50)<<endl;
-                                         cout<<"Point 3D- "<<(v_corr.first+50)<<", "<<(v_corr.second+50)<<", "<<(v_corr.third+50)<<endl;
+                                         cout<<"Point 2D- "<<v<<endl;
+                                         cout<<"Point 3D- "<<v_corr<<endl;
                                          cout<<"Vertices- "<<endl;
                                          for(auto it: faceVertices){
-                                                 cout<<(it.first+50)<<", "<<(it.second+50)<<", "<<(it.third+50)<<endl;
+                                                 cout<<it<<endl;
                                          }       
                                 }
                                 
@@ -388,11 +414,11 @@ void render2DHidden(Fig3D & object3D,QPainter & painter,int plane // 0- XY, 1-YZ
                             else{
                                     if(plane==0 && !istesting){
                                         cout<<"OPPOSITE SIDE !_!_!_!_!_!_!_"<<endl;
-                                        cout<<"Point 2D- "<<(v.first+50)<<", "<<(v.second+50)<<endl;
-                                        cout<<"Point 3D- "<<(v_corr.first+50)<<", "<<(v_corr.second+50)<<", "<<(v_corr.third+50)<<endl;
+                                        cout<<"Point 2D- "<<v<<endl;
+                                        cout<<"Point 3D- "<<v_corr<<endl;
                                         cout<<"Vertices- "<<endl;
                                         for(auto it: faceVertices){
-                                                cout<<(it.first+50)<<", "<<(it.second+50)<<", "<<(it.third+50)<<endl;
+                                                cout<<it<<endl;
                                         }   
                                     }
                             }
@@ -412,16 +438,15 @@ void render2DHidden(Fig3D & object3D,QPainter & painter,int plane // 0- XY, 1-YZ
                         if(plane==0 && !istesting){
                                 Vertice e_proj1=e_proj.vertices.first, e_proj2=e_proj.vertices.second;
                                 cout<<"Edge proj-------------------------------------------------------"<<endl;
-                                cout<<(e_proj1.first+50)<<", "<<(e_proj1.second+50)<<endl;
-                                cout<<(e_proj2.first+50)<<", "<<(e_proj2.second+50)<<endl;
+                                cout<<e_proj1<<endl;
+                                cout<<e_proj2<<endl;
                         }
                         
                         if(hiddenEdgeSet.size()!=0 && plane==0 && !istesting){
                             cout<<"hiddenEdgeSet size for plane xxxxxxxxxxxxxxxxxxxxxxxxx "<<plane<<" "<<hiddenEdgeSet.size()<<endl;
                             for(auto it: hiddenEdgeSet){
-                                Vertice u=it.first;
-                                cout<<(u.first+50)<<", "<<(u.second+50)<<" "<<it.second<<endl;
-                                // cout<<(v.first)<<", "<<(v.second)<<endl;
+                                // Vertice u=it.first;
+                                cout<<it.first<<" "<<it.second<<endl;
                             }
                         
                             cout<<"Face edges-"<<endl;
@@ -435,8 +460,8 @@ void render2DHidden(Fig3D & object3D,QPainter & painter,int plane // 0- XY, 1-YZ
                             Vertice v=it.vertices.second;
                         //     painter.drawLine((u.first + 2)*20, (u.second ), (v.first + 2)*20, (v.second )); //will have to change this to fit any size of pixmap
                             if(plane==0 && !istesting){
-                                    cout<<(u.first+50)<<", "<<(u.second+50)<<endl;
-                                    cout<<(v.first+50)<<", "<<(v.second+50)<<endl<<endl;
+                                    cout<<u<<endl;
+                                    cout<<v<<endl;
                             }
                         }
                     }
@@ -468,8 +493,8 @@ void render2DHidden(Fig3D & object3D,QPainter & painter,int plane // 0- XY, 1-YZ
                         if(endCount>=startCount) { 
                                 if(plane==0 && !istesting){
                                     cout<<"SOLID ***********************************"<<endl;
-                                    cout<<(u.first)<<", "<<(u.second)<<endl;
-                                    cout<<(temp.first)<<", "<<(temp.second)<<endl<<endl;
+                                    cout<<u<<endl;
+                                    cout<<temp<<endl;
                                 }
                                 painter.setPen(Plain);
                                 painter.drawLine((u.first+50), (u.second +50), (temp.first+50), (temp.second +50));
@@ -477,12 +502,12 @@ void render2DHidden(Fig3D & object3D,QPainter & painter,int plane // 0- XY, 1-YZ
                         else{
                               if(plane==0 && !istesting){
                                   cout<<"HIDDEN ***********************************"<<endl;
-                                  cout<<(u.first)<<", "<<(u.second)<<endl;
-                                  cout<<(temp.first)<<", "<<(temp.second)<<endl<<endl;
+                                  cout<<u<<endl;
+                                  cout<<temp<<endl;
                                }
 
-                        //       painter.setPen(Hidden);
-                        //       painter.drawLine((u.first + 2)*20, (u.second ), (temp.first + 2)*20, (temp.second ));  
+                              painter.setPen(Hidden);
+                              painter.drawLine((u.first + 50), (u.second + 50 ), (temp.first + 50), (temp.second + 50  ));  
                         }
                         if(it.second==0){    
                         startCount++;
@@ -494,8 +519,8 @@ void render2DHidden(Fig3D & object3D,QPainter & painter,int plane // 0- XY, 1-YZ
                     }
                     if(plane==0 && !istesting){
                     cout<<"Final :::"<<endl;
-                    cout<<(u.first)<<", "<<(u.second)<<endl;
-                    cout<<(v.first)<<", "<<(v.second)<<endl<<endl;
+                    cout<<u<<endl;
+                    cout<<v<<endl;
                     }
                     painter.setPen(Plain);
                     painter.drawLine((u.first)+50, (u.second)+50, (v.first)+50, (v.second )+50);
@@ -503,7 +528,6 @@ void render2DHidden(Fig3D & object3D,QPainter & painter,int plane // 0- XY, 1-YZ
 
                 }
         }
-
 
 bool is_inside(Vertice v, set<Edge> edgeSet){
 
@@ -520,7 +544,7 @@ bool is_inside(Vertice v, set<Edge> edgeSet){
         // cout<<"IS_INSIDE --"<<endl;
         // cout<<artificalEdge.vertices.first<<artificalEdge.vertices.second;
         for(auto it:edgeSet) {
-                cout<<"Starting iteration";
+                // cout<<"Starting iteration";
                 pair<int,Vertice> res=get_intersection(artificalEdge,it);
                 // cout<<"INTERSECT"<<endl;
                 // cout<<it.vertices.first<<it.vertices.second;
@@ -534,7 +558,7 @@ bool is_inside(Vertice v, set<Edge> edgeSet){
         if(correction) count++;
         // cout<<"COUNT- "<<count<<endl;
 
-        cout<<"count is "<<count;
+        // cout<<"count is "<<count;
 
         if(count%2==0) {
                 return false;

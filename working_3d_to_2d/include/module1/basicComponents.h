@@ -3,6 +3,8 @@
 #include <vector>
 #include <string>
 #include <iostream>
+#include <cmath>
+#define EPS 0.01
 using namespace std;
 struct Vertice
 {
@@ -11,7 +13,14 @@ struct Vertice
         float first,second,third=0;
         bool is3d=true;
         char label;
-
+        Vertice deepCopy(){
+                Vertice t;
+                t.first=first;
+                t.second=second;
+                t.third=third;
+                t.is3d=is3d;
+                return t;
+        }
         bool operator<(Vertice other) const
         {
 
@@ -20,7 +29,7 @@ struct Vertice
         }
 
         bool operator ==(Vertice b) {
-	return (first == b.first) && (second == b.second) && ( (third==b.third && b.is3d && is3d) || (!is3d) );
+	return  (abs(first - b.first)<EPS ) && (abs(second - b.second)<EPS ) && ( ( (abs(third - b.third)<EPS ) && b.is3d && is3d) || (!is3d) );
         }
         Vertice operator-(const Vertice& rhs){
                 Vertice diff;
