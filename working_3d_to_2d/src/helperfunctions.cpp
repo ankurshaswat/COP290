@@ -1,6 +1,9 @@
 #include "helperfunctions.h"
 #include "basicComponents.h"
 #include "math.h"
+#include<vector>
+#include<algorithm>
+
 #define PI 3.14159265
 
 Vertice transform(Vertice v_in,double Xrot,double Yrot,double Zrot,double Xoff,double Yoff,double Zoff){
@@ -38,3 +41,10 @@ Vertice transform(Vertice v_in,double Xrot,double Yrot,double Zrot,double Xoff,d
             return v;
 
     }
+
+bool isSubset(vector<int> & a, vector<int> & b)
+{
+        for(auto it: a) if( find(b.begin(),b.end(),it) == b.end() ) return false;
+        return true;
+
+}

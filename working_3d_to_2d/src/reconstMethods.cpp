@@ -3,9 +3,11 @@
 #include "complexComponents.h"
 #include "figures.h"
 #include "structs.h"
-#include <map>
 #include "reconstMethods.h"
+#include "helperfunctions.h"
+#include <map>
 #include <iostream>
+#include <algorithm>
 
 std::vector<std::vector<Edge> > readFile(const char * path){
         // the returned vector has corresponding data for 3 views (vector of length 3)
@@ -159,21 +161,112 @@ WireFrame constUniq3dEdges(vector<vector<Edge> > edgeSet){
 
 }
 
-// vector< vector<int> >  CoplanarEdges (vector<Edge> & edges){
-//         vector< vector<int> > Coplanarlist;
-//         for(int i=0;i<edges.size();i++){
-//                 for(int j=i+1;j<edges.size();j++){
-//                         if( coplanar(edges[i],edges[j]) ){
-//                                 vector<int> coplanar;
-//                                 coplanar.push_back(i);
-//                                 coplanar.push_back(j);
-//                                 for(int k=j+1;k<edges.size();k++){
-//                                         if(coplanar(edges[i],edges[j],edges[k])
-//                                 }
-//                         };
-//                 }
-//         }
+vector< vector<int> >  coplanarEdges (vector<Edge> & edges){
+        vector< vector<int> > ans;
+        for(int i=0;i<edges.size();i++){
+                Vertice i1=edges[i].vertices.first.deepCopy(), i2= edges[i].vertices.second.deepCopy();
+                for(int j=i+1;j<edges.size();j++){
+                        Vertice j1=edges[j].vertices.first.deepCopy(),j2=edges[j].vertices.second.deepCopy(),z;
+                        if(!(j1==i1) && !(j1==i2)) z=j1;     //Pick the vertice not in common with the edge
+                        else z=j2;
+                        Plane plane(i1,i2,z);
+                        if(plane.onPlane(edges[j]) ){
+                                vector<int> coplanar;
+                                coplanar.push_back(i);
+                                coplanar.push_back(j);
+                                for(int k=j+1;k<edges.size();k++){
+                                        if(plane.onPlane(edges[k])) coplanar.push_back(k);
+                                }
+                                if(coplanar.size()>=3){ 
+                                        bool skip=false;
+                                        for(auto it: ans) if (isSubset(coplanar, it)){
+                                                                skip=true;
+                                                                break;
+                                                                };
+                                        if(skip) continue;
+                                        ans.push_back(coplanar);
+                                }
+                        };
+                }
+        }
+        cout<<"EDGES-"<<endl;
+        for (auto i: edges){
+                cout<<i.vertices.first<<i.vertices.second<<endl;
+        }
+        for(auto i:ans){        //debugging
+                cout<<"NEXT"<<endl;
+                for(auto j:i){
+                        cout<<j<<" ";
+                }
+                cout<<endl;
+                vector< vector<int> > edgeCycles= getEdgeLoops(edges, i);
+                cout<<"EDGE CYCLE"<<endl;
+                for(auto j:edgeCycles){
+                        for(auto k:j) cout<<k<<" ";
+                        cout<<endl;
+                }
+
+        }
+        return ans;
+};
 
 
-// };
+vector< vector<int>>  getEdgeLoops(vector<Edge> & edges, vector<int> coplanarIndices){
+        //Construct graph represented as an adjacency list
+        vector< vector<int> > adjlist;
+        int n=coplanarIndices.size();
+        adjlist.resize(n);
+        cout<<n<<endl;
+        for(int i=0;i<n;i++){
+                Edge e=edges[coplanarIndices[i]];
+                Vertice e1=e.vertices.first, e2=e.vertices.second;
+                for(int j=0;j<n;j++){
+                        if(j==i) continue;
+                        Edge f= edges[coplanarIndices[j]];
+                        Vertice f1=f.vertices.first, f2=f.vertices.second; 
+                        if(e1==f1 || e1 == f2 || e2==f1 || e2==f2 ){ //Check if edges e and f are connected
+                                adjlist[i].push_back(j);
+                        }
+                }
+        }
+        cout<<"ADJ LIST"<<endl;
+        for(auto it:adjlist){
+                for(auto j:it){
+                        cout<<j<<" ";
+                }
+                cout<<endl;
+        }
+
+        /*Assuming every edge in the graph is a part of a cycle (disjoint from other cycles), 
+         a simple traversal to find connected components will give us the cycles in order*/
+        vector< bool > visited;
+        visited.resize(n,false);
+        vector< vector<int> > ans;
+        for(int i=0;i<n;i++){
+                if(!visited[i]){
+                        visited[i]=true;
+                        vector<int> cycle;
+                        cycle.push_back( coplanarIndices[i] );
+                        int j= adjlist[i][0];
+                        int count=1;
+                        while(j!=i){
+                                visited[j]=true;
+                                cycle.push_back( coplanarIndices[j] );
+                                count++;
+                                int temp=j;
+                                for(auto it: adjlist[temp]){
+                                        if(!visited[it] || (it==i && count>2) ){
+                                                j=it;
+                                                break;
+                                        }
+                                }
+                        }
+                        ans.push_back(cycle);
+                }
+        }
+         
+        return ans;
+};
+
+
 

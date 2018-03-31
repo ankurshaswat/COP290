@@ -9,6 +9,7 @@
 #include "complexComponents.h"
 #include "renderMethods.h"
 #include "hiddenLines.h"
+#include "reconstMethods.h"
 
 MainWindow::MainWindow(QWidget *parent) :
         QMainWindow(parent),
@@ -226,6 +227,7 @@ void MainWindow::update(){
         }else{
             WireFrame wf2;
             wf2=wf.getTransformation(x_rot,y_rot,z_rot,x_off,y_off,z_off);
+            vector<vector<int> > test =coplanarEdges(wf.edges);
             render2Dto3D(wf2);
         }
 //       renderAllViews(fig.vertices,fig.faces);
@@ -261,7 +263,7 @@ void MainWindow::renderFromEdges(vector<Edge> edges,int plane){
     painter.setPen(Red);
 
     for (unsigned int i=0;i<edges.size();i++){
-        Edge e=projected(edges[i],plane);
+        Edge e=edges[i].projected(plane);
         Vertice u=e.vertices.first;
         Vertice v=e.vertices.second;
         painter.drawLine((u.first + 2)*20, (u.second +2)*20, (v.first + 2)*20, (v.second +2)*20);

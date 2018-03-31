@@ -201,43 +201,43 @@ Vertice back_proj(Vertice v, Edge e, int plane){
         return ans;
 }
 
-Edge projected(Edge a, int plane){ /** 2D projection of edge (might include as an Edge member function) **/
-        Vertice u=a.vertices.first, v=a.vertices.second, u_proj, v_proj;
-        u_proj.is3d=false;
-        v_proj.is3d=false;
-        double ux=u.first, uy=u.second, uz=u.third, vx=v.first, vy=v.second, vz=v.third;
-        Edge e;
-        if(plane==0) { //XY Plane
-                u_proj.first=ux;
-                u_proj.second=uy;
-                v_proj.first=vx;
-                v_proj.second=vy;
-        }
-        else if(plane==1) { //YZ Plane
-                u_proj.first=uy;
-                u_proj.second=uz;
-                v_proj.first=vy;
-                v_proj.second=vz;
-        }
-        else if(plane==2) { //XZ Plane
-                u_proj.first=ux;
-                u_proj.second=uz;
-                v_proj.first=vx;
-                v_proj.second=vz;
-        }
-        else if(plane==3) { //isometric view
-                u_proj.first= (std::sqrt(3) * ux -  std::sqrt(3) * uz)/ std::sqrt(6);
-                u_proj.second=  (ux + 2*uy + uz)/ std::sqrt(6);
-                v_proj.first= (std::sqrt(3) * vx -  std::sqrt(3) * vz)/ std::sqrt(6);
-                v_proj.second=  (vx + 2*vy + vz)/ std::sqrt(6);
-                //for reversing the projection
-                // u_proj.third=(ux-uy+uz)/std::sqrt(3);
-                // v_proj.third=(vx-vy+vz)/std::sqrt(3);
-        }
-        e.vertices.first=u_proj;
-        e.vertices.second=v_proj;
-        return e;
-}
+// Edge projected(Edge a, int plane){ /** 2D projection of edge (might include as an Edge member function) **/
+//         Vertice u=a.vertices.first, v=a.vertices.second, u_proj, v_proj;
+//         u_proj.is3d=false;
+//         v_proj.is3d=false;
+//         double ux=u.first, uy=u.second, uz=u.third, vx=v.first, vy=v.second, vz=v.third;
+//         Edge e;
+//         if(plane==0) { //XY Plane
+//                 u_proj.first=ux;
+//                 u_proj.second=uy;
+//                 v_proj.first=vx;
+//                 v_proj.second=vy;
+//         }
+//         else if(plane==1) { //YZ Plane
+//                 u_proj.first=uy;
+//                 u_proj.second=uz;
+//                 v_proj.first=vy;
+//                 v_proj.second=vz;
+//         }
+//         else if(plane==2) { //XZ Plane
+//                 u_proj.first=ux;
+//                 u_proj.second=uz;
+//                 v_proj.first=vx;
+//                 v_proj.second=vz;
+//         }
+//         else if(plane==3) { //isometric view
+//                 u_proj.first= (std::sqrt(3) * ux -  std::sqrt(3) * uz)/ std::sqrt(6);
+//                 u_proj.second=  (ux + 2*uy + uz)/ std::sqrt(6);
+//                 v_proj.first= (std::sqrt(3) * vx -  std::sqrt(3) * vz)/ std::sqrt(6);
+//                 v_proj.second=  (vx + 2*vy + vz)/ std::sqrt(6);
+//                 //for reversing the projection
+//                 // u_proj.third=(ux-uy+uz)/std::sqrt(3);
+//                 // v_proj.third=(vx-vy+vz)/std::sqrt(3);
+//         }
+//         e.vertices.first=u_proj;
+//         e.vertices.second=v_proj;
+//         return e;
+// }
 
 bool verticePresent(vector<Vertice> & a, Vertice b){
         for(auto it: a){
@@ -286,7 +286,7 @@ void render2DHidden(Fig3D & object3D,QPainter & painter,int plane // 0- XY, 1-YZ
         bool istesting=false;
         for (auto e: edgeSet3D) {
                 vector< pair<Vertice,int> > hiddenEdgeSet;
-                Edge e_proj= projected(e,plane);
+                Edge e_proj= e.projected(plane);
                 for(auto face: object3D.faces) {
                         if(plane==0 && !istesting) cout<<"START"<<endl;
                         set<Edge> faceEdgeSet3D;
@@ -296,7 +296,7 @@ void render2DHidden(Fig3D & object3D,QPainter & painter,int plane // 0- XY, 1-YZ
                         vector<Vertice> overlapEndPoints;
                         bool is_overlapping=false;
                         for(auto faceEdge: faceEdgeSet3D) {
-                                pair<int,Vertice> ret= get_intersection(e_proj, projected(faceEdge,plane));
+                                pair<int,Vertice> ret= get_intersection(e_proj, faceEdge.projected(plane) );
                                 if(ret.first==1){ 
                                         overlapEndPoints.push_back(ret.second);
                                         if(plane==0 && !istesting) cout<<"OVERLAP ###### "<<(ret.second.first)<<", "<<(ret.second.second)<<endl;
@@ -325,7 +325,7 @@ void render2DHidden(Fig3D & object3D,QPainter & painter,int plane // 0- XY, 1-YZ
 
                         set<Edge> faceEdgeSet2D;
                         for(auto it: faceEdgeSet3D){
-                                faceEdgeSet2D.insert(projected(it,plane));
+                                faceEdgeSet2D.insert(it.projected(plane));
                             }
                         
                         vector<Vertice> faceVertices;

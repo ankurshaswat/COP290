@@ -69,6 +69,44 @@ struct Edge {
         ( vertices.first==b.vertices.second && vertices.second==b.vertices.first );
         }
 
+        Edge projected(int plane){ /** 2D projection of edge **/
+        Vertice u=vertices.first, v=vertices.second, u_proj, v_proj;
+        u_proj.is3d=false;
+        v_proj.is3d=false;
+        double ux=u.first, uy=u.second, uz=u.third, vx=v.first, vy=v.second, vz=v.third;
+        Edge e;
+        if(plane==0) { //XY Plane
+                u_proj.first=ux;
+                u_proj.second=uy;
+                v_proj.first=vx;
+                v_proj.second=vy;
+        }
+        else if(plane==1) { //YZ Plane
+                u_proj.first=uy;
+                u_proj.second=uz;
+                v_proj.first=vy;
+                v_proj.second=vz;
+        }
+        else if(plane==2) { //XZ Plane
+                u_proj.first=ux;
+                u_proj.second=uz;
+                v_proj.first=vx;
+                v_proj.second=vz;
+        }
+        else if(plane==3) { //isometric view
+                u_proj.first= (std::sqrt(3) * ux -  std::sqrt(3) * uz)/ std::sqrt(6);
+                u_proj.second=  (ux + 2*uy + uz)/ std::sqrt(6);
+                v_proj.first= (std::sqrt(3) * vx -  std::sqrt(3) * vz)/ std::sqrt(6);
+                v_proj.second=  (vx + 2*vy + vz)/ std::sqrt(6);
+                //for reversing the projection
+                // u_proj.third=(ux-uy+uz)/std::sqrt(3);
+                // v_proj.third=(vx-vy+vz)/std::sqrt(3);
+        }
+        e.vertices.first=u_proj;
+        e.vertices.second=v_proj;
+        return e;
+}
+
 
 };
 
@@ -85,6 +123,11 @@ struct Plane {
                 float x= sqrt(a*a +b*b +c*c);
                 float d1=(a*u.first + b*u.second + c*u.third + d);
                 return abs(d1/x);
+        }
+        bool onPlane(Edge e){
+                Vertice u=e.vertices.first, v=e.vertices.second;
+                if(distance(u)<EPS && distance(v)<EPS) return true;
+                else return false;
         }
 };
 
