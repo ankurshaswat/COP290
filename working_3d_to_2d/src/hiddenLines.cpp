@@ -117,19 +117,22 @@ pair<int,Vertice> get_intersection(Edge a, Edge b){
 }
 
 
-bool opposite_side(vector<Vertice> & faceVertices, Vertice e, Vertice f){
-        /** returns true if a and b are on opposite side of plane formed by faceVertices
+/** returns true if a and b are on opposite side of plane formed by faceVertices
            , false otherwise **/
-        Vertice u=faceVertices[0],v=faceVertices[1],w=faceVertices[2];
-        Vertice uv= v-u, uw=w-u;
-        float a= uv.second*uw.third - uv.third*uw.second;
-        float b= -uv.first*uw.third + uv.third*uw.first;
-        float c= uv.first*uw.second - uv.second*uw.first;
-        float d= -(a*u.first + b*u.second + c*u.third);
-        float x= sqrt(a*a +b*b +c*c);
-        float d1=(a*e.first + b*e.second + c*e.third + d);
-        float d2=(a*f.first + b*f.second + c*f.third + d); 
-        if( abs(d1/x)<0.01 || abs(d2/x)<0.01) return false;//on plane (allow for some error correction)
+bool opposite_side(vector<Vertice> & faceVertices, Vertice e, Vertice f){
+        Plane plane(faceVertices[0],faceVertices[1],faceVertices[2]);
+
+        // Vertice u=faceVertices[0],v=faceVertices[1],w=faceVertices[2];
+        // Vertice uv= v-u, uw=w-u;
+        // float a= uv.second*uw.third - uv.third*uw.second;
+        // float b= -uv.first*uw.third + uv.third*uw.first;
+        // float c= uv.first*uw.second - uv.second*uw.first;
+        // float d= -(a*u.first + b*u.second + c*u.third);
+        // float x= sqrt(a*a +b*b +c*c);
+        if(plane.distance(e)<0.01 || plane.distance(f)<0.01) return false; //on plane (allow for some error correction)
+        float d1=(plane.a*e.first + plane.b*e.second + plane.c*e.third + plane.d);
+        float d2=(plane.a*f.first + plane.b*f.second + plane.c*f.third + plane.d); 
+        // if( abs(d1/x)<0.01 || abs(d2/x)<0.01) return false;
         if( d1 * d2 <0) return true;
         else return false;
 

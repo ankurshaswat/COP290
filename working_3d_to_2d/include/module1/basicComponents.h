@@ -72,8 +72,20 @@ struct Edge {
 
 };
 
-struct plane {
-        double a,b,c,d;
+struct Plane {
+        float a,b,c,d;
+        Plane(Vertice u, Vertice v, Vertice w){
+                Vertice uv= v-u, uw=w-u;
+                a= uv.second*uw.third - uv.third*uw.second;
+                b= -uv.first*uw.third + uv.third*uw.first;
+                c= uv.first*uw.second - uv.second*uw.first;
+                d= -(a*u.first + b*u.second + c*u.third);
+        }
+        float distance(Vertice u){
+                float x= sqrt(a*a +b*b +c*c);
+                float d1=(a*u.first + b*u.second + c*u.third + d);
+                return abs(d1/x);
+        }
 };
 
 

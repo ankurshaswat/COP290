@@ -158,3 +158,22 @@ WireFrame constUniq3dEdges(vector<vector<Edge> > edgeSet){
         return wf;
 
 }
+
+// vector< vector<int> >  CoplanarEdges (vector<Edge> & edges){
+//         vector< vector<int> > Coplanarlist;
+//         for(int i=0;i<edges.size();i++){
+//                 for(int j=i+1;j<edges.size();j++){
+//                         if( coplanar(edges[i],edges[j]) ){
+//                                 vector<int> coplanar;
+//                                 coplanar.push_back(i);
+//                                 coplanar.push_back(j);
+//                                 for(int k=j+1;k<edges.size();k++){
+//                                         if(coplanar(edges[i],edges[j],edges[k])
+//                                 }
+//                         };
+//                 }
+//         }
+
+
+// };
+
