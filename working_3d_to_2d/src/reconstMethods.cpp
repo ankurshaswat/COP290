@@ -161,6 +161,7 @@ WireFrame constUniq3dEdges(vector<vector<Edge> > edgeSet){
 
 }
 
+/** Returns coplanar sets of edges  of size>=3 (each coplanar set is represented as a list of edge indices) */
 vector< vector<int> >  coplanarEdges (vector<Edge> & edges){
         vector< vector<int> > ans;
         for(int i=0;i<edges.size();i++){
@@ -210,7 +211,8 @@ vector< vector<int> >  coplanarEdges (vector<Edge> & edges){
         return ans;
 };
 
-
+/** takes input a set of coplanar edges (as edges + indices) and returns a list of edge loops(candidate faces) 
+ formed using these edges (each edgeLoop is represented by a list of indices)*/
 vector< vector<int>>  getEdgeLoops(vector<Edge> & edges, vector<int> coplanarIndices){
         //Construct graph represented as an adjacency list
         vector< vector<int> > adjlist;
@@ -267,6 +269,59 @@ vector< vector<int>>  getEdgeLoops(vector<Edge> & edges, vector<int> coplanarInd
          
         return ans;
 };
+
+Fig3D wireframeTo3D(WireFrame a){
+        vector< vector<int> > coplanarSets= coplanarEdges(a.edges);
+        vector< pair<int,int> > edge2vertexMap;
+        edge2vertexMap.resize(a.edges.size());
+        vector<Vertice> vertices;
+        vector< vector<unsigned int> > faces;
+        cout<<"PRINTING VERTICES"<<endl;
+        for(int index=0;index<a.edges.size();index++){
+                Edge e=a.edges[index];
+                cout<<e.vertices.first<<e.vertices.second<<endl;
+                int pos1= verticePresent(vertices, e.vertices.first);
+                int pos2= verticePresent(vertices, e.vertices.second);
+                if(pos1==-1){
+                        vertices.push_back(e.vertices.first.deepCopy());
+                        pos1=vertices.size()-1;
+                }
+                if(pos2==-1){
+                        vertices.push_back(e.vertices.second.deepCopy());
+                        pos2=vertices.size()-1;
+                }
+                edge2vertexMap[index]={pos1+1,pos2+1}; //1-indexing
+        }
+        for(auto it: coplanarSets){
+                vector< vector<int>> edgeLoops=getEdgeLoops(a.edges, it );
+                for(auto loop: edgeLoops){
+                        vector<unsigned int>  faceVertices;
+                        for(auto index: loop){
+                                Edge e=a.edges[index];
+                                int v1=edge2vertexMap[index].first;
+                                int v2=edge2vertexMap[index].second;
+                                if( find(faceVertices.begin(), faceVertices.end(),v1)==faceVertices.end()  ) faceVertices.push_back(v1);
+                                if( find(faceVertices.begin(), faceVertices.end(),v2)==faceVertices.end()  ) faceVertices.push_back(v2);
+                        }
+                        faces.push_back(faceVertices);
+                }
+        }
+
+        Fig3D ans;
+        ans.vertices=vertices;
+        ans.faces=faces;
+        cout<<"3D object debugging"<<endl<<"VERTICES"<<endl;
+        for(auto it:vertices){
+                cout<<it;
+        }
+        cout<<"FACES"<<endl;
+        for(auto it:faces){
+                cout<<endl;
+                for(auto j: it) cout<<j<<" ";
+        }
+        return ans;
+};
+
 
 
 

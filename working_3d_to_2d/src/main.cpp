@@ -4,6 +4,7 @@
 #include "objLoader.h"
 #include "optionwindow.h"
 #include "hiddenLines.h"
+#include "helperfunctions.h"
 #include <stdio.h>
 #include <iostream>
 

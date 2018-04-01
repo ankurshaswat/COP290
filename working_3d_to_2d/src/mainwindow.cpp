@@ -227,7 +227,8 @@ void MainWindow::update(){
         }else{
             WireFrame wf2;
             wf2=wf.getTransformation(x_rot,y_rot,z_rot,x_off,y_off,z_off);
-            vector<vector<int> > test =coplanarEdges(wf.edges);
+        //     vector<vector<int> > test =coplanarEdges(wf.edges);
+            Fig3D test= wireframeTo3D(wf);
             render2Dto3D(wf2);
         }
 //       renderAllViews(fig.vertices,fig.faces);
