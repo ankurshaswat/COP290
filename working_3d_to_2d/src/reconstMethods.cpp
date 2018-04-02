@@ -298,12 +298,24 @@ Fig3D wireframeTo3D(WireFrame a){
                 vector< vector<int>> edgeLoops=getEdgeLoops(a.edges, it );
                 for(auto loop: edgeLoops){
                         vector<unsigned int>  faceVertices;
-                        for(auto index: loop){
+                        int v1,v2;
+                        v1=edge2vertexMap[0].first;
+                        v2=edge2vertexMap[0].second;
+                        if(v1==edge2vertexMap[1].first || v2==edge2vertexMap[1].second){ //to ensure the vertices are in cyclic order
+                                faceVertices.push_back(v2);
+                                faceVertices.push_back(v1);
+                        }
+                        else{
+                             faceVertices.push_back(v1);
+                             faceVertices.push_back(v2);   
+                        }
+                        for(int i=2;i<loop.size();i++){
+                                int index=loop[i];
                                 Edge e=a.edges[index];
-                                int v1=edge2vertexMap[index].first;
-                                int v2=edge2vertexMap[index].second;
+                                v1=edge2vertexMap[index].first;
+                                v2=edge2vertexMap[index].second;
                                 if( find(faceVertices.begin(), faceVertices.end(),v1)==faceVertices.end()  ) faceVertices.push_back(v1);
-                                if( find(faceVertices.begin(), faceVertices.end(),v2)==faceVertices.end()  ) faceVertices.push_back(v2);
+                                else if( find(faceVertices.begin(), faceVertices.end(),v2)==faceVertices.end()  ) faceVertices.push_back(v2);
                         }
                         faces.push_back(faceVertices);
                 }
