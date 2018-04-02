@@ -70,7 +70,8 @@ void optionWindow::on_twoD2_3D_clicked()
     WireFrame wf=constUniq3dEdges(readFile(path));
     printf("Object Loaded Now rendering views\n");
     w.setWireFrame(wf);
-    w.render2Dto3D(wf);
+    Fig3D fig=wireframeTo3D(wf);
+    w.render2Dto3D(wf,fig);
 //        w.setVertices(loaded_obj.vertices,loaded_obj.faces);
 //        w.renderAllViews(loaded_obj);
 

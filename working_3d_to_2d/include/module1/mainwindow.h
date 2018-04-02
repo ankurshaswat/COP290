@@ -34,7 +34,7 @@ void update();
 void mousePressEvent(QMouseEvent *event) override;
 void mouseMoveEvent(QMouseEvent *event) override;
 void renderFromEdges(vector<Edge> edges,int plane);
-void render2Dto3D(WireFrame wf);
+void render2Dto3D(WireFrame wf,Fig3D fig);
 int mode;
 void connectSliderandButtons();
 

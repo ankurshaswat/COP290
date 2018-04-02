@@ -53,6 +53,7 @@ void MainWindow::setVertices(std::vector<Vertice> & out_vertices,std::vector<std
 
 void MainWindow::setWireFrame(WireFrame wf){
     this->wf=wf;
+    this->fig=wireframeTo3D(wf);
 }
 //void MainWindow::render2D(std::vector<Vertice> & out_vertices,std::vector<std::vector<unsigned int>> & faces_vertices,	//Might change this to a Fig3D object later on,
 //        QPainter &  painter,int plane // 0- XY, 1-YZ, 2-XZ
@@ -219,17 +220,21 @@ void MainWindow::decZ()
 void MainWindow::update(){
 
 //        x=fig.getTransformation(0,0,0,10000,10000,10000);
-        if(mode==0){
+
             Fig3D x;
             // printf("offset %f\n",x_off);
             x=fig.getTransformation(x_rot,y_rot,z_rot,x_off,y_off,z_off);
-            renderAllViews(x);
-        }else{
+
             WireFrame wf2;
             wf2=wf.getTransformation(x_rot,y_rot,z_rot,x_off,y_off,z_off);
         //     vector<vector<int> > test =coplanarEdges(wf.edges);
             Fig3D test= wireframeTo3D(wf);
-            render2Dto3D(wf2);
+
+                 if(mode==0){
+            renderAllViews(x);
+        }else{
+
+            render2Dto3D(wf2,x);
         }
 //       renderAllViews(fig.vertices,fig.faces);
 }
@@ -267,7 +272,7 @@ void MainWindow::renderFromEdges(vector<Edge> edges,int plane){
         Edge e=edges[i].projected(plane);
         Vertice u=e.vertices.first;
         Vertice v=e.vertices.second;
-        painter.drawLine((u.first + 2)*20, (u.second +2)*20, (v.first + 2)*20, (v.second +2)*20);
+        painter.drawLine((u.first +50), (u.second +50), (v.first +50), (v.second +50));
     }
 switch (plane) {
 case 0:
@@ -295,10 +300,15 @@ default:
 
 }
 
-void MainWindow::render2Dto3D(WireFrame wf){
+void MainWindow::render2Dto3D(WireFrame wf,Fig3D fig_to_render){
     vector<Edge> edges=wf.edges;
-    renderFromEdges(edges,0);
-    renderFromEdges(edges,1);
-    renderFromEdges(edges,2);
+//    renderFromEdges(edges,0);
+//    renderFromEdges(edges,1);
+//    renderFromEdges(edges,2);
+
+    render2DinLabel(fig_to_render,0);
+    render2DinLabel(fig_to_render,1);
+    render2DinLabel(fig_to_render,2);
+
     renderFromEdges(edges,3);
 }

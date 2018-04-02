@@ -39,6 +39,8 @@ std::vector<std::vector<Edge> > readFile(const char * path){
                 for(int i = 0; i<nVertices; i++) {
                         Vertice vertex;
                         fscanf(file, "%f %f %c\n", &vertex.first, &vertex.second, &vertex.label );
+                        vertex.first*=20;
+                        vertex.second*=20;
                         firstViewVMap[vertex.label]=vertex;
                         // firstViewVList.push_back(vertex);
                 }
