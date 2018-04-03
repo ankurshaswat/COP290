@@ -1,0 +1,62 @@
+\hypertarget{renderMethods_8h}{}\section{/home/ankurshaswat/\+My\+Files/\+Repos/\+C\+O\+P290/working\+\_\+3d\+\_\+to\+\_\+2d/include/module1/render\+Methods.h File Reference}
+\label{renderMethods_8h}\index{/home/ankurshaswat/\+My\+Files/\+Repos/\+C\+O\+P290/working\+\_\+3d\+\_\+to\+\_\+2d/include/module1/render\+Methods.\+h@{/home/ankurshaswat/\+My\+Files/\+Repos/\+C\+O\+P290/working\+\_\+3d\+\_\+to\+\_\+2d/include/module1/render\+Methods.\+h}}
+{\ttfamily \#include $<$Qt\+Ui\+Tools$>$}\newline
+{\ttfamily \#include \char`\"{}figures.\+h\char`\"{}}\newline
+Include dependency graph for render\+Methods.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=318pt]{renderMethods_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{renderMethods_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{renderMethods_8h_ab6043f874ec8d70f6af6449bbf1ab02a}{render} (\hyperlink{classFig3D}{Fig3D} a)
+\begin{DoxyCompactList}\small\item\em Function to render a 3d figure. \end{DoxyCompactList}\item 
+void \hyperlink{renderMethods_8h_abbe049f22c313df9c0fe89db2a69f154}{render2D} (\hyperlink{classFig3D}{Fig3D} \&object3D, Q\+Painter \&painter, int plane)
+\begin{DoxyCompactList}\small\item\em Function to render 2d views generated from 3d object. \end{DoxyCompactList}\item 
+void \hyperlink{renderMethods_8h_af446c170783ff0c5ebee6ce16c8f65d6}{render\+Axes} (\hyperlink{classFig3D}{Fig3D} \&object3D, Q\+Painter \&painter, int plane)
+\begin{DoxyCompactList}\small\item\em Function to display axes on the labels for reference. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{renderMethods_8h_ab6043f874ec8d70f6af6449bbf1ab02a}\label{renderMethods_8h_ab6043f874ec8d70f6af6449bbf1ab02a}} 
+\index{render\+Methods.\+h@{render\+Methods.\+h}!render@{render}}
+\index{render@{render}!render\+Methods.\+h@{render\+Methods.\+h}}
+\subsubsection{\texorpdfstring{render()}{render()}}
+{\footnotesize\ttfamily void render (\begin{DoxyParamCaption}\item[{\hyperlink{classFig3D}{Fig3D}}]{a }\end{DoxyParamCaption})}
+
+
+
+Function to render a 3d figure. 
+
+Methods for rendering 3D object and diplaying 2D views (will use Open\+GL and G\+TK libraries) \mbox{\Hypertarget{renderMethods_8h_abbe049f22c313df9c0fe89db2a69f154}\label{renderMethods_8h_abbe049f22c313df9c0fe89db2a69f154}} 
+\index{render\+Methods.\+h@{render\+Methods.\+h}!render2D@{render2D}}
+\index{render2D@{render2D}!render\+Methods.\+h@{render\+Methods.\+h}}
+\subsubsection{\texorpdfstring{render2\+D()}{render2D()}}
+{\footnotesize\ttfamily void render2D (\begin{DoxyParamCaption}\item[{\hyperlink{classFig3D}{Fig3D} \&}]{object3D,  }\item[{Q\+Painter \&}]{painter,  }\item[{int}]{plane }\end{DoxyParamCaption})}
+
+
+
+Function to render 2d views generated from 3d object. 
+
+Takes input 3D object , Q\+Painter object, othographic plane (XY /\+Y\+Z/ X\+Z/isometric) and draws the corresponding 2D view on the Q\+Painter object \mbox{\Hypertarget{renderMethods_8h_af446c170783ff0c5ebee6ce16c8f65d6}\label{renderMethods_8h_af446c170783ff0c5ebee6ce16c8f65d6}} 
+\index{render\+Methods.\+h@{render\+Methods.\+h}!render\+Axes@{render\+Axes}}
+\index{render\+Axes@{render\+Axes}!render\+Methods.\+h@{render\+Methods.\+h}}
+\subsubsection{\texorpdfstring{render\+Axes()}{renderAxes()}}
+{\footnotesize\ttfamily void render\+Axes (\begin{DoxyParamCaption}\item[{\hyperlink{classFig3D}{Fig3D} \&}]{object3D,  }\item[{Q\+Painter \&}]{painter,  }\item[{int}]{plane }\end{DoxyParamCaption})}
+
+
+
+Function to display axes on the labels for reference. 
+

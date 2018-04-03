@@ -5,11 +5,14 @@
 #include "basicComponents.h"
 #include "figures.h"
 
+
+/// Function to load OBJ file and save its contents into a 3d figure object.
 Fig3D  loadOBJ(
         const char * path
 //        std::vector<Vertice> & out_vertices,
 //        std::vector<std::vector<unsigned int>> & faces_vertices
         );
+
 bool get_edges3D(
         std::vector<Vertice> & out_vertices,
         std::vector<std::vector<unsigned int> > & faces_vertices,

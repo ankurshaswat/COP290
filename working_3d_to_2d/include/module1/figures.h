@@ -3,11 +3,11 @@
 
 #include "basicComponents.h"
 
-/** Defines classes for representing 2D views and 3D objects*/
+
 #include <set>
 
 
-
+/** Defines classes for representing 2D views and 3D objects*/
 class Fig3D
 {
 
@@ -17,10 +17,14 @@ public:
 vector<Vertice> vertices;
 vector<vector<unsigned int> > faces;
 
-void getProjections(int plane, set<Edge> & edgeSet2D); /** get XY, YZ , XZ and isometric projections  of the 3D object*/
-void getAxes(int plane, set<Edge> & edgeSet2D); /** get XY, YZ , XZ and isometric projections  of the 3D object*/
+/** get XY, YZ , XZ and isometric projections  of the 3D object*/
+void getProjections(int plane, set<Edge> & edgeSet2D); 
 
-Fig3D getTransformation(double Xrot,double Yrot,double Zrot,double Xoff,double Yoff,double Zoff); /** get transformed 3D object */
+ /** get XY, YZ , XZ and isometric projections  of the 3D object*/
+void getAxes(int plane, set<Edge> & edgeSet2D);
+
+/** get transformed 3D object */
+Fig3D getTransformation(double Xrot,double Yrot,double Zrot,double Xoff,double Yoff,double Zoff); 
 
 
 };

@@ -7,10 +7,13 @@
 #include "figures.h"
 #include "structs.h"
 
+/// Function to construct 3d edges from 2d edges by checking the possibility of the edges being projections of each other.
 WireFrame constUniq3dEdges(vector<vector<Edge> > edgeSet);
 
+/// Function to read txt file contatining labelled data of xy , yz and xz views and returns the result as a vector of vector of edges.
 std::vector<std::vector<Edge> > readFile(const char *);
 
+/// Takes a wireframe object and converts it into a 3d object by creating faces by forming edge loops.
 Fig3D wireframeTo3D(WireFrame a);
 
 /** Returns coplanar sets of edges  of size>=3 (each coplanar set is represented as a list of edge indices) */

@@ -2,56 +2,66 @@
 \label{classFig3D}\index{Fig3D@{Fig3D}}
 
 
-{\ttfamily \#include $<$Fig3\+D.\+h$>$}
+{\ttfamily \#include $<$figures.\+h$>$}
 
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \hyperlink{classFig3D_a7240f4cd944cfe9595cfb3d48fe422cd}{Render} ()
+void \hyperlink{classFig3D_af1000067e4e230b41059896c8cacd4e1}{get\+Projections} (int plane, set$<$ \hyperlink{structEdge}{Edge} $>$ \&edge\+Set2D)
 \item 
-void \hyperlink{classFig3D_aff1f932bd45c61bce47dc452bf93c900}{Add\+Offset} (double x, double y, double z)
+void \hyperlink{classFig3D_a4fbcfab626ef2fe938bc53dec4c0543a}{get\+Axes} (int plane, set$<$ \hyperlink{structEdge}{Edge} $>$ \&edge\+Set2D)
 \item 
-void \hyperlink{classFig3D_af26cb06e501da42b688c9e67b8c9dba3}{Add\+Roll} (double r)
+\hyperlink{classFig3D}{Fig3D} \hyperlink{classFig3D_a25a3607c2735064d0bc0081b271ea224}{get\+Transformation} (double Xrot, double Yrot, double Zrot, double Xoff, double Yoff, double Zoff)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
 \item 
-void \hyperlink{classFig3D_ae44cbf728ebb3702cf064e2b5c7ce66f}{Add\+Yaw} (double y)
+vector$<$ \hyperlink{structVertice}{Vertice} $>$ \hyperlink{classFig3D_a3d00aa545805c0c04563055cc183cbb9}{vertices}
 \item 
-void \hyperlink{classFig3D_a03ede2e2e52cd91ca639ee12a2eadb02}{Add\+Pitch} (double p)
+vector$<$ vector$<$ unsigned int $>$ $>$ \hyperlink{classFig3D_abd9f97ce3404190fd202b12885d56fe3}{faces}
 \end{DoxyCompactItemize}
 
 
+\subsection{Detailed Description}
+Defines classes for representing 2D views and 3D objects 
+
 \subsection{Member Function Documentation}
-\mbox{\Hypertarget{classFig3D_aff1f932bd45c61bce47dc452bf93c900}\label{classFig3D_aff1f932bd45c61bce47dc452bf93c900}} 
-\index{Fig3D@{Fig3D}!Add\+Offset@{Add\+Offset}}
-\index{Add\+Offset@{Add\+Offset}!Fig3D@{Fig3D}}
-\subsubsection{\texorpdfstring{Add\+Offset()}{AddOffset()}}
-{\footnotesize\ttfamily void Fig3\+D\+::\+Add\+Offset (\begin{DoxyParamCaption}\item[{double}]{x,  }\item[{double}]{y,  }\item[{double}]{z }\end{DoxyParamCaption})}
+\mbox{\Hypertarget{classFig3D_a4fbcfab626ef2fe938bc53dec4c0543a}\label{classFig3D_a4fbcfab626ef2fe938bc53dec4c0543a}} 
+\index{Fig3D@{Fig3D}!get\+Axes@{get\+Axes}}
+\index{get\+Axes@{get\+Axes}!Fig3D@{Fig3D}}
+\subsubsection{\texorpdfstring{get\+Axes()}{getAxes()}}
+{\footnotesize\ttfamily void Fig3\+D\+::get\+Axes (\begin{DoxyParamCaption}\item[{int}]{plane,  }\item[{set$<$ \hyperlink{structEdge}{Edge} $>$ \&}]{edge\+Set2D }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{classFig3D_a03ede2e2e52cd91ca639ee12a2eadb02}\label{classFig3D_a03ede2e2e52cd91ca639ee12a2eadb02}} 
-\index{Fig3D@{Fig3D}!Add\+Pitch@{Add\+Pitch}}
-\index{Add\+Pitch@{Add\+Pitch}!Fig3D@{Fig3D}}
-\subsubsection{\texorpdfstring{Add\+Pitch()}{AddPitch()}}
-{\footnotesize\ttfamily void Fig3\+D\+::\+Add\+Pitch (\begin{DoxyParamCaption}\item[{double}]{p }\end{DoxyParamCaption})}
+get XY, YZ , XZ and isometric projections of the 3D object get XY, YZ , XZ and isometric projections of the 3D object \mbox{\Hypertarget{classFig3D_af1000067e4e230b41059896c8cacd4e1}\label{classFig3D_af1000067e4e230b41059896c8cacd4e1}} 
+\index{Fig3D@{Fig3D}!get\+Projections@{get\+Projections}}
+\index{get\+Projections@{get\+Projections}!Fig3D@{Fig3D}}
+\subsubsection{\texorpdfstring{get\+Projections()}{getProjections()}}
+{\footnotesize\ttfamily void Fig3\+D\+::get\+Projections (\begin{DoxyParamCaption}\item[{int}]{plane,  }\item[{set$<$ \hyperlink{structEdge}{Edge} $>$ \&}]{edge\+Set2D }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{classFig3D_af26cb06e501da42b688c9e67b8c9dba3}\label{classFig3D_af26cb06e501da42b688c9e67b8c9dba3}} 
-\index{Fig3D@{Fig3D}!Add\+Roll@{Add\+Roll}}
-\index{Add\+Roll@{Add\+Roll}!Fig3D@{Fig3D}}
-\subsubsection{\texorpdfstring{Add\+Roll()}{AddRoll()}}
-{\footnotesize\ttfamily void Fig3\+D\+::\+Add\+Roll (\begin{DoxyParamCaption}\item[{double}]{r }\end{DoxyParamCaption})}
+get XY, YZ , XZ and isometric projections of the 3D object get XY, YZ , XZ and isometric projections of the 3D object \mbox{\Hypertarget{classFig3D_a25a3607c2735064d0bc0081b271ea224}\label{classFig3D_a25a3607c2735064d0bc0081b271ea224}} 
+\index{Fig3D@{Fig3D}!get\+Transformation@{get\+Transformation}}
+\index{get\+Transformation@{get\+Transformation}!Fig3D@{Fig3D}}
+\subsubsection{\texorpdfstring{get\+Transformation()}{getTransformation()}}
+{\footnotesize\ttfamily \hyperlink{classFig3D}{Fig3D} Fig3\+D\+::get\+Transformation (\begin{DoxyParamCaption}\item[{double}]{Xrot,  }\item[{double}]{Yrot,  }\item[{double}]{Zrot,  }\item[{double}]{Xoff,  }\item[{double}]{Yoff,  }\item[{double}]{Zoff }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{classFig3D_ae44cbf728ebb3702cf064e2b5c7ce66f}\label{classFig3D_ae44cbf728ebb3702cf064e2b5c7ce66f}} 
-\index{Fig3D@{Fig3D}!Add\+Yaw@{Add\+Yaw}}
-\index{Add\+Yaw@{Add\+Yaw}!Fig3D@{Fig3D}}
-\subsubsection{\texorpdfstring{Add\+Yaw()}{AddYaw()}}
-{\footnotesize\ttfamily void Fig3\+D\+::\+Add\+Yaw (\begin{DoxyParamCaption}\item[{double}]{y }\end{DoxyParamCaption})}
+get transformed 3D object get transformed 3D object 
 
-\mbox{\Hypertarget{classFig3D_a7240f4cd944cfe9595cfb3d48fe422cd}\label{classFig3D_a7240f4cd944cfe9595cfb3d48fe422cd}} 
-\index{Fig3D@{Fig3D}!Render@{Render}}
-\index{Render@{Render}!Fig3D@{Fig3D}}
-\subsubsection{\texorpdfstring{Render()}{Render()}}
-{\footnotesize\ttfamily void Fig3\+D\+::\+Render (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classFig3D_abd9f97ce3404190fd202b12885d56fe3}\label{classFig3D_abd9f97ce3404190fd202b12885d56fe3}} 
+\index{Fig3D@{Fig3D}!faces@{faces}}
+\index{faces@{faces}!Fig3D@{Fig3D}}
+\subsubsection{\texorpdfstring{faces}{faces}}
+{\footnotesize\ttfamily vector$<$vector$<$unsigned int$>$ $>$ Fig3\+D\+::faces}
+
+\mbox{\Hypertarget{classFig3D_a3d00aa545805c0c04563055cc183cbb9}\label{classFig3D_a3d00aa545805c0c04563055cc183cbb9}} 
+\index{Fig3D@{Fig3D}!vertices@{vertices}}
+\index{vertices@{vertices}!Fig3D@{Fig3D}}
+\subsubsection{\texorpdfstring{vertices}{vertices}}
+{\footnotesize\ttfamily vector$<$\hyperlink{structVertice}{Vertice}$>$ Fig3\+D\+::vertices}
 
 
 
-The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-/home/ankurshaswat/\+My\+Files/\+Repos/\+C\+O\+P290/\+Project1/\+Code/include/module1/\hyperlink{Fig3D_8h}{Fig3\+D.\+h}\end{DoxyCompactItemize}
+/home/ankurshaswat/\+My\+Files/\+Repos/\+C\+O\+P290/working\+\_\+3d\+\_\+to\+\_\+2d/include/module1/\hyperlink{figures_8h}{figures.\+h}\item 
+/home/ankurshaswat/\+My\+Files/\+Repos/\+C\+O\+P290/working\+\_\+3d\+\_\+to\+\_\+2d/src/\hyperlink{figures_8cpp}{figures.\+cpp}\end{DoxyCompactItemize}

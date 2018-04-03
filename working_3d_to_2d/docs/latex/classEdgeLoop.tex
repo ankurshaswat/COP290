@@ -2,32 +2,41 @@
 \label{classEdgeLoop}\index{Edge\+Loop@{Edge\+Loop}}
 
 
-{\ttfamily \#include $<$Edge\+Loop.\+h$>$}
+{\ttfamily \#include $<$complex\+Components.\+h$>$}
 
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classEdge}{Edge} $\ast$ \hyperlink{classEdgeLoop_a88b9e65dd2a986e41acb2e1bc0734a73}{get\+Edge\+List} ()
-\item 
 bool \hyperlink{classEdgeLoop_acae6f647805e3f043325f047208556c8}{is\+Contained} (\hyperlink{classEdgeLoop}{Edge\+Loop} a)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+vector$<$ \hyperlink{structVertice}{Vertice} $>$ \hyperlink{classEdgeLoop_a781d9dd73f8b69c7b0075d4297f6b277}{vertices}
 \end{DoxyCompactItemize}
 
 
-\subsection{Member Function Documentation}
-\mbox{\Hypertarget{classEdgeLoop_a88b9e65dd2a986e41acb2e1bc0734a73}\label{classEdgeLoop_a88b9e65dd2a986e41acb2e1bc0734a73}} 
-\index{Edge\+Loop@{Edge\+Loop}!get\+Edge\+List@{get\+Edge\+List}}
-\index{get\+Edge\+List@{get\+Edge\+List}!Edge\+Loop@{Edge\+Loop}}
-\subsubsection{\texorpdfstring{get\+Edge\+List()}{getEdgeList()}}
-{\footnotesize\ttfamily \hyperlink{classEdge}{Edge}$\ast$ Edge\+Loop\+::get\+Edge\+List (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+\subsection{Detailed Description}
+Some high level components used as intermediates in our algorithms a planar closed loop of edges (connected end-\/to-\/end) 
 
+\subsection{Member Function Documentation}
 \mbox{\Hypertarget{classEdgeLoop_acae6f647805e3f043325f047208556c8}\label{classEdgeLoop_acae6f647805e3f043325f047208556c8}} 
 \index{Edge\+Loop@{Edge\+Loop}!is\+Contained@{is\+Contained}}
 \index{is\+Contained@{is\+Contained}!Edge\+Loop@{Edge\+Loop}}
 \subsubsection{\texorpdfstring{is\+Contained()}{isContained()}}
 {\footnotesize\ttfamily bool Edge\+Loop\+::is\+Contained (\begin{DoxyParamCaption}\item[{\hyperlink{classEdgeLoop}{Edge\+Loop}}]{a }\end{DoxyParamCaption})}
 
+Function to check whether an edge\+Loop is completely contained in another 
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classEdgeLoop_a781d9dd73f8b69c7b0075d4297f6b277}\label{classEdgeLoop_a781d9dd73f8b69c7b0075d4297f6b277}} 
+\index{Edge\+Loop@{Edge\+Loop}!vertices@{vertices}}
+\index{vertices@{vertices}!Edge\+Loop@{Edge\+Loop}}
+\subsubsection{\texorpdfstring{vertices}{vertices}}
+{\footnotesize\ttfamily vector$<$\hyperlink{structVertice}{Vertice}$>$ Edge\+Loop\+::vertices}
+
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-/home/ankurshaswat/\+My\+Files/\+Repos/\+C\+O\+P290/\+Project1/\+Code/include/module1/\hyperlink{EdgeLoop_8h}{Edge\+Loop.\+h}\end{DoxyCompactItemize}
+/home/ankurshaswat/\+My\+Files/\+Repos/\+C\+O\+P290/working\+\_\+3d\+\_\+to\+\_\+2d/include/module1/\hyperlink{complexComponents_8h}{complex\+Components.\+h}\end{DoxyCompactItemize}

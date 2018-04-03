@@ -5,19 +5,30 @@
 #include "basicComponents.h"
 #include <vector>
 
+/** 
+ * a planar closed loop of edges (connected end-to-end)
+ */
 class EdgeLoop
 {
-/** a planar closed loop of edges (connected end-to-end)*/
+
 public:
 vector<Vertice> vertices;
-bool isContained(EdgeLoop a);  /** to check whether an edgeLoop is completely contained in another */
+
+/** 
+ * Function to check whether an edgeLoop is completely contained in another
+ */
+bool isContained(EdgeLoop a);  
 };
+
+
 class WireFrame
 {
 
 public:
 vector<Edge> edges;
-WireFrame getTransformation(double Xrot,double Yrot,double Zrot,double Xoff,double Yoff,double Zoff); /** get transformed 3D object */
+
+/** get transformed 3D object */
+WireFrame getTransformation(double Xrot,double Yrot,double Zrot,double Xoff,double Yoff,double Zoff); 
 
 //vector<Edge> & getEdgeList();
 
