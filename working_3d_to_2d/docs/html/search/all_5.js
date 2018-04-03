@@ -1,5 +1,8 @@
 var searchData=
 [
-  ['iscontained',['isContained',['../classEdgeLoop.html#acae6f647805e3f043325f047208556c8',1,'EdgeLoop']]],
-  ['isplanar',['isPlanar',['../classEdge.html#aa4f4fd6948d7f5170a0dea529b8b04d3',1,'Edge']]]
+  ['faces',['faces',['../classFig3D.html#abd9f97ce3404190fd202b12885d56fe3',1,'Fig3D']]],
+  ['fig3d',['Fig3D',['../classFig3D.html',1,'']]],
+  ['figures_2ecpp',['figures.cpp',['../figures_8cpp.html',1,'']]],
+  ['figures_2eh',['figures.h',['../figures_8h.html',1,'']]],
+  ['first',['first',['../structVertice.html#a458c4138041414f66cc8234dcb8a76a8',1,'Vertice']]]
 ];

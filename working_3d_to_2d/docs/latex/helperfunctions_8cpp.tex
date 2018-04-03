@@ -1,0 +1,109 @@
+\hypertarget{helperfunctions_8cpp}{}\section{/home/ankurshaswat/\+My\+Files/\+Repos/\+C\+O\+P290/working\+\_\+3d\+\_\+to\+\_\+2d/src/helperfunctions.cpp File Reference}
+\label{helperfunctions_8cpp}\index{/home/ankurshaswat/\+My\+Files/\+Repos/\+C\+O\+P290/working\+\_\+3d\+\_\+to\+\_\+2d/src/helperfunctions.\+cpp@{/home/ankurshaswat/\+My\+Files/\+Repos/\+C\+O\+P290/working\+\_\+3d\+\_\+to\+\_\+2d/src/helperfunctions.\+cpp}}
+{\ttfamily \#include \char`\"{}helperfunctions.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}basic\+Components.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}math.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$algorithm$>$}\newline
+{\ttfamily \#include $<$set$>$}\newline
+Include dependency graph for helperfunctions.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{helperfunctions_8cpp__incl}
+\end{center}
+\end{figure}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{helperfunctions_8cpp_a598a3330b3c21701223ee0ca14316eca}{PI}~3.\+14159265
+\item 
+\#define \hyperlink{helperfunctions_8cpp_a12c2040f25d8e3a7b9e1c2024c618cb6}{I\+NF}~1000000
+\item 
+\#define \hyperlink{helperfunctions_8cpp_a06b50f1ca7258a9862c39d3ed354bf7c}{epsilon}~0.\+1
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{structVertice}{Vertice} \hyperlink{helperfunctions_8cpp_a4a9bde2a0de0b0199de919d3b4628e89}{transform} (\hyperlink{structVertice}{Vertice} v\+\_\+in, double Xrot, double Yrot, double Zrot, double Xoff, double Yoff, double Zoff)
+\begin{DoxyCompactList}\small\item\em Transforms a vertice (rotation and offset) using matrix multiplication and returns a new \hyperlink{structVertice}{Vertice} object. \end{DoxyCompactList}\item 
+pair$<$ int, \hyperlink{structVertice}{Vertice} $>$ \hyperlink{helperfunctions_8cpp_aeeffe6b314e92051412034d7e06b03d6}{get\+\_\+intersection} (\hyperlink{structEdge}{Edge} a, \hyperlink{structEdge}{Edge} b)
+\begin{DoxyCompactList}\small\item\em Finds intersection of two edges (line segments) and also returns error if intersection does not exist. \end{DoxyCompactList}\item 
+bool \hyperlink{helperfunctions_8cpp_a948ecdee044f4ebf6f132257557292fc}{is\+\_\+inside} (\hyperlink{structVertice}{Vertice} v, set$<$ \hyperlink{structEdge}{Edge} $>$ edge\+Set)
+\begin{DoxyCompactList}\small\item\em Checks whether a vertice is inside (in 2d) of a face formed by an edge loop. \end{DoxyCompactList}\item 
+bool \hyperlink{helperfunctions_8cpp_ab52930079ad22c64677a4bcafd8728c7}{is\+Subset} (vector$<$ int $>$ \&a, vector$<$ int $>$ \&b)
+\item 
+int \hyperlink{helperfunctions_8cpp_aaa98082eb9298793e9b30843abb80b6a}{vertice\+Present} (vector$<$ \hyperlink{structVertice}{Vertice} $>$ \&a, \hyperlink{structVertice}{Vertice} b)
+\begin{DoxyCompactList}\small\item\em Checks if a vertice is present in a vector of vertices. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{helperfunctions_8cpp_a06b50f1ca7258a9862c39d3ed354bf7c}\label{helperfunctions_8cpp_a06b50f1ca7258a9862c39d3ed354bf7c}} 
+\index{helperfunctions.\+cpp@{helperfunctions.\+cpp}!epsilon@{epsilon}}
+\index{epsilon@{epsilon}!helperfunctions.\+cpp@{helperfunctions.\+cpp}}
+\subsubsection{\texorpdfstring{epsilon}{epsilon}}
+{\footnotesize\ttfamily \#define epsilon~0.\+1}
+
+\mbox{\Hypertarget{helperfunctions_8cpp_a12c2040f25d8e3a7b9e1c2024c618cb6}\label{helperfunctions_8cpp_a12c2040f25d8e3a7b9e1c2024c618cb6}} 
+\index{helperfunctions.\+cpp@{helperfunctions.\+cpp}!I\+NF@{I\+NF}}
+\index{I\+NF@{I\+NF}!helperfunctions.\+cpp@{helperfunctions.\+cpp}}
+\subsubsection{\texorpdfstring{I\+NF}{INF}}
+{\footnotesize\ttfamily \#define I\+NF~1000000}
+
+\mbox{\Hypertarget{helperfunctions_8cpp_a598a3330b3c21701223ee0ca14316eca}\label{helperfunctions_8cpp_a598a3330b3c21701223ee0ca14316eca}} 
+\index{helperfunctions.\+cpp@{helperfunctions.\+cpp}!PI@{PI}}
+\index{PI@{PI}!helperfunctions.\+cpp@{helperfunctions.\+cpp}}
+\subsubsection{\texorpdfstring{PI}{PI}}
+{\footnotesize\ttfamily \#define PI~3.\+14159265}
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{helperfunctions_8cpp_aeeffe6b314e92051412034d7e06b03d6}\label{helperfunctions_8cpp_aeeffe6b314e92051412034d7e06b03d6}} 
+\index{helperfunctions.\+cpp@{helperfunctions.\+cpp}!get\+\_\+intersection@{get\+\_\+intersection}}
+\index{get\+\_\+intersection@{get\+\_\+intersection}!helperfunctions.\+cpp@{helperfunctions.\+cpp}}
+\subsubsection{\texorpdfstring{get\+\_\+intersection()}{get\_intersection()}}
+{\footnotesize\ttfamily pair$<$int,\hyperlink{structVertice}{Vertice}$>$ get\+\_\+intersection (\begin{DoxyParamCaption}\item[{\hyperlink{structEdge}{Edge}}]{a,  }\item[{\hyperlink{structEdge}{Edge}}]{b }\end{DoxyParamCaption})}
+
+
+
+Finds intersection of two edges (line segments) and also returns error if intersection does not exist. 
+
+returns (1,point of intersection) if intersecting, (0,\+\_\+) if overlapping and (-\/1,\+\_\+) if parallel Both edges are 2D edges \mbox{\Hypertarget{helperfunctions_8cpp_a948ecdee044f4ebf6f132257557292fc}\label{helperfunctions_8cpp_a948ecdee044f4ebf6f132257557292fc}} 
+\index{helperfunctions.\+cpp@{helperfunctions.\+cpp}!is\+\_\+inside@{is\+\_\+inside}}
+\index{is\+\_\+inside@{is\+\_\+inside}!helperfunctions.\+cpp@{helperfunctions.\+cpp}}
+\subsubsection{\texorpdfstring{is\+\_\+inside()}{is\_inside()}}
+{\footnotesize\ttfamily bool is\+\_\+inside (\begin{DoxyParamCaption}\item[{\hyperlink{structVertice}{Vertice}}]{v,  }\item[{set$<$ \hyperlink{structEdge}{Edge} $>$}]{edge\+Set }\end{DoxyParamCaption})}
+
+
+
+Checks whether a vertice is inside (in 2d) of a face formed by an edge loop. 
+
+Checks if vertex is inside the polygon defined by the edge set \mbox{\Hypertarget{helperfunctions_8cpp_ab52930079ad22c64677a4bcafd8728c7}\label{helperfunctions_8cpp_ab52930079ad22c64677a4bcafd8728c7}} 
+\index{helperfunctions.\+cpp@{helperfunctions.\+cpp}!is\+Subset@{is\+Subset}}
+\index{is\+Subset@{is\+Subset}!helperfunctions.\+cpp@{helperfunctions.\+cpp}}
+\subsubsection{\texorpdfstring{is\+Subset()}{isSubset()}}
+{\footnotesize\ttfamily bool is\+Subset (\begin{DoxyParamCaption}\item[{vector$<$ int $>$ \&}]{a,  }\item[{vector$<$ int $>$ \&}]{b }\end{DoxyParamCaption})}
+
+A simple helper function to check if a is a subset of b \mbox{\Hypertarget{helperfunctions_8cpp_a4a9bde2a0de0b0199de919d3b4628e89}\label{helperfunctions_8cpp_a4a9bde2a0de0b0199de919d3b4628e89}} 
+\index{helperfunctions.\+cpp@{helperfunctions.\+cpp}!transform@{transform}}
+\index{transform@{transform}!helperfunctions.\+cpp@{helperfunctions.\+cpp}}
+\subsubsection{\texorpdfstring{transform()}{transform()}}
+{\footnotesize\ttfamily \hyperlink{structVertice}{Vertice} transform (\begin{DoxyParamCaption}\item[{\hyperlink{structVertice}{Vertice}}]{v\+\_\+in,  }\item[{double}]{Xrot,  }\item[{double}]{Yrot,  }\item[{double}]{Zrot,  }\item[{double}]{Xoff,  }\item[{double}]{Yoff,  }\item[{double}]{Zoff }\end{DoxyParamCaption})}
+
+
+
+Transforms a vertice (rotation and offset) using matrix multiplication and returns a new \hyperlink{structVertice}{Vertice} object. 
+
+get transformed 3D object \mbox{\Hypertarget{helperfunctions_8cpp_aaa98082eb9298793e9b30843abb80b6a}\label{helperfunctions_8cpp_aaa98082eb9298793e9b30843abb80b6a}} 
+\index{helperfunctions.\+cpp@{helperfunctions.\+cpp}!vertice\+Present@{vertice\+Present}}
+\index{vertice\+Present@{vertice\+Present}!helperfunctions.\+cpp@{helperfunctions.\+cpp}}
+\subsubsection{\texorpdfstring{vertice\+Present()}{verticePresent()}}
+{\footnotesize\ttfamily int vertice\+Present (\begin{DoxyParamCaption}\item[{vector$<$ \hyperlink{structVertice}{Vertice} $>$ \&}]{a,  }\item[{\hyperlink{structVertice}{Vertice}}]{b }\end{DoxyParamCaption})}
+
+
+
+Checks if a vertice is present in a vector of vertices. 
+
+A simple helper function which checks if vertex is already present in vector (allowing for some error correction) 

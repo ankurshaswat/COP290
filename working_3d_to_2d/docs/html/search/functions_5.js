@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['planarpartitions',['planarPartitions',['../classFace.html#a3676c176d0ad0b518a74409372aa94da',1,'Face']]]
+  ['loadobj',['loadOBJ',['../objLoader_8h.html#aceb7a3048c7f82ebf68f0256aedbe70f',1,'loadOBJ(const char *path):&#160;objLoader.cpp'],['../objLoader_8cpp.html#aceb7a3048c7f82ebf68f0256aedbe70f',1,'loadOBJ(const char *path):&#160;objLoader.cpp']]]
 ];

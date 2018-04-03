@@ -1,8 +1,10 @@
 var searchData=
 [
-  ['edge',['Edge',['../classEdge.html',1,'']]],
-  ['edge_2eh',['Edge.h',['../Edge_8h.html',1,'']]],
-  ['edgeloop',['EdgeLoop',['../classEdgeLoop.html',1,'']]],
-  ['edgeloop_2eh',['EdgeLoop.h',['../EdgeLoop_8h.html',1,'']]],
-  ['endpoints',['endPoints',['../classEdge.html#ad9735bd8ac4b59fcfcd76f2548b568b9',1,'Edge']]]
+  ['c',['c',['../structPlane.html#aec04c57607ffa16c210f955360ef4153',1,'Plane']]],
+  ['centralwidget',['centralwidget',['../classUi__MainWindow.html#a356f1cf3ebda15f1fac59467ee081b74',1,'Ui_MainWindow::centralwidget()'],['../classUi__optionWindow.html#abe1b41532353eb89c040124c85e5ef94',1,'Ui_optionWindow::centralwidget()']]],
+  ['complexcomponents_2ecpp',['complexcomponents.cpp',['../complexcomponents_8cpp.html',1,'']]],
+  ['complexcomponents_2eh',['complexComponents.h',['../complexComponents_8h.html',1,'']]],
+  ['connectsliderandbuttons',['connectSliderandButtons',['../classMainWindow.html#acc4ea38c583bc825f258ab2ec432e835',1,'MainWindow']]],
+  ['constuniq3dedges',['constUniq3dEdges',['../reconstMethods_8h.html#a110e71b7da4f490cc73c09b654d2db99',1,'constUniq3dEdges(vector&lt; vector&lt; Edge &gt; &gt; edgeSet):&#160;reconstMethods.cpp'],['../reconstMethods_8cpp.html#a110e71b7da4f490cc73c09b654d2db99',1,'constUniq3dEdges(vector&lt; vector&lt; Edge &gt; &gt; edgeSet):&#160;reconstMethods.cpp']]],
+  ['coplanaredges',['coplanarEdges',['../reconstMethods_8h.html#ad748b0dac80de637f972c4676f8ccdaa',1,'coplanarEdges(vector&lt; Edge &gt; &amp;edges):&#160;reconstMethods.cpp'],['../reconstMethods_8cpp.html#ad748b0dac80de637f972c4676f8ccdaa',1,'coplanarEdges(vector&lt; Edge &gt; &amp;edges):&#160;reconstMethods.cpp']]]
 ];

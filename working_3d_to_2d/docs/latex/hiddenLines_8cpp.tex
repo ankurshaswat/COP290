@@ -1,0 +1,85 @@
+\hypertarget{hiddenLines_8cpp}{}\section{/home/ankurshaswat/\+My\+Files/\+Repos/\+C\+O\+P290/working\+\_\+3d\+\_\+to\+\_\+2d/src/hidden\+Lines.cpp File Reference}
+\label{hiddenLines_8cpp}\index{/home/ankurshaswat/\+My\+Files/\+Repos/\+C\+O\+P290/working\+\_\+3d\+\_\+to\+\_\+2d/src/hidden\+Lines.\+cpp@{/home/ankurshaswat/\+My\+Files/\+Repos/\+C\+O\+P290/working\+\_\+3d\+\_\+to\+\_\+2d/src/hidden\+Lines.\+cpp}}
+{\ttfamily \#include \char`\"{}basic\+Components.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}obj\+Loader.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}figures.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}hidden\+Lines.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}helperfunctions.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$Qt\+Ui\+Tools$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$set$>$}\newline
+{\ttfamily \#include $<$cmath$>$}\newline
+Include dependency graph for hidden\+Lines.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{hiddenLines_8cpp__incl}
+\end{center}
+\end{figure}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{hiddenLines_8cpp_a12c2040f25d8e3a7b9e1c2024c618cb6}{I\+NF}~1000000
+\item 
+\#define \hyperlink{hiddenLines_8cpp_a06b50f1ca7258a9862c39d3ed354bf7c}{epsilon}~0.\+1
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{hiddenLines_8cpp_a836768e232c104dd933ab255f798d0d5}{opposite\+\_\+side} (vector$<$ \hyperlink{structVertice}{Vertice} $>$ \&face\+Vertices, \hyperlink{structVertice}{Vertice} e, \hyperlink{structVertice}{Vertice} f)
+\item 
+\hyperlink{structVertice}{Vertice} \hyperlink{hiddenLines_8cpp_a5245c9f2d3321def89057b7d397d84e3}{back\+\_\+proj} (\hyperlink{structVertice}{Vertice} v, \hyperlink{structEdge}{Edge} e, int plane)
+\item 
+\hyperlink{structVertice}{Vertice} \hyperlink{hiddenLines_8cpp_aba67ff1d3d9b1af057a7743947d8a716}{get\+\_\+vertex\+\_\+inf} (\hyperlink{structVertice}{Vertice} x, int plane)
+\item 
+void \hyperlink{hiddenLines_8cpp_aafdedb0fe0862c4196f86c1c1828d27f}{render2\+D\+Hidden} (\hyperlink{classFig3D}{Fig3D} \&object3D, Q\+Painter \&painter, int plane)
+\begin{DoxyCompactList}\small\item\em Renders the figure and also marks lines as hidden where they are hidden by some plane. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{hiddenLines_8cpp_a06b50f1ca7258a9862c39d3ed354bf7c}\label{hiddenLines_8cpp_a06b50f1ca7258a9862c39d3ed354bf7c}} 
+\index{hidden\+Lines.\+cpp@{hidden\+Lines.\+cpp}!epsilon@{epsilon}}
+\index{epsilon@{epsilon}!hidden\+Lines.\+cpp@{hidden\+Lines.\+cpp}}
+\subsubsection{\texorpdfstring{epsilon}{epsilon}}
+{\footnotesize\ttfamily \#define epsilon~0.\+1}
+
+\mbox{\Hypertarget{hiddenLines_8cpp_a12c2040f25d8e3a7b9e1c2024c618cb6}\label{hiddenLines_8cpp_a12c2040f25d8e3a7b9e1c2024c618cb6}} 
+\index{hidden\+Lines.\+cpp@{hidden\+Lines.\+cpp}!I\+NF@{I\+NF}}
+\index{I\+NF@{I\+NF}!hidden\+Lines.\+cpp@{hidden\+Lines.\+cpp}}
+\subsubsection{\texorpdfstring{I\+NF}{INF}}
+{\footnotesize\ttfamily \#define I\+NF~1000000}
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{hiddenLines_8cpp_a5245c9f2d3321def89057b7d397d84e3}\label{hiddenLines_8cpp_a5245c9f2d3321def89057b7d397d84e3}} 
+\index{hidden\+Lines.\+cpp@{hidden\+Lines.\+cpp}!back\+\_\+proj@{back\+\_\+proj}}
+\index{back\+\_\+proj@{back\+\_\+proj}!hidden\+Lines.\+cpp@{hidden\+Lines.\+cpp}}
+\subsubsection{\texorpdfstring{back\+\_\+proj()}{back\_proj()}}
+{\footnotesize\ttfamily \hyperlink{structVertice}{Vertice} back\+\_\+proj (\begin{DoxyParamCaption}\item[{\hyperlink{structVertice}{Vertice}}]{v,  }\item[{\hyperlink{structEdge}{Edge}}]{e,  }\item[{int}]{plane }\end{DoxyParamCaption})}
+
+returns 3D vertex on \hyperlink{structEdge}{Edge} e whose projection is v \mbox{\Hypertarget{hiddenLines_8cpp_aba67ff1d3d9b1af057a7743947d8a716}\label{hiddenLines_8cpp_aba67ff1d3d9b1af057a7743947d8a716}} 
+\index{hidden\+Lines.\+cpp@{hidden\+Lines.\+cpp}!get\+\_\+vertex\+\_\+inf@{get\+\_\+vertex\+\_\+inf}}
+\index{get\+\_\+vertex\+\_\+inf@{get\+\_\+vertex\+\_\+inf}!hidden\+Lines.\+cpp@{hidden\+Lines.\+cpp}}
+\subsubsection{\texorpdfstring{get\+\_\+vertex\+\_\+inf()}{get\_vertex\_inf()}}
+{\footnotesize\ttfamily \hyperlink{structVertice}{Vertice} get\+\_\+vertex\+\_\+inf (\begin{DoxyParamCaption}\item[{\hyperlink{structVertice}{Vertice}}]{x,  }\item[{int}]{plane }\end{DoxyParamCaption})}
+
+Returns Vertex at infinity for the corresponding projection plane (to check if a vertex and our view point lie on opposite side of a face) \mbox{\Hypertarget{hiddenLines_8cpp_a836768e232c104dd933ab255f798d0d5}\label{hiddenLines_8cpp_a836768e232c104dd933ab255f798d0d5}} 
+\index{hidden\+Lines.\+cpp@{hidden\+Lines.\+cpp}!opposite\+\_\+side@{opposite\+\_\+side}}
+\index{opposite\+\_\+side@{opposite\+\_\+side}!hidden\+Lines.\+cpp@{hidden\+Lines.\+cpp}}
+\subsubsection{\texorpdfstring{opposite\+\_\+side()}{opposite\_side()}}
+{\footnotesize\ttfamily bool opposite\+\_\+side (\begin{DoxyParamCaption}\item[{vector$<$ \hyperlink{structVertice}{Vertice} $>$ \&}]{face\+Vertices,  }\item[{\hyperlink{structVertice}{Vertice}}]{e,  }\item[{\hyperlink{structVertice}{Vertice}}]{f }\end{DoxyParamCaption})}
+
+returns true if a and b are on opposite side of plane formed by face\+Vertices , false otherwise \mbox{\Hypertarget{hiddenLines_8cpp_aafdedb0fe0862c4196f86c1c1828d27f}\label{hiddenLines_8cpp_aafdedb0fe0862c4196f86c1c1828d27f}} 
+\index{hidden\+Lines.\+cpp@{hidden\+Lines.\+cpp}!render2\+D\+Hidden@{render2\+D\+Hidden}}
+\index{render2\+D\+Hidden@{render2\+D\+Hidden}!hidden\+Lines.\+cpp@{hidden\+Lines.\+cpp}}
+\subsubsection{\texorpdfstring{render2\+D\+Hidden()}{render2DHidden()}}
+{\footnotesize\ttfamily void render2\+D\+Hidden (\begin{DoxyParamCaption}\item[{\hyperlink{classFig3D}{Fig3D} \&}]{object3D,  }\item[{Q\+Painter \&}]{painter,  }\item[{int}]{plane }\end{DoxyParamCaption})}
+
+
+
+Renders the figure and also marks lines as hidden where they are hidden by some plane. 
+
