@@ -1,5 +1,6 @@
 #include "helperfunctions.h"
 #include "basicComponents.h"
+#include "complexComponents.h"
 #include "math.h"
 #include<vector>
 #include<algorithm>
@@ -211,3 +212,17 @@ int verticePresent(vector<Vertice> & a, Vertice b){
         // cout<<"-------"<<endl; 
         return -1;
 }
+
+
+///Takes a wireframe and subtracts coordinates of v from  all its edge vertices 
+WireFrame modifyWireframe(WireFrame wf, Vertice v)
+{
+        WireFrame wfModified;
+        for(auto e: wf.edges){
+                Edge e_new;
+                e_new.vertices={e.vertices.first - v, e.vertices.second - v};
+                wfModified.edges.push_back(e_new);
+        }
+        return wfModified;
+};
+

@@ -2,6 +2,7 @@
 #define HELPERFUNCTIONS_H
 
 #include "basicComponents.h"
+#include "complexComponents.h"
 #include<vector> 
 #include<set>
 
@@ -19,5 +20,7 @@ bool isSubset(vector<int> & a, vector<int> & b);
 /// Checks if a vertice is present in a vector of vertices.
 int verticePresent(vector<Vertice> & a, Vertice b);
 
+///Takes a wireframe and subtracts coordinates of v from  all its edge vertices 
+WireFrame modifyWireframe(WireFrame wf, Vertice v) ;
 
 #endif // HELPERFUNCTIONS_H
