@@ -61,13 +61,13 @@ Vertice back_proj(Vertice v, Edge e, int plane){
                 ans.third=v.second;
                 y=v.first;
                 z=v.second;
-                if(y1!=y2) {
-                        ans.first=(x1*(y2-y) + x2*(y-y1))/(y2-y1);
-                }
-                else if(z1!=z2) {
+                if(z1!=z2) {
                         ans.first=(x1*(z2-z) + x2*(z-z1))/(z2-z1);
                 }
-                else{
+                else if(y1!=y2) {
+                        ans.first=(x1*(y2-y) + x2*(y-y1))/(y2-y1);
+                }
+                else{   
                         ans.first=a.first; //this case means a and b are coinciding in the projection, so does not matter if it is hidden or not
                 }
 
@@ -105,7 +105,7 @@ Vertice get_vertex_inf(Vertice x,int plane){
                 ret.third=-INF;
         }
         else if(plane==1) {//point from which YZ view is taken
-                ret.first=-INF;
+                ret.first=INF;
                 ret.second=x.first;
                 ret.third=x.second;
         }
