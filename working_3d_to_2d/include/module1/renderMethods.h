@@ -20,7 +20,7 @@ void render2D(Fig3D & object3D,
 void renderAxes(Fig3D & object3D,
                 QPainter & painter,
                 int plane // 0- XY, 1-YZ, 2-XZ , 3-isometric
-                );
+                ,double scale_factor);
 
 
 #endif

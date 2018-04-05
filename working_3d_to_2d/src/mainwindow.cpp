@@ -37,6 +37,10 @@ void MainWindow::connectSliderandButtons(){
     connect(ui->yoffseter_dec,  &QPushButton::clicked, this, &MainWindow::decY);
     connect(ui->zoffseter_inc,  &QPushButton::clicked, this, &MainWindow::incZ);
     connect(ui->zoffseter_dec,  &QPushButton::clicked, this, &MainWindow::decZ);
+
+    connect(ui->zoomin, &QPushButton::clicked, this, &MainWindow::zoomin);
+    connect(ui->zoomout, &QPushButton::clicked, this, &MainWindow::zoomout);
+
     ui->x_rotation->setRange(0, 360 );
     ui->y_rotation->setRange(0, 360 );
     ui->z_rotation->setRange(0, 360 );
@@ -92,16 +96,16 @@ void MainWindow::render2DinLabel(Fig3D & fig_to_render,unsigned int plane){
 //    string label;
 
 
-        QPixmap pixmap(200,200);
+        QPixmap pixmap(300,300);
         pixmap.fill(Qt::white);
         QPainter painter(&pixmap);
 //    QPen Red((QColor(255,0,0)),1);
 //    painter.setPen(Red);
 //    render2D(out_vertices, faces_vertices, painter, plane);
-        renderAxes(fig_to_render, painter,plane);
+//        renderAxes(fig_to_render, painter,plane,scale_factor);
         QPen Red((QColor(255,0,0)),1);
         painter.setPen(Red);
-        render2DHidden(fig_to_render, painter,plane);
+        render2DHidden(fig_to_render, painter,plane,scale_factor);
 
         switch (plane) {
         case 0:
@@ -216,6 +220,15 @@ void MainWindow::decZ()
         update();
 }
 
+void MainWindow::zoomin(){
+    scale_factor*=1.25;
+    update();
+}
+
+void MainWindow::zoomout(){
+    scale_factor*=0.75;
+    update();
+}
 
 void MainWindow::update(){
 
@@ -262,7 +275,7 @@ void MainWindow::mouseMoveEvent(QMouseEvent *event)
 
 void MainWindow::renderFromEdges(vector<Edge> edges,int plane){
 
-    QPixmap pixmap(200,200);
+    QPixmap pixmap(300,300);
     pixmap.fill(Qt::white);
     QPainter painter(&pixmap);
     QPen Red((QColor(255,0,0)),1);
@@ -272,7 +285,7 @@ void MainWindow::renderFromEdges(vector<Edge> edges,int plane){
         Edge e=edges[i].projected(plane);
         Vertice u=e.vertices.first;
         Vertice v=e.vertices.second;
-        painter.drawLine((u.first +50), (u.second +50), (v.first +50), (v.second +50));
+        painter.drawLine((u.first +150)*scale_factor, (u.second +150)*scale_factor, (v.first +150)*scale_factor, (v.second +150)*scale_factor);
     }
 switch (plane) {
 case 0:

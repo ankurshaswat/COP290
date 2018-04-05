@@ -123,7 +123,7 @@ Vertice get_vertex_inf(Vertice x,int plane){
 };
 
 
-void render2DHidden(Fig3D & object3D,QPainter & painter,int plane ){// 0- XY, 1-YZ, 2-XZ , 3-isometric
+void render2DHidden(Fig3D & object3D,QPainter & painter,int plane ,double scale_factor){// 0- XY, 1-YZ, 2-XZ , 3-isometric
         set<Edge> edgeSet3D;
         get_edges3D(object3D.vertices, object3D.faces,edgeSet3D);
         bool istesting=false;
@@ -376,7 +376,7 @@ void render2DHidden(Fig3D & object3D,QPainter & painter,int plane ){// 0- XY, 1-
                                     cout<<temp<<endl;
                                 }
                                 painter.setPen(Plain);
-                                painter.drawLine((u.first+50), (u.second +50), (temp.first+50), (temp.second +50));
+                                painter.drawLine((u.first)*scale_factor+150, (u.second )*scale_factor+150, (temp.first)*scale_factor+150, (temp.second )*scale_factor+150);
                         }
                         else{
                               if(plane==0 && !istesting){
@@ -386,7 +386,7 @@ void render2DHidden(Fig3D & object3D,QPainter & painter,int plane ){// 0- XY, 1-
                                }
 
                               painter.setPen(Hidden);
-                              painter.drawLine((u.first + 50), (u.second + 50 ), (temp.first + 50), (temp.second + 50  ));  
+                              painter.drawLine((u.first )*scale_factor+ 150, (u.second )*scale_factor+ 150 , (temp.first )*scale_factor+ 150, (temp.second )*scale_factor+ 150  );
                         }
                         if(it.second==0){    
                         startCount++;
@@ -402,7 +402,7 @@ void render2DHidden(Fig3D & object3D,QPainter & painter,int plane ){// 0- XY, 1-
                     cout<<v<<endl;
                     }
                     painter.setPen(Plain);
-                    painter.drawLine((u.first)+50, (u.second)+50, (v.first)+50, (v.second )+50);
+                    painter.drawLine((u.first)*scale_factor+150, (u.second)*scale_factor+150, (v.first)*scale_factor+150, (v.second )*scale_factor+150);
                 //     istesting=true;    
 
                 }

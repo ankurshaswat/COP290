@@ -25,6 +25,11 @@ Fig3D  loadOBJ(
         std::vector<Vertice> temp_vertices;
         std::vector<Vertice> temp_normals;
 
+        int count=0;
+        Vertice average;
+        average.first=0;
+        average.second=0;
+        average.third=0;
 
         FILE * file = fopen(path, "r");
 
@@ -52,6 +57,12 @@ Fig3D  loadOBJ(
                         vertex.second=(vertex.second)*20;
                         vertex.third=(vertex.third)*20;
                         
+
+                        average.first+=vertex.first;
+                        average.second+=vertex.second;
+                        average.third+=vertex.third;
+                        count++;
+
                         cout<<endl<<"VERTICE"<<" ";
                         cout<<vertex.first<<" "<<vertex.second<<" "<<vertex.third<<endl;
                         temp_vertices.push_back(vertex);
@@ -106,8 +117,9 @@ Fig3D  loadOBJ(
                         // // Get the attributes thanks to the index
                         // Vertice vertex = temp_vertices[ vertexIndex-1 ];
                         // vertex.is3d=true;	//to indicate it is a 3d vertex
-
-
+                        it.first-=(average.first)/count;
+                        it.second-=average.second/count;
+                        it.third-=average.third/count;
                         // // Put the attributes in buffers
                         // printf("%f,%f,%f,\n",vertex.first,vertex.second,vertex.third);
                         out_vertices.push_back(it);

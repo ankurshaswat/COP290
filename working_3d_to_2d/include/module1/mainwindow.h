@@ -54,6 +54,12 @@ void decY();
 /// Function used to decrease Z offset of displayed figure.
 void decZ();
 
+/// Function used to increase scaling or zooming in of displayed figure.
+void zoomin();
+
+/// Function used to decrease scaling or zooming out of displayed figure.
+void zoomout();
+
 /// Function triggered to reconstruct views whenever offset or rotation of object changed.
 void update();
 
@@ -103,6 +109,7 @@ Ui::MainWindow *ui;
 double x_rot=0,y_rot=0,z_rot=0;
 QPoint m_lastPos;
 double x_off=0,y_off=0,z_off=0;
+double scale_factor=1.0;
 
 Fig3D fig;
 WireFrame wf;

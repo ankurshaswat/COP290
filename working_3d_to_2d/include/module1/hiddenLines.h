@@ -9,7 +9,7 @@
 
 
 /// Renders the figure and also marks lines as hidden where they are hidden by some plane.
-void render2DHidden(Fig3D & object3D,QPainter & painter,int plane); // 0- XY, 1-YZ, 2-XZ , 3-isometric
+void render2DHidden(Fig3D & object3D,QPainter & painter,int plane,double scale_factor); // 0- XY, 1-YZ, 2-XZ , 3-isometric
 
  /** returns true if a and b are on opposite side of plane formed by faceVertices
   * , false otherwise 
