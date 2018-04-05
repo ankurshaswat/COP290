@@ -299,9 +299,9 @@ Fig3D wireframeTo3D(WireFrame a){
                 for(auto loop: edgeLoops){
                         vector<unsigned int>  faceVertices;
                         int v1,v2;
-                        v1=edge2vertexMap[0].first;
-                        v2=edge2vertexMap[0].second;
-                        if(v1==edge2vertexMap[1].first || v2==edge2vertexMap[1].second){ //to ensure the vertices are in cyclic order
+                        v1=edge2vertexMap[ loop[0] ].first;
+                        v2=edge2vertexMap[ loop[0] ].second;
+                        if(v1==edge2vertexMap[ loop[1] ].first || v2==edge2vertexMap[ loop[1] ].second){ //to ensure the vertices are in cyclic order
                                 faceVertices.push_back(v2);
                                 faceVertices.push_back(v1);
                         }
@@ -309,7 +309,7 @@ Fig3D wireframeTo3D(WireFrame a){
                              faceVertices.push_back(v1);
                              faceVertices.push_back(v2);   
                         }
-                        for(int i=2;i<loop.size();i++){
+                        for(int i=1;i<loop.size();i++){
                                 int index=loop[i];
                                 Edge e=a.edges[index];
                                 v1=edge2vertexMap[index].first;
