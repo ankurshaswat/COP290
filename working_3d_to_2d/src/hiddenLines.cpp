@@ -105,7 +105,7 @@ Vertice get_vertex_inf(Vertice x,int plane){
                 ret.third=-INF;
         }
         else if(plane==1) {//point from which YZ view is taken
-                ret.first=INF;
+                ret.first=-INF;
                 ret.second=x.first;
                 ret.third=x.second;
         }
@@ -131,7 +131,6 @@ void render2DHidden(Fig3D & object3D,QPainter & painter,int plane ,double scale_
                 vector< pair<Vertice,int> > hiddenEdgeSet;
                 Edge e_proj= e.projected(plane);
                 for(auto face: object3D.faces) {
-                        if(plane==0 && !istesting) cout<<"START"<<endl;
                         set<Edge> faceEdgeSet3D;
                         vector< vector<unsigned int> > tmpfaces;
                         tmpfaces.push_back(face);
@@ -141,13 +140,11 @@ void render2DHidden(Fig3D & object3D,QPainter & painter,int plane ,double scale_
                         for(auto faceEdge: faceEdgeSet3D) {
                                 pair<int,Vertice> ret= get_intersection(e_proj, faceEdge.projected(plane) );
                                 if(ret.first==1){ 
-                                        overlapEndPoints.push_back(ret.second);
-                                        if(plane==0 && !istesting) cout<<"OVERLAP ###### "<<(ret.second.first)<<", "<<(ret.second.second)<<endl;
+                                        overlapEndPoints.push_back(ret.second);                                        
                                 }
                                 else if(ret.first==0) { //overlapping
                                         if(faceEdge==e) {
                                                 is_overlapping=true;
-                                                if(plane==0 && !istesting) cout<<"SAME FACE, SKIP!!!!!"<<endl;
                                         }
                                         overlapEndPoints.clear();
                                         break;
@@ -161,7 +158,6 @@ void render2DHidden(Fig3D & object3D,QPainter & painter,int plane ,double scale_
                         overlapEndPoints.clear();
                         for(auto it: removeDuplicates){
                                 if(verticePresent(overlapEndPoints, it)==-1){ 
-                                        if(plane==0 && !istesting) cout<<"FINAL OVERLAP #####"<<it;
                                         overlapEndPoints.push_back(it.deepCopy());
                                 }
                         }
@@ -178,7 +174,6 @@ void render2DHidden(Fig3D & object3D,QPainter & painter,int plane ,double scale_
                        
                         // set< pair<Vertice,int> > hiddenEdgeSet;
                         if(overlapEndPoints.size()==2) {
-                                if(plane==0 && !istesting) cout<<"2 points"<<endl;
                                 Vertice u=overlapEndPoints[0],v=overlapEndPoints[1];
                                 u.is3d=false;
                                 v.is3d=false;
@@ -197,76 +192,29 @@ void render2DHidden(Fig3D & object3D,QPainter & painter,int plane ,double scale_
                                         hiddenEdgeSet.push_back({v,0});
 
                                     }
-                                if(plane==0 && !istesting) {
-                                          cout<<"2 points OPPOSITE SIDE!!"<<endl;
-                                          cout<<faceVertices[0]<<faceVertices[1]<<faceVertices[2]<<endl;
-                                }
                                 //check if back_proj(u,e) and (v.first,v.second,inf) are on opposite sides of plane or not
                                 //if they are, u-v edge is obstructed from view
                                 //if u<v set add <u,START> and <v,END> to hiddenEdgeSet (vice versa for v<u)
                                     }
-                                else{
-                                     if(plane==0 && !istesting){
-                                                cout<<"2 points SAME SIDE!!"<<endl;
-                                                cout<<faceVertices[0]<<faceVertices[1]<<faceVertices[2]<<endl;
-                                     }
-                                }
+                                
                         }
                         else if(overlapEndPoints.size()==1) {
-                            if(plane==0 && !istesting) cout<<"1 point"<<endl;
                             Vertice u=overlapEndPoints[0],v;
                             Vertice u_corr=back_proj(u,e,plane);
                             u.is3d=false;
                             v.is3d=false;
                             if(is_inside(e_proj.vertices.first,faceEdgeSet2D) && !(u==e_proj.vertices.first) ) {
                                     v=e_proj.vertices.first;
-                                    if(plane==0 && !istesting){
-                                    cout<<"VERTEX INSIDE!!"<<endl;
-                                    cout<<v.first+50<<", "<<v.second+50<<endl<<endl;
-                                    for(auto it: faceEdgeSet2D){
-                                                std::cout<<(it.vertices.first)<<(it.vertices.second)<<endl;
-                                        }
-                                     cout<<endl;
-                                   }
                             }
                             else if (is_inside(e_proj.vertices.second,faceEdgeSet2D) && !(u==e_proj.vertices.second) ){
                                     v=e_proj.vertices.second;
-                                    if(plane==0 && !istesting){
-                                    cout<<"VERTEX INSIDE!!"<<endl;
-                                    cout<<v.first+50<<", "<<v.second+50<<endl<<endl;
-                                    for(auto it: faceEdgeSet2D){
-                                                std::cout<<(it.vertices.first)<<(it.vertices.second)<<endl;
-                                        }
-                                     cout<<endl;
-                                   }
                             }
                             else{
                                     continue;
                             }
                             Vertice v_corr=back_proj(v,e,plane);
                             if ( !opposite_side(faceVertices,v_corr,get_vertex_inf(v,plane)) ){
-                                if(plane==0 && !istesting){
-                                         cout<<"SAME SIDE :(:(:(:(:(:(:("<<endl; 
-                                         cout<<"Point 2D- "<<v<<endl;
-                                         cout<<"Point 3D- "<<v_corr<<endl;
-                                         cout<<"Vertices- "<<endl;
-                                         for(auto it: faceVertices){
-                                                 cout<<it<<endl;
-                                         }       
-                                }
-                                
                                 break;
-                            }
-                            else{
-                                    if(plane==0 && !istesting){
-                                        cout<<"OPPOSITE SIDE !_!_!_!_!_!_!_"<<endl;
-                                        cout<<"Point 2D- "<<v<<endl;
-                                        cout<<"Point 3D- "<<v_corr<<endl;
-                                        cout<<"Vertices- "<<endl;
-                                        for(auto it: faceVertices){
-                                                cout<<it<<endl;
-                                        }   
-                                    }
                             }
                             if(u<v){
                             // hiddenEdgeSet.insert({u,0});
@@ -282,7 +230,6 @@ void render2DHidden(Fig3D & object3D,QPainter & painter,int plane ,double scale_
                             }
                         }
                         else if(overlapEndPoints.size()==0){
-                                if(plane==0 && !istesting) cout<<"0 points"<<endl;
                                 Vertice u=e_proj.vertices.first.deepCopy(),v= e_proj.vertices.second.deepCopy();
                                 Vertice midpoint;
                                 midpoint.first=(u.first+v.first)/2;
@@ -303,32 +250,19 @@ void render2DHidden(Fig3D & object3D,QPainter & painter,int plane ,double scale_
                                                 hiddenEdgeSet.push_back({u,1});
                                                 hiddenEdgeSet.push_back({v,0});
                                                 }       
-                                                if(plane==0 && !istesting) cout<<"Inside, OPPOSITE"<<endl;
                                         }
-                                        else{
-                                                if(plane==0 && !istesting) cout<<"Inside, SAME"<<endl;
-                                        }
-
+                                        
                                 }
-                                else{
-                                        if(plane==0 && !istesting) cout<<"Not inside"<<endl;
-                                }
-                        }
-                        if(plane==0 && !istesting){
-                                Vertice e_proj1=e_proj.vertices.first, e_proj2=e_proj.vertices.second;
-                                cout<<"Edge proj-------------------------------------------------------"<<endl;
-                                cout<<e_proj1<<endl;
-                                cout<<e_proj2<<endl;
+                                
                         }
                         
+                        
                         if(hiddenEdgeSet.size()!=0 && plane==0 && !istesting){
-                            cout<<"hiddenEdgeSet size for plane xxxxxxxxxxxxxxxxxxxxxxxxx "<<plane<<" "<<hiddenEdgeSet.size()<<endl;
                             for(auto it: hiddenEdgeSet){
                                 // Vertice u=it.first;
                                 cout<<it.first<<" "<<it.second<<endl;
                             }
                         
-                            cout<<"Face edges-"<<endl;
                         }
                         // if(plane==0) cout<<"Face edges- "<<endl;
                         // Vertice u=e_proj.vertices.first;
@@ -344,7 +278,6 @@ void render2DHidden(Fig3D & object3D,QPainter & painter,int plane ,double scale_
                             }
                         }
                     }
-                    if(plane==0 && !istesting) cout<<"EDGE DONE!!!"<<endl;
                      
                     Vertice u=e_proj.vertices.first;
                     Vertice v=e_proj.vertices.second;
@@ -354,9 +287,9 @@ void render2DHidden(Fig3D & object3D,QPainter & painter,int plane ,double scale_
                         v=e_proj.vertices.first;
                     }
                     int startCount=0, endCount=0;
-                    QPen Plain((QColor(255,0,0)),3);
+                    QPen Plain((QColor(0,0,0)),3);
                     Plain.setStyle(Qt::SolidLine);
-                    QPen Hidden((QColor(255,0,0)),1);
+                    QPen Hidden((QColor(0,0,0)),1);
                     Hidden.setStyle(Qt::DotLine);
                     painter.setPen(Plain);
                     QPen linepen(Qt::blue);
@@ -370,21 +303,11 @@ void render2DHidden(Fig3D & object3D,QPainter & painter,int plane ,double scale_
                         //         painter.drawPoint((temp.first+50), (temp.second+50) );
                         //  }
                         if(endCount>=startCount) { 
-                                if(plane==0 && !istesting){
-                                    cout<<"SOLID ***********************************"<<endl;
-                                    cout<<u<<endl;
-                                    cout<<temp<<endl;
-                                }
                                 painter.setPen(Plain);
                                 painter.drawLine((u.first)*scale_factor+150, (u.second )*scale_factor+150, (temp.first)*scale_factor+150, (temp.second )*scale_factor+150);
                         }
                         else{
-                              if(plane==0 && !istesting){
-                                  cout<<"HIDDEN ***********************************"<<endl;
-                                  cout<<u<<endl;
-                                  cout<<temp<<endl;
-                               }
-
+                              
                               painter.setPen(Hidden);
                               painter.drawLine((u.first )*scale_factor+ 150, (u.second )*scale_factor+ 150 , (temp.first )*scale_factor+ 150, (temp.second )*scale_factor+ 150  );
                         }
@@ -395,11 +318,6 @@ void render2DHidden(Fig3D & object3D,QPainter & painter,int plane ,double scale_
                         endCount++;        
                         }
                         u=temp;
-                    }
-                    if(plane==0 && !istesting){
-                    cout<<"Final :::"<<endl;
-                    cout<<u<<endl;
-                    cout<<v<<endl;
                     }
                     painter.setPen(Plain);
                     painter.drawLine((u.first)*scale_factor+150, (u.second)*scale_factor+150, (v.first)*scale_factor+150, (v.second )*scale_factor+150);

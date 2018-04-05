@@ -103,7 +103,7 @@ void MainWindow::render2DinLabel(Fig3D & fig_to_render,unsigned int plane){
 //    painter.setPen(Red);
 //    render2D(out_vertices, faces_vertices, painter, plane);
 //        renderAxes(fig_to_render, painter,plane,scale_factor);
-        QPen Red((QColor(255,0,0)),3);
+        QPen Red((QColor(0,0,0)),3);
         painter.setPen(Red);
         render2DHidden(fig_to_render, painter,plane,scale_factor);
 
@@ -278,7 +278,7 @@ void MainWindow::renderFromEdges(vector<Edge> edges,int plane){
     QPixmap pixmap(300,300);
     pixmap.fill(Qt::white);
     QPainter painter(&pixmap);
-    QPen Red((QColor(255,0,0)),3);
+    QPen Red((QColor(0,0,0)),3);
     painter.setPen(Red);
 
     for (unsigned int i=0;i<edges.size();i++){
