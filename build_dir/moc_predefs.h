@@ -13,6 +13,7 @@
 #define __INTMAX_C(c) c ## L
 #define __CHAR_BIT__ 8
 #define __UINT8_MAX__ 0xff
+#define __WINT_MAX__ 0xffffffffU
 #define __FLT32_MIN_EXP__ (-125)
 #define __cpp_static_assert 200410
 #define __ORDER_LITTLE_ENDIAN__ 1234
@@ -287,7 +288,6 @@
 #define __INT_MAX__ 0x7fffffff
 #define __amd64__ 1
 #define __INT64_TYPE__ long int
-#define __WINT_MAX__ 0xffffffffU
 #define __FLT_MAX_EXP__ 128
 #define __ORDER_BIG_ENDIAN__ 4321
 #define __DBL_MANT_DIG__ 53
