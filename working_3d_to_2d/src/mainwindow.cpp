@@ -318,7 +318,7 @@ void MainWindow::render2Dto3D(WireFrame wf,Fig3D fig_to_render){
 //    renderFromEdges(edges,0);
 //    renderFromEdges(edges,1);
 //    renderFromEdges(edges,2);
-
+    ui->descWireframe->setText("WireFrame");
     render2DinLabel(fig_to_render,0);
     render2DinLabel(fig_to_render,1);
     render2DinLabel(fig_to_render,2);

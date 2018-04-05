@@ -43,7 +43,7 @@ public:
     QLabel *xzDisplay;
     QLabel *label;
     QLabel *label_2;
-    QLabel *label_3;
+    QLabel *descWireframe;
     QLabel *label_4;
     QLabel *label_5;
     QLabel *label_6;
@@ -109,9 +109,9 @@ public:
         label_2 = new QLabel(centralwidget);
         label_2->setObjectName(QStringLiteral("label_2"));
         label_2->setGeometry(QRect(70, 480, 67, 17));
-        label_3 = new QLabel(centralwidget);
-        label_3->setObjectName(QStringLiteral("label_3"));
-        label_3->setGeometry(QRect(560, 210, 67, 17));
+        descWireframe = new QLabel(centralwidget);
+        descWireframe->setObjectName(QStringLiteral("descWireframe"));
+        descWireframe->setGeometry(QRect(560, 210, 67, 17));
         label_4 = new QLabel(centralwidget);
         label_4->setObjectName(QStringLiteral("label_4"));
         label_4->setGeometry(QRect(580, 460, 67, 17));
@@ -158,11 +158,11 @@ public:
         zoffseter_inc->setText(QApplication::translate("MainWindow", "z++", nullptr));
         zoffseter_dec->setText(QApplication::translate("MainWindow", "z--", nullptr));
         yzDisplay->setText(QApplication::translate("MainWindow", "TextLabel", nullptr));
-        isometricView->setText(QApplication::translate("MainWindow", "TextLabel", nullptr));
+        isometricView->setText(QString());
         xzDisplay->setText(QApplication::translate("MainWindow", "TextLabel", nullptr));
         label->setText(QApplication::translate("MainWindow", "yz", nullptr));
         label_2->setText(QApplication::translate("MainWindow", "xz", nullptr));
-        label_3->setText(QApplication::translate("MainWindow", "isometric", nullptr));
+        descWireframe->setText(QString());
         label_4->setText(QApplication::translate("MainWindow", "xy", nullptr));
         label_5->setText(QApplication::translate("MainWindow", "xRotation", nullptr));
         label_6->setText(QApplication::translate("MainWindow", "yRotation", nullptr));
