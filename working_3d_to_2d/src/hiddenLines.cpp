@@ -160,7 +160,7 @@ void render2DHidden(Fig3D & object3D,QPainter & painter,int plane ,double scale_
                         }
                         overlapEndPoints.clear();
                         for(auto it: removeDuplicates){
-                                if(verticePresent(overlapEndPoints, it)!=-1){ 
+                                if(verticePresent(overlapEndPoints, it)==-1){ 
                                         if(plane==0 && !istesting) cout<<"FINAL OVERLAP #####"<<it;
                                         overlapEndPoints.push_back(it.deepCopy());
                                 }
