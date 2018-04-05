@@ -354,7 +354,7 @@ void render2DHidden(Fig3D & object3D,QPainter & painter,int plane ,double scale_
                         v=e_proj.vertices.first;
                     }
                     int startCount=0, endCount=0;
-                    QPen Plain((QColor(255,0,0)),1);
+                    QPen Plain((QColor(255,0,0)),3);
                     Plain.setStyle(Qt::SolidLine);
                     QPen Hidden((QColor(255,0,0)),1);
                     Hidden.setStyle(Qt::DotLine);

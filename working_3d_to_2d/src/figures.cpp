@@ -174,3 +174,35 @@ Fig3D Fig3D::getTransformation(double Xrot,double Yrot,double Zrot,double Xoff,d
 
         return newFig;
 }
+
+
+Vertice Fig3D::getandSetAverage(){
+    Vertice average;
+    average.first=0;
+    average.second=0;
+    average.third=0;
+    int count=0;
+
+    std::vector<Vertice> vecVer=this->vertices;
+
+    for(auto it:vecVer){
+
+        average.first+=it.first ;
+        average.second+=it.second;
+        average.third+=it.third;
+        count++;
+    }
+
+    average.first=average.first/count;
+    average.second/=count;
+    average.third/=count;
+
+    for(auto it:vecVer){
+
+       it.first-=average.first;
+       it.second-=average.second;
+       it.third-=average.third;
+    }
+
+return average;
+}

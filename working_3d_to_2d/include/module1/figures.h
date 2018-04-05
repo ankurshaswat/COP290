@@ -26,6 +26,7 @@ void getAxes(int plane, set<Edge> & edgeSet2D);
 /** get transformed 3D object */
 Fig3D getTransformation(double Xrot,double Yrot,double Zrot,double Xoff,double Yoff,double Zoff); 
 
+Vertice getandSetAverage();
 
 };
 

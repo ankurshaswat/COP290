@@ -41,7 +41,7 @@ void renderAxes(Fig3D & object3D,
                 int plane, // 0- XY, 1-YZ, 2-XZ , 3-isometric
                 double scale_factor){
 
-        QPen Green((QColor(0,255,0)),1);
+        QPen Green((QColor(0,255,0)),3);
         painter.setPen(Green);
         std::set<Edge> edgeSet2D;
         object3D.getAxes(plane,edgeSet2D);

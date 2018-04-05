@@ -9,7 +9,7 @@ WireFrame WireFrame::getTransformation(double Xrot,double Yrot,double Zrot,doubl
 
 WireFrame newWf;
 
-for(int i=0;i<this->edges.size();i++){
+for(unsigned int i=0;i<this->edges.size();i++){
     Edge prev=this->edges[i];
     Vertice a1=prev.vertices.first;
     Vertice a2=prev.vertices.second;

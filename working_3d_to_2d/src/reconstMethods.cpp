@@ -166,9 +166,9 @@ WireFrame constUniq3dEdges(vector<vector<Edge> > edgeSet){
 /** Returns coplanar sets of edges  of size>=3 (each coplanar set is represented as a list of edge indices) */
 vector< vector<int> >  coplanarEdges (vector<Edge> & edges){
         vector< vector<int> > ans;
-        for(int i=0;i<edges.size();i++){
+        for(unsigned int i=0;i<edges.size();i++){
                 Vertice i1=edges[i].vertices.first.deepCopy(), i2= edges[i].vertices.second.deepCopy();
-                for(int j=i+1;j<edges.size();j++){
+                for(unsigned int j=i+1;j<edges.size();j++){
                         Vertice j1=edges[j].vertices.first.deepCopy(),j2=edges[j].vertices.second.deepCopy(),z;
                         if(!(j1==i1) && !(j1==i2)) z=j1;     //Pick the vertice not in common with the edge
                         else z=j2;
@@ -177,7 +177,7 @@ vector< vector<int> >  coplanarEdges (vector<Edge> & edges){
                                 vector<int> coplanar;
                                 coplanar.push_back(i);
                                 coplanar.push_back(j);
-                                for(int k=j+1;k<edges.size();k++){
+                                for(unsigned int k=j+1;k<edges.size();k++){
                                         if(plane.onPlane(edges[k])) coplanar.push_back(k);
                                 }
                                 if(coplanar.size()>=3){ 
@@ -279,7 +279,7 @@ Fig3D wireframeTo3D(WireFrame a){
         vector<Vertice> vertices;
         vector< vector<unsigned int> > faces;
         cout<<"PRINTING VERTICES"<<endl;
-        for(int index=0;index<a.edges.size();index++){
+        for(unsigned int index=0;index<a.edges.size();index++){
                 Edge e=a.edges[index];
                 cout<<e.vertices.first<<e.vertices.second<<endl;
                 int pos1= verticePresent(vertices, e.vertices.first);
@@ -309,7 +309,7 @@ Fig3D wireframeTo3D(WireFrame a){
                              faceVertices.push_back(v1);
                              faceVertices.push_back(v2);   
                         }
-                        for(int i=1;i<loop.size();i++){
+                        for(unsigned int i=1;i<loop.size();i++){
                                 int index=loop[i];
                                 Edge e=a.edges[index];
                                 v1=edge2vertexMap[index].first;

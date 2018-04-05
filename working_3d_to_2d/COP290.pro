@@ -45,8 +45,7 @@ HEADERS += \
     include/module1/hiddenLines.h \
     include/module1/complexComponents.h \
     include/module1/structs.h \
-    include/module1/reconstMethods.h \
-    src/helperfunctions.h
+    include/module1/reconstMethods.h
 
 FORMS += \
         mainwindow.ui \

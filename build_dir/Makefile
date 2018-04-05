@@ -242,8 +242,7 @@ DIST          = ../../../../Qt5.10.1/5.10.1/gcc_64/mkspecs/features/spec_pre.prf
 		../working_3d_to_2d/include/module1/hiddenLines.h \
 		../working_3d_to_2d/include/module1/complexComponents.h \
 		../working_3d_to_2d/include/module1/structs.h \
-		../working_3d_to_2d/include/module1/reconstMethods.h \
-		../working_3d_to_2d/src/helperfunctions.h ../working_3d_to_2d/src/main.cpp \
+		../working_3d_to_2d/include/module1/reconstMethods.h ../working_3d_to_2d/src/main.cpp \
 		../working_3d_to_2d/src/mainwindow.cpp \
 		../working_3d_to_2d/src/objLoader.cpp \
 		../working_3d_to_2d/src/figures.cpp \
@@ -610,7 +609,7 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents ../../../../Qt5.10.1/5.10.1/gcc_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../working_3d_to_2d/include/module1/mainwindow.h ../working_3d_to_2d/include/module1/objLoader.h ../working_3d_to_2d/include/module1/basicComponents.h ../working_3d_to_2d/include/module1/figures.h ../working_3d_to_2d/include/module1/renderMethods.h ../working_3d_to_2d/optionwindow.h ../working_3d_to_2d/include/module1/hiddenLines.h ../working_3d_to_2d/include/module1/complexComponents.h ../working_3d_to_2d/include/module1/structs.h ../working_3d_to_2d/include/module1/reconstMethods.h ../working_3d_to_2d/src/helperfunctions.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../working_3d_to_2d/include/module1/mainwindow.h ../working_3d_to_2d/include/module1/objLoader.h ../working_3d_to_2d/include/module1/basicComponents.h ../working_3d_to_2d/include/module1/figures.h ../working_3d_to_2d/include/module1/renderMethods.h ../working_3d_to_2d/optionwindow.h ../working_3d_to_2d/include/module1/hiddenLines.h ../working_3d_to_2d/include/module1/complexComponents.h ../working_3d_to_2d/include/module1/structs.h ../working_3d_to_2d/include/module1/reconstMethods.h $(DISTDIR)/
 	$(COPY_FILE) --parents ../working_3d_to_2d/src/main.cpp ../working_3d_to_2d/src/mainwindow.cpp ../working_3d_to_2d/src/objLoader.cpp ../working_3d_to_2d/src/figures.cpp ../working_3d_to_2d/src/renderMethods.cpp ../working_3d_to_2d/optionwindow.cpp ../working_3d_to_2d/src/hiddenLines.cpp ../working_3d_to_2d/src/reconstMethods.cpp ../working_3d_to_2d/src/complexcomponents.cpp ../working_3d_to_2d/src/helperfunctions.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../working_3d_to_2d/mainwindow.ui ../working_3d_to_2d/optionwindow.ui $(DISTDIR)/
 
@@ -1365,7 +1364,8 @@ main.o: ../working_3d_to_2d/src/main.cpp ../working_3d_to_2d/include/module1/mai
 		../../../../Qt5.10.1/5.10.1/gcc_64/include/QtWidgets/qwizard.h \
 		../../../../Qt5.10.1/5.10.1/gcc_64/include/QtWidgets/qtwidgetsversion.h \
 		../../../../Qt5.10.1/5.10.1/gcc_64/include/QtUiTools/quiloader.h \
-		../../../../Qt5.10.1/5.10.1/gcc_64/include/QtUiTools/qtuitoolsversion.h
+		../../../../Qt5.10.1/5.10.1/gcc_64/include/QtUiTools/qtuitoolsversion.h \
+		../working_3d_to_2d/include/module1/helperfunctions.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../working_3d_to_2d/src/main.cpp
 
 mainwindow.o: ../working_3d_to_2d/src/mainwindow.cpp ../working_3d_to_2d/include/module1/mainwindow.h \
@@ -1842,7 +1842,9 @@ mainwindow.o: ../working_3d_to_2d/src/mainwindow.cpp ../working_3d_to_2d/include
 		../../../../Qt5.10.1/5.10.1/gcc_64/include/QtUiTools/qtuitoolsversion.h \
 		../working_3d_to_2d/include/module1/objLoader.h \
 		../working_3d_to_2d/include/module1/renderMethods.h \
-		../working_3d_to_2d/include/module1/hiddenLines.h
+		../working_3d_to_2d/include/module1/hiddenLines.h \
+		../working_3d_to_2d/include/module1/reconstMethods.h \
+		../working_3d_to_2d/include/module1/structs.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../working_3d_to_2d/src/mainwindow.cpp
 
 objLoader.o: ../working_3d_to_2d/src/objLoader.cpp ../working_3d_to_2d/include/module1/objLoader.h \
@@ -1853,7 +1855,8 @@ objLoader.o: ../working_3d_to_2d/src/objLoader.cpp ../working_3d_to_2d/include/m
 figures.o: ../working_3d_to_2d/src/figures.cpp ../working_3d_to_2d/include/module1/figures.h \
 		../working_3d_to_2d/include/module1/basicComponents.h \
 		../working_3d_to_2d/include/module1/objLoader.h \
-		../working_3d_to_2d/src/helperfunctions.h
+		../working_3d_to_2d/include/module1/helperfunctions.h \
+		../working_3d_to_2d/include/module1/complexComponents.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o figures.o ../working_3d_to_2d/src/figures.cpp
 
 renderMethods.o: ../working_3d_to_2d/src/renderMethods.cpp ../working_3d_to_2d/include/module1/basicComponents.h \
@@ -2477,7 +2480,8 @@ optionwindow.o: ../working_3d_to_2d/optionwindow.cpp ../working_3d_to_2d/optionw
 		../../../../Qt5.10.1/5.10.1/gcc_64/include/QtWidgets/qmessagebox.h \
 		../working_3d_to_2d/include/module1/objLoader.h \
 		../working_3d_to_2d/include/module1/reconstMethods.h \
-		../working_3d_to_2d/include/module1/structs.h
+		../working_3d_to_2d/include/module1/structs.h \
+		../working_3d_to_2d
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o optionwindow.o ../working_3d_to_2d/optionwindow.cpp
 
 hiddenLines.o: ../working_3d_to_2d/src/hiddenLines.cpp ../working_3d_to_2d/include/module1/basicComponents.h \
@@ -2939,23 +2943,27 @@ hiddenLines.o: ../working_3d_to_2d/src/hiddenLines.cpp ../working_3d_to_2d/inclu
 		../../../../Qt5.10.1/5.10.1/gcc_64/include/QtWidgets/qwizard.h \
 		../../../../Qt5.10.1/5.10.1/gcc_64/include/QtWidgets/qtwidgetsversion.h \
 		../../../../Qt5.10.1/5.10.1/gcc_64/include/QtUiTools/quiloader.h \
-		../../../../Qt5.10.1/5.10.1/gcc_64/include/QtUiTools/qtuitoolsversion.h
+		../../../../Qt5.10.1/5.10.1/gcc_64/include/QtUiTools/qtuitoolsversion.h \
+		../working_3d_to_2d/include/module1/helperfunctions.h \
+		../working_3d_to_2d/include/module1/complexComponents.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o hiddenLines.o ../working_3d_to_2d/src/hiddenLines.cpp
 
 reconstMethods.o: ../working_3d_to_2d/src/reconstMethods.cpp ../working_3d_to_2d/include/module1/basicComponents.h \
 		../working_3d_to_2d/include/module1/complexComponents.h \
 		../working_3d_to_2d/include/module1/figures.h \
 		../working_3d_to_2d/include/module1/structs.h \
-		../working_3d_to_2d/include/module1/reconstMethods.h
+		../working_3d_to_2d/include/module1/reconstMethods.h \
+		../working_3d_to_2d/include/module1/helperfunctions.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o reconstMethods.o ../working_3d_to_2d/src/reconstMethods.cpp
 
 complexcomponents.o: ../working_3d_to_2d/src/complexcomponents.cpp ../working_3d_to_2d/include/module1/complexComponents.h \
 		../working_3d_to_2d/include/module1/basicComponents.h \
-		../working_3d_to_2d/src/helperfunctions.h
+		../working_3d_to_2d/include/module1/helperfunctions.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o complexcomponents.o ../working_3d_to_2d/src/complexcomponents.cpp
 
-helperfunctions.o: ../working_3d_to_2d/src/helperfunctions.cpp ../working_3d_to_2d/src/helperfunctions.h \
-		../working_3d_to_2d/include/module1/basicComponents.h
+helperfunctions.o: ../working_3d_to_2d/src/helperfunctions.cpp ../working_3d_to_2d/include/module1/helperfunctions.h \
+		../working_3d_to_2d/include/module1/basicComponents.h \
+		../working_3d_to_2d/include/module1/complexComponents.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o helperfunctions.o ../working_3d_to_2d/src/helperfunctions.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 

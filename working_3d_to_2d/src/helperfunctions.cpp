@@ -202,7 +202,7 @@ bool isSubset(vector<int> & a, vector<int> & b)
 
 /**A simple helper function which checks if vertex is already present in vector (allowing for some error correction)**/
 int verticePresent(vector<Vertice> & a, Vertice b){
-        for(int i=0;i<a.size();i++){
+        for(unsigned int i=0;i<a.size();i++){
                 Vertice it=a[i];
                 if(  abs(it.first-b.first)<0.1 && abs(it.second-b.second)<0.1 && (it.is3d==false || abs(it.third-b.third)<0.1   ) ) {
                         // cout<<"VERTICE PRESENT !!!!!!!!!!!!!"<<endl;
