@@ -1,0 +1,77 @@
+\hypertarget{reconstMethods_8cpp}{}\section{/home/ankurshaswat/\+My\+Files/\+Repos/\+C\+O\+P290-\/master/\+E\+D\+\_\+\+Project/src/reconst\+Methods.cpp File Reference}
+\label{reconstMethods_8cpp}\index{/home/ankurshaswat/\+My\+Files/\+Repos/\+C\+O\+P290-\/master/\+E\+D\+\_\+\+Project/src/reconst\+Methods.\+cpp@{/home/ankurshaswat/\+My\+Files/\+Repos/\+C\+O\+P290-\/master/\+E\+D\+\_\+\+Project/src/reconst\+Methods.\+cpp}}
+{\ttfamily \#include \char`\"{}basic\+Components.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}complex\+Components.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}figures.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}structs.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}reconst\+Methods.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}helperfunctions.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$map$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$algorithm$>$}\newline
+Include dependency graph for reconst\+Methods.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{reconstMethods_8cpp__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ std\+::vector$<$ \hyperlink{structEdge}{Edge} $>$ $>$ \hyperlink{reconstMethods_8cpp_a5b106c1c411ab1e9cbb880661e8702fc}{read\+File} (const char $\ast$path)
+\begin{DoxyCompactList}\small\item\em Function to read txt file contatining labelled data of xy , yz and xz views and returns the result as a vector of vector of edges. \end{DoxyCompactList}\item 
+\hyperlink{classWireFrame}{Wire\+Frame} \hyperlink{reconstMethods_8cpp_a110e71b7da4f490cc73c09b654d2db99}{const\+Uniq3d\+Edges} (vector$<$ vector$<$ \hyperlink{structEdge}{Edge} $>$ $>$ edge\+Set)
+\begin{DoxyCompactList}\small\item\em Function to construct 3d edges from 2d edges by checking the possibility of the edges being projections of each other. \end{DoxyCompactList}\item 
+vector$<$ vector$<$ int $>$ $>$ \hyperlink{reconstMethods_8cpp_ad748b0dac80de637f972c4676f8ccdaa}{coplanar\+Edges} (vector$<$ \hyperlink{structEdge}{Edge} $>$ \&edges)
+\item 
+vector$<$ vector$<$ int $>$ $>$ \hyperlink{reconstMethods_8cpp_aed7e2db16ce5e7210f9f80b20a8af52f}{get\+Edge\+Loops} (vector$<$ \hyperlink{structEdge}{Edge} $>$ \&edges, vector$<$ int $>$ coplanar\+Indices)
+\item 
+\hyperlink{classFig3D}{Fig3D} \hyperlink{reconstMethods_8cpp_a323870048d29be8ede27a7020e767c79}{wireframe\+To3D} (\hyperlink{classWireFrame}{Wire\+Frame} a)
+\begin{DoxyCompactList}\small\item\em Takes a wireframe object and converts it into a 3d object by creating faces by forming edge loops. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{reconstMethods_8cpp_a110e71b7da4f490cc73c09b654d2db99}\label{reconstMethods_8cpp_a110e71b7da4f490cc73c09b654d2db99}} 
+\index{reconst\+Methods.\+cpp@{reconst\+Methods.\+cpp}!const\+Uniq3d\+Edges@{const\+Uniq3d\+Edges}}
+\index{const\+Uniq3d\+Edges@{const\+Uniq3d\+Edges}!reconst\+Methods.\+cpp@{reconst\+Methods.\+cpp}}
+\subsubsection{\texorpdfstring{const\+Uniq3d\+Edges()}{constUniq3dEdges()}}
+{\footnotesize\ttfamily \hyperlink{classWireFrame}{Wire\+Frame} const\+Uniq3d\+Edges (\begin{DoxyParamCaption}\item[{vector$<$ vector$<$ \hyperlink{structEdge}{Edge} $>$ $>$}]{edge\+Set }\end{DoxyParamCaption})}
+
+
+
+Function to construct 3d edges from 2d edges by checking the possibility of the edges being projections of each other. 
+
+Defines methods required for 3D reconstruction process \mbox{\Hypertarget{reconstMethods_8cpp_ad748b0dac80de637f972c4676f8ccdaa}\label{reconstMethods_8cpp_ad748b0dac80de637f972c4676f8ccdaa}} 
+\index{reconst\+Methods.\+cpp@{reconst\+Methods.\+cpp}!coplanar\+Edges@{coplanar\+Edges}}
+\index{coplanar\+Edges@{coplanar\+Edges}!reconst\+Methods.\+cpp@{reconst\+Methods.\+cpp}}
+\subsubsection{\texorpdfstring{coplanar\+Edges()}{coplanarEdges()}}
+{\footnotesize\ttfamily vector$<$ vector$<$int$>$ $>$ coplanar\+Edges (\begin{DoxyParamCaption}\item[{vector$<$ \hyperlink{structEdge}{Edge} $>$ \&}]{edges }\end{DoxyParamCaption})}
+
+Returns coplanar sets of edges of size$>$=3 (each coplanar set is represented as a list of edge indices) \mbox{\Hypertarget{reconstMethods_8cpp_aed7e2db16ce5e7210f9f80b20a8af52f}\label{reconstMethods_8cpp_aed7e2db16ce5e7210f9f80b20a8af52f}} 
+\index{reconst\+Methods.\+cpp@{reconst\+Methods.\+cpp}!get\+Edge\+Loops@{get\+Edge\+Loops}}
+\index{get\+Edge\+Loops@{get\+Edge\+Loops}!reconst\+Methods.\+cpp@{reconst\+Methods.\+cpp}}
+\subsubsection{\texorpdfstring{get\+Edge\+Loops()}{getEdgeLoops()}}
+{\footnotesize\ttfamily vector$<$ vector$<$int$>$ $>$ get\+Edge\+Loops (\begin{DoxyParamCaption}\item[{vector$<$ \hyperlink{structEdge}{Edge} $>$ \&}]{edges,  }\item[{vector$<$ int $>$}]{coplanar\+Indices }\end{DoxyParamCaption})}
+
+takes input a set of coplanar edges (as edges + indices) and returns a list of edge loops(candidate faces) formed using these edges (each edge\+Loop is represented by a list of indices) \mbox{\Hypertarget{reconstMethods_8cpp_a5b106c1c411ab1e9cbb880661e8702fc}\label{reconstMethods_8cpp_a5b106c1c411ab1e9cbb880661e8702fc}} 
+\index{reconst\+Methods.\+cpp@{reconst\+Methods.\+cpp}!read\+File@{read\+File}}
+\index{read\+File@{read\+File}!reconst\+Methods.\+cpp@{reconst\+Methods.\+cpp}}
+\subsubsection{\texorpdfstring{read\+File()}{readFile()}}
+{\footnotesize\ttfamily std\+::vector$<$std\+::vector$<$\hyperlink{structEdge}{Edge}$>$ $>$ read\+File (\begin{DoxyParamCaption}\item[{const char $\ast$}]{path }\end{DoxyParamCaption})}
+
+
+
+Function to read txt file contatining labelled data of xy , yz and xz views and returns the result as a vector of vector of edges. 
+
+\mbox{\Hypertarget{reconstMethods_8cpp_a323870048d29be8ede27a7020e767c79}\label{reconstMethods_8cpp_a323870048d29be8ede27a7020e767c79}} 
+\index{reconst\+Methods.\+cpp@{reconst\+Methods.\+cpp}!wireframe\+To3D@{wireframe\+To3D}}
+\index{wireframe\+To3D@{wireframe\+To3D}!reconst\+Methods.\+cpp@{reconst\+Methods.\+cpp}}
+\subsubsection{\texorpdfstring{wireframe\+To3\+D()}{wireframeTo3D()}}
+{\footnotesize\ttfamily \hyperlink{classFig3D}{Fig3D} wireframe\+To3D (\begin{DoxyParamCaption}\item[{\hyperlink{classWireFrame}{Wire\+Frame}}]{a }\end{DoxyParamCaption})}
+
+
+
+Takes a wireframe object and converts it into a 3d object by creating faces by forming edge loops. 
+
